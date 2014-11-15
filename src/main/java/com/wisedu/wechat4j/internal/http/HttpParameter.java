@@ -1,7 +1,7 @@
 package com.wisedu.wechat4j.internal.http;
 
+import com.wisedu.wechat4j.internal.json.JSONArray;
 import com.wisedu.wechat4j.internal.json.JSONObject;
-import weibo4j.org.json.JSONArray;
 
 import java.io.File;
 import java.io.InputStream;
