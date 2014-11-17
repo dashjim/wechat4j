@@ -31,8 +31,16 @@ final class ContactJSONImpl implements Contact, Serializable {
             for (int i=0; i<size; i++){
                 groups[i] = new GroupJSONImpl(array.getJSONObject(i));
             }
+        } else if (!jsonObject.isNull("group")) {
+            groups = new Group[] {
+                    new GroupJSONImpl(jsonObject)
+            };
+        } else if (!jsonObject.isNull("groupid")) {
+            groups = new Group[] {
+                    new GroupJSONImpl(jsonObject)
+            };
         } else {
-            groups = new Group[]{};
+            groups = new GroupJSONImpl[] {};
         }
     }
 
