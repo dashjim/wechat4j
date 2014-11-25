@@ -9,25 +9,17 @@ import com.wisedu.wechat4j.internal.http.HttpClient;
 import com.wisedu.wechat4j.internal.http.HttpClientFactory;
 
 
-abstract class WechatBaseImpl extends Wechat implements WechatBase{
+abstract class WechatBaseImpl implements WechatBase, OAuthSupport {
     protected Configuration conf;
     protected Authorization auth;
     protected HttpClient http;
     protected ObjectFactory factory;
 
-    WechatBaseImpl(Configuration conf, License license){
+    WechatBaseImpl(Configuration conf ){
         this.conf = conf;
         this.http = HttpClientFactory.getInstance(conf);
-        this.auth = AuthorizationFactory.getInstance(conf, license, http);
+        this.auth = AuthorizationFactory.getInstance(conf, http);
         this.factory = new JSONImplFactory();
-    }
-
-    @Override public String getAppID() {
-        return getOAuth().getAppID();
-    }
-
-    @Override public String getAppSecret() {
-        return getOAuth().getAppSecret();
     }
 
     @Override public void setOAuthApp(String token, String appId, String appSecret){
@@ -39,10 +31,10 @@ abstract class WechatBaseImpl extends Wechat implements WechatBase{
         }
 
         if (auth instanceof NullAuthorization){
-            Authorization auth = AuthorizationFactory.getInstance(
-                    conf, new License(token, appId, appSecret), http
-            );
-            this.auth = auth;
+            // Authorization auth = AuthorizationFactory.getInstance(conf, http);
+            OAuthAuthorization oauth = new OAuthAuthorization(conf, http);
+            oauth.setOAuthApp(token,  appId, appSecret);
+            this.auth = oauth;
         } else if (auth instanceof  OAuthAuthorization){
             throw new IllegalStateException("app id/secret pair already set.");
         }

@@ -1,21 +1,12 @@
 package com.wisedu.wechat4j.client;
 
-import com.wisedu.wechat4j.api.WechatSupport;
-import com.wisedu.wechat4j.conf.Configuration;
-import com.wisedu.wechat4j.conf.ConfigurationContext;
+import com.wisedu.wechat4j.api.GroupService;
+import com.wisedu.wechat4j.api.MenuService;
+import com.wisedu.wechat4j.auth.OAuthSupport;
 
-public abstract class Wechat implements WechatSupport{
-    private static final Configuration DEFAULT_CONF =ConfigurationContext.getInstance();
+public interface Wechat extends
+        GroupService,
+        MenuService,
+        OAuthSupport {
 
-    public static Wechat newInstance(){
-        return Wechat.newInstance(DEFAULT_CONF, License.getSingleton());
-    }
-
-    public static Wechat newInstance(License license) {
-        return Wechat.newInstance(DEFAULT_CONF, license);
-    }
-
-    public static Wechat newInstance(Configuration conf, License license) {
-        return new WechatImpl(conf, license);
-    }
 }

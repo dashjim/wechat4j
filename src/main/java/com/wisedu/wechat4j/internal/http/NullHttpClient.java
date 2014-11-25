@@ -19,10 +19,6 @@ public class NullHttpClient implements HttpClient, Serializable {
         return INSTANCE;
     }
 
-    @Override public HttpResponse request(HttpRequest request) throws IOException {
-        return null;
-    }
-
     @Override public HttpResponse get(String url) throws IOException {
         return null;
     }

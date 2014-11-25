@@ -1,6 +1,7 @@
 package com.wisedu.wechat4j.client;
 
-import com.wisedu.wechat4j.WechatException;
+import com.wisedu.wechat4j.auth.Authorization;
+import com.wisedu.wechat4j.auth.AuthorizationFactory;
 import com.wisedu.wechat4j.conf.Configuration;
 import com.wisedu.wechat4j.conf.ConfigurationContext;
 
@@ -21,7 +22,7 @@ public final class WechatFactory implements Serializable {
         String className = "com.wisedu.wechat4j.client.WechatImpl";
         try {
             Class clazz = Class.forName(className);
-            constructor = clazz.getDeclaredConstructor(Configuration.class, License.class);
+            constructor = clazz.getDeclaredConstructor(Configuration.class);
         } catch (ClassNotFoundException cnfe){
             throw new AssertionError(cnfe);
         } catch (NoSuchMethodException nsme){
@@ -32,17 +33,17 @@ public final class WechatFactory implements Serializable {
 
     private WechatFactory(){}
 
-    public static Wechat create() throws WechatException{
-        Wechat client = null;
+    public static Wechat createWechatInstance() {
+        return createWechatInstance(conf);
+    }
+
+    public static Wechat createWechatInstance(Configuration conf) {
         try {
-            client = WECHAT_CONSTRUCTOR.newInstance(conf);
+            return WECHAT_CONSTRUCTOR.newInstance(conf);
         } catch (InstantiationException ie){
-            throw new WechatException(ie);
         } catch (IllegalAccessException iae){
-            throw new WechatException(iae);
         } catch (InvocationTargetException ite){
-            throw new WechatException(ite);
         }
-        return client;
+        return null;
     }
 }

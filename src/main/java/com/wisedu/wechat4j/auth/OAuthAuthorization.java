@@ -24,14 +24,6 @@ public final class OAuthAuthorization implements Authorization, OAuthSupport, Se
         this.http = http;
     }
 
-    @Override public String getAppID() {
-        return appID;
-    }
-
-    @Override public String getAppSecret() {
-        return appSecret;
-    }
-
     @Override public void setOAuthApp(String token, String appID, String appSecret){
         this.token = token!=null? token: "";
         this.appID = appID!=null? appID: "";

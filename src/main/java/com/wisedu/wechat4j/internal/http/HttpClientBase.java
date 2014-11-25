@@ -21,7 +21,7 @@ public abstract class HttpClientBase implements HttpClient, Serializable {
 
     abstract HttpResponse handleRequest(HttpRequest request) throws IOException;
 
-    @Override public HttpResponse request(HttpRequest request) throws IOException{
+    public HttpResponse request(HttpRequest request) throws IOException{
         return handleRequest(request);
     }
 
