@@ -16,6 +16,7 @@ class ConfigurationBase implements Configuration, Serializable {
     private String oAuthAppSecret;
     private String oAuthAccessToken;
 
+    private boolean useSSL;
     private int httpRetryCount;
     private int httpReadTimeout;
     private int httpConnectionTimeout;
@@ -36,6 +37,7 @@ class ConfigurationBase implements Configuration, Serializable {
         setOAuthAppID(null);
         setOAuthAppSecret(null);
 
+        setUseSSL(true);
         setHttpRetryCount(0);
         setHttpReadTimeout(10000);
         setHttpConnectionTimeout(10000);
@@ -111,6 +113,15 @@ class ConfigurationBase implements Configuration, Serializable {
         this.oAuthAccessToken = oAuthAccessToken;
     }
 
+    @Override public final boolean getUseSSL() {
+        return this.useSSL;
+    }
+
+    protected final void setUseSSL(boolean useSSL){
+        this.useSSL = useSSL;
+        fixRestBaseURL();
+    }
+
     @Override public final int getHttpRetryCount(){
         return httpRetryCount;
     }
@@ -173,5 +184,25 @@ class ConfigurationBase implements Configuration, Serializable {
 
     protected final void setOAuthAccessTokenURL(String oAuthAccessTokenURL){
         this.oAuthAccessTokenURL = oAuthAccessTokenURL;
+    }
+
+    private void fixRestBaseURL() {
+        restBaseURL = fixURL(useSSL, restBaseURL);
+        mediaBaseURL = fixURL(useSSL, mediaBaseURL);
+        oAuthAccessTokenURL = fixURL(useSSL, oAuthAccessTokenURL);
+    }
+
+    private String fixURL(boolean useSSL, String url) {
+        if (null == url) return null;
+        int index = url.indexOf("://");
+        if (-1 == index) {
+            throw new IllegalArgumentException("url should contain '://'");
+        }
+        String hostAndLater = url.substring(index + 3);
+        if (useSSL) {
+            return "https://" + hostAndLater;
+        } else {
+            return "http://" + hostAndLater;
+        }
     }
 }

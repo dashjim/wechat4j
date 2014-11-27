@@ -5,6 +5,8 @@ import java.util.Map;
 public interface HttpClientConfiguration {
     Map<String, String> getRequestHeaders();
 
+    boolean getUseSSL();
+
     int getHttpRetryCount();
 
     int getHttpReadTimeout();

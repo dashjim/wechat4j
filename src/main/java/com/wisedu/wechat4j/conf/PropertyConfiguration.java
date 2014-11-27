@@ -18,6 +18,7 @@ public final class PropertyConfiguration extends ConfigurationBase implements Se
     private static final String OAUTH_ACCESSTOKEN = "oauth.accessToken";
 
     // HTTP connection
+    public static final String HTTP_USE_SSL = "http.useSSL";
     private static final String HTTP_RETRY_COUNT = "http.retryCount";
     private static final String HTTP_READ_TIMEOUT = "http.readTimeout";
     private static final String HTTP_CONNECTION_TIMEOUT = "http.connectionTimeout";
@@ -152,6 +153,10 @@ public final class PropertyConfiguration extends ConfigurationBase implements Se
 
         if (notNull(props, OAUTH_ACCESSTOKEN)) {
             setOAuthAccessToken(getStringProperty(props, OAUTH_ACCESSTOKEN));
+        }
+
+        if (notNull(props, HTTP_USE_SSL)) {
+            setUseSSL(getBooleanProperty(props, HTTP_USE_SSL));
         }
 
         if (notNull(props, HTTP_RETRY_COUNT)){
