@@ -39,6 +39,12 @@ public final class ConfigurationBuilder {
         return this;
     }
 
+    public ConfigurationBuilder setUseSSL(boolean useSSL) {
+        checkNotBuilt();
+        conf.setUseSSL(useSSL);
+        return this;
+    }
+
     public ConfigurationBuilder setHttpRetryCount(int httpRetryCount){
         checkNotBuilt();
         conf.setHttpRetryCount(httpRetryCount);
