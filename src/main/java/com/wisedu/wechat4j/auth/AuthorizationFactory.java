@@ -1,6 +1,7 @@
 package com.wisedu.wechat4j.auth;
 
 import com.wisedu.wechat4j.conf.AuthorizationConfiguration;
+import com.wisedu.wechat4j.entity.AccessToken;
 import com.wisedu.wechat4j.internal.http.HttpClient;
 
 public final class AuthorizationFactory {

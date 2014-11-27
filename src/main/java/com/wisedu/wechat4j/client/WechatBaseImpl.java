@@ -3,6 +3,7 @@ package com.wisedu.wechat4j.client;
 import com.wisedu.wechat4j.WechatException;
 import com.wisedu.wechat4j.auth.*;
 import com.wisedu.wechat4j.conf.Configuration;
+import com.wisedu.wechat4j.entity.AccessToken;
 import com.wisedu.wechat4j.entity.JSONImplFactory;
 import com.wisedu.wechat4j.entity.ObjectFactory;
 import com.wisedu.wechat4j.internal.http.HttpClient;

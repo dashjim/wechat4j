@@ -1,7 +1,6 @@
 package com.wisedu.wechat4j.examples.group;
 
 import com.wisedu.wechat4j.WechatException;
-import com.wisedu.wechat4j.auth.AccessToken;
 import com.wisedu.wechat4j.client.Wechat;
 import com.wisedu.wechat4j.client.WechatFactory;
 import com.wisedu.wechat4j.entity.Contact;
