@@ -12,7 +12,6 @@ public class GetToken {
 
     public static void main(String[] args){
         try {
-            System.out.println(System.currentTimeMillis());
             Wechat wechat = WechatFactory.createWechatInstance();
             wechat.setOAuthApp(oauthToken, oauthAppID, oauthAppSecret);
             AccessToken token = wechat.getAccessToken();
