@@ -37,7 +37,7 @@ public final class HttpRequest implements Serializable {
                 this.parameters = parameters;
             }
         }
-        if (urlParameters!=null && url.length()!=0){
+        if (urlParameters!=null && urlParameters.length!=0 && url.length()!=0){
             if (url.contains("?")) {
                 this.url = url + "&" + HttpParameter.encodeParameters(urlParameters);
             } else {
