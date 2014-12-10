@@ -83,9 +83,9 @@
             <version>1.0.416</version>
         </dependency>
         <dependency>
-            <groupId>org.trello4j</groupId>
-            <artifactId>trello4j</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <groupId>cn.jpush.api</groupId>
+            <artifactId>jpush-client</artifactId>
+            <version>3.1.2</version>
         </dependency>
     </dependencies>
 </project>
