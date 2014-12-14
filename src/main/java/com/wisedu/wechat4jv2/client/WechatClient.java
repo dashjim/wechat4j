@@ -29,11 +29,11 @@ public class WechatClient extends WechatBaseClient implements WechatSupport{
         this.token = new AccessToken(conf.getAuthAccessToken(), null);
     }
 
-    @Override public void setAccessToken(String accessToken, Long expiresIn) {
+    @Override public void setAuthAccessToken(String accessToken, Long expiresIn) {
         this.token = new AccessToken(accessToken, expiresIn);
     }
 
-    @Override public AccessToken getAccessToken() throws IOException {
+    @Override public AccessToken getAuthAccessToken() throws IOException {
         String url = conf.getRestBaseURL() + "token";
         HttpParameter[] params = new HttpParameter[] {
                 new HttpParameter("appid", conf.getAuthAppID()),
