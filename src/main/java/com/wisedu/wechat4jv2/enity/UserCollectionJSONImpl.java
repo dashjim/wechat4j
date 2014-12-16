@@ -7,6 +7,8 @@ import java.io.Serializable;
 
 final class UserCollectionJSONImpl implements UserCollection, Serializable {
 
+    private User[] users;
+
     private Response response;
 
     UserCollectionJSONImpl(HttpResponse response) {
@@ -19,5 +21,13 @@ final class UserCollectionJSONImpl implements UserCollection, Serializable {
 
     void init(JSONObject jsonObject) {
         this.response = new ResponseJSONImpl(jsonObject);
+    }
+
+    @Override public User[] getUsers() {
+        return users;
+    }
+
+    @Override public Response getResponse() {
+        return response;
     }
 }
