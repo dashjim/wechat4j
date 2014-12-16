@@ -6,10 +6,10 @@ import java.util.List;
 
 public class ObjectFactory {
     public AccessToken createAccessToken(HttpResponse response) {
-        return new AccessToken(response.asJSONObject());
+        return new AccessToken(response);
     }
 
-    public List<Group> createGroupList(HttpResponse response) {
-
+    public GroupCollection createGroupCollection(HttpResponse response) {
+        return new GroupCollectionJSONImpl(response);
     }
 }

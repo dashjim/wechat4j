@@ -1,5 +1,6 @@
 package com.wisedu.wechat4jv2.enity;
 
+import com.wisedu.wechat4jv2.http.HttpResponse;
 import com.wisedu.wechat4jv2.internal.json.JSONObject;
 
 import java.io.Serializable;
@@ -15,6 +16,10 @@ public class AccessToken implements Serializable {
     public AccessToken(String token, Long expires) {
         this.token = token;
         this.expires = expires;
+    }
+
+    AccessToken(HttpResponse response) {
+        this(response.asJSONObject());
     }
 
     AccessToken(JSONObject jsonObject) {

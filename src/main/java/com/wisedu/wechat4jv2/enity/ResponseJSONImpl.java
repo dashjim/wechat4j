@@ -8,16 +8,19 @@ final class ResponseJSONImpl implements Response{
 
     protected JSONObject object;
 
-    ResponseJSONImpl(JSONObject jsonObject) {
-        this.object = jsonObject;
-        if (!object.isNull("errcode")) {
-            this.errCode = jsonObject.getInt("errcode");
-        }
-        if (!object.isNull("errmsg")) {
-            this.errMsg = jsonObject.getString("errmsg");
-        }
+    ResponseJSONImpl(JSONObject object) {
+        init(object);
     }
 
+    void init(JSONObject object) {
+        this.object = object;
+        if (!object.isNull("errcode")) {
+            this.errCode = object.getInt("errcode");
+        }
+        if (!object.isNull("errmsg")) {
+            this.errMsg = object.getString("errmsg");
+        }
+    }
 
     @Override public Integer getErrCode() {
         return errCode;
@@ -52,12 +55,7 @@ final class ResponseJSONImpl implements Response{
         return result;
     }
 
-    @Override
-    public String toString() {
-        return "{"
-                + "errCode=" + errCode + ","
-                + "errMsg='" + errMsg  + "',"
-                + "object=" + object
-                + '}';
+    @Override public String toString() {
+        return object.toString();
     }
 }

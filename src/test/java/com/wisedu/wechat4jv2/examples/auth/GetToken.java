@@ -10,7 +10,7 @@ public class GetToken {
         System.out.println(new Date(1418368454000L));
         try {
             WechatClient client = new WechatClient();
-            AccessToken token = client.getAccessToken();
+            AccessToken token = client.getAuthAccessToken();
             if (token.getResponse().getErrCode() == null){
                 System.out.println("Get Token Succeed." + token);
             } else {
