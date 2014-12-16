@@ -12,4 +12,8 @@ public class ObjectFactory {
     public GroupCollection createGroupCollection(HttpResponse response) {
         return new GroupCollectionJSONImpl(response);
     }
+
+    public UserCollection createUserCollection(HttpResponse response) {
+        return new UserCollectionJSONImpl(response);
+    }
 }
