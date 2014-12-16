@@ -3,9 +3,11 @@ import com.wisedu.wechat4jv2.client.WechatClient;
 import com.wisedu.wechat4jv2.enity.AccessToken;
 
 import java.io.IOException;
+import java.util.Date;
 
 public class GetToken {
     public static void main(String[] args){
+        System.out.println(new Date(1418368454000L));
         try {
             WechatClient client = new WechatClient();
             AccessToken token = client.getAccessToken();
