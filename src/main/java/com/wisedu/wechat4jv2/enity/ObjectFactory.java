@@ -16,4 +16,8 @@ public class ObjectFactory {
     public UserCollection createUserCollection(HttpResponse response) {
         return new UserCollectionJSONImpl(response);
     }
+
+    public MenuCollection createMenuCollection(HttpResponse response) {
+        return new MenuCollectionJSONImpl(response);
+    }
 }
