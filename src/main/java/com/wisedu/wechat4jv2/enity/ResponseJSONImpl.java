@@ -2,23 +2,25 @@ package com.wisedu.wechat4jv2.enity;
 
 import com.wisedu.wechat4jv2.internal.json.JSONObject;
 
-final class ResponseJSONImpl implements Response{
+import java.io.Serializable;
+
+final class ResponseJSONImpl implements Response, Serializable {
     private Integer errCode;
     private String errMsg;
 
     protected JSONObject object;
 
-    ResponseJSONImpl(JSONObject object) {
-        init(object);
+    ResponseJSONImpl(JSONObject jsonObject) {
+        init(jsonObject);
     }
 
-    void init(JSONObject object) {
-        this.object = object;
-        if (!object.isNull("errcode")) {
-            this.errCode = object.getInt("errcode");
+    void init(JSONObject jsonObject) {
+        this.object = jsonObject;
+        if (!jsonObject.isNull("errcode")) {
+            this.errCode = jsonObject.getInt("errcode");
         }
-        if (!object.isNull("errmsg")) {
-            this.errMsg = object.getString("errmsg");
+        if (!jsonObject.isNull("errmsg")) {
+            this.errMsg = jsonObject.getString("errmsg");
         }
     }
 
