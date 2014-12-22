@@ -1,6 +1,5 @@
 package com.wisedu.wechat4jv2.examples.auth;
 import com.wisedu.wechat4jv2.client.WechatClient;
-import com.wisedu.wechat4jv2.enity.AccessToken;
 
 import java.io.IOException;
 import java.util.Date;

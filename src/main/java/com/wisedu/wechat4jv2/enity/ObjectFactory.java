@@ -4,10 +4,10 @@ import com.wisedu.wechat4jv2.http.HttpResponse;
 
 public class ObjectFactory {
     public AccessToken createAccessToken(HttpResponse response) {
-        return new AccessToken(response);
+        return null;
     }
 
-    public AccessToken_ createAccessToken(String credential, Long expiresIn) {
+    public AccessToken createAccessToken(String credential, Long expiresIn) {
         return new AccessTokenJSONImpl(credential, expiresIn);
     }
 

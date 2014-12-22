@@ -6,7 +6,7 @@ import com.wisedu.wechat4jv2.internal.json.JSONObject;
 import java.io.Serializable;
 
 final class AccessTokenWarpperJSONImpl implements AccessTokenWarpper, Serializable {
-    private AccessToken_ accessToken;
+    private AccessToken accessToken;
 
     private Response response;
 
@@ -25,7 +25,7 @@ final class AccessTokenWarpperJSONImpl implements AccessTokenWarpper, Serializab
         }
     }
 
-    @Override public AccessToken_ getAccessToken() {
+    @Override public AccessToken getAccessToken() {
         return accessToken;
     }
 

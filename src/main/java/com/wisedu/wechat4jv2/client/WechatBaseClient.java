@@ -1,8 +1,9 @@
 package com.wisedu.wechat4jv2.client;
 
-import com.wisedu.wechat4jv2.auth.Authorization;
+import com.wisedu.wechat4jv2.auth.AuthSupport;
 import com.wisedu.wechat4jv2.conf.Configuration;
 import com.wisedu.wechat4jv2.conf.ConfigurationBuilder;
+import com.wisedu.wechat4jv2.enity.ObjectFactory;
 import com.wisedu.wechat4jv2.http.HttpClient;
 import com.wisedu.wechat4jv2.http.HttpClientFactory;
 import com.wisedu.wechat4jv2.http.HttpParameter;
@@ -13,7 +14,8 @@ import java.io.IOException;
 abstract class WechatBaseClient {
     protected Configuration conf;
     protected HttpClient http;
-    protected Authorization auth;
+    protected AuthSupport auth;
+    protected ObjectFactory factory;
 
     protected final void initialize(Configuration conf) {
         this.conf = conf;

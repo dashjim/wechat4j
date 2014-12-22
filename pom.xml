@@ -83,10 +83,5 @@
                 <artifactId>aws-java-sdk</artifactId>
                 <version>1.9.0</version>
             </dependency>
-        <dependency>
-            <groupId>com.playlyfe</groupId>
-            <artifactId>sdk</artifactId>
-            <version>0.1.0</version>
-        </dependency>
     </dependencies>
 </project>

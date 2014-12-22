@@ -4,7 +4,7 @@ import com.wisedu.wechat4jv2.internal.json.JSONObject;
 
 import java.io.Serializable;
 
-final class AccessTokenJSONImpl implements AccessToken_, Serializable {
+final class AccessTokenJSONImpl implements AccessToken, Serializable {
     private String credential;
     private Long expiresIn;
 
