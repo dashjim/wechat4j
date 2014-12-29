@@ -1,4 +1,4 @@
-package com.wisedu.wechat4jv2.enity;
+package com.wisedu.wechat4jv2.entity;
 
 import com.wisedu.wechat4jv2.http.HttpResponse;
 import com.wisedu.wechat4jv2.internal.json.JSONObject;

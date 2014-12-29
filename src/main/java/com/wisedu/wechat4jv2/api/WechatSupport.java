@@ -1,6 +1,6 @@
 package com.wisedu.wechat4jv2.api;
 
-import com.wisedu.wechat4jv2.enity.AccessToken;
+import com.wisedu.wechat4jv2.entity.AccessToken;
 
 import java.io.IOException;
 

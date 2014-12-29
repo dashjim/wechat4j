@@ -3,10 +3,8 @@ package com.wisedu.wechat4jv2.client;
 import com.wisedu.wechat4jv2.api.WechatSupport;
 import com.wisedu.wechat4jv2.conf.Configuration;
 import com.wisedu.wechat4jv2.conf.ConfigurationContext;
-import com.wisedu.wechat4jv2.enity.AccessToken;
-import com.wisedu.wechat4jv2.enity.AccessTokenWarpper;
-import com.wisedu.wechat4jv2.enity.ObjectFactory;
-import com.wisedu.wechat4jv2.http.HttpParameter;
+import com.wisedu.wechat4jv2.entity.AccessToken;
+import com.wisedu.wechat4jv2.entity.ObjectFactory;
 
 import java.io.IOException;
 

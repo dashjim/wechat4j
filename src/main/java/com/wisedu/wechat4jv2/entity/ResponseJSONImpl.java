@@ -1,14 +1,21 @@
-package com.wisedu.wechat4jv2.enity;
+package com.wisedu.wechat4jv2.entity;
 
+import com.wisedu.wechat4jv2.http.HttpResponse;
 import com.wisedu.wechat4jv2.internal.json.JSONObject;
 
 import java.io.Serializable;
 
 final class ResponseJSONImpl implements Response, Serializable {
+    private static final long serialVersionUID = 6843993134093306504L;
+
     private Integer errCode;
     private String errMsg;
 
     protected JSONObject object;
+
+    ResponseJSONImpl(HttpResponse response) {
+        this(response.asJSONObject());
+    }
 
     ResponseJSONImpl(JSONObject jsonObject) {
         init(jsonObject);
@@ -44,7 +51,6 @@ final class ResponseJSONImpl implements Response, Serializable {
 
         if (errCode!=null? !errCode.equals(that.errCode): that.errCode!=null) return false;
         if (errMsg!=null? !errMsg.equals(that.errMsg): that.errMsg!=null) return false;
-        if (object!=null? !object.equals(that.object): that.object!=null) return false;
 
         return true;
     }
@@ -53,7 +59,6 @@ final class ResponseJSONImpl implements Response, Serializable {
         int result = 0;
         result = 31*result + (errCode!=null? errCode.hashCode(): 0);
         result = 31*result + (errMsg!=null? errMsg.hashCode(): 0);
-        result = 31*result + (object!=null? object.hashCode(): 0);
         return result;
     }
 

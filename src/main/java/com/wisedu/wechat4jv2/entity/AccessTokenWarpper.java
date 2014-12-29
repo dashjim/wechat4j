@@ -1,4 +1,4 @@
-package com.wisedu.wechat4jv2.enity;
+package com.wisedu.wechat4jv2.entity;
 
 public interface AccessTokenWarpper {
     AccessToken getAccessToken();

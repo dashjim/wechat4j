@@ -1,15 +1,13 @@
 package com.wisedu.wechat4jv2.auth;
 
-import com.wisedu.wechat4jv2.enity.AccessToken;
+import com.wisedu.wechat4jv2.entity.AccessToken;
+
+import java.io.IOException;
 
 public interface AuthSupport extends Authorization {
-    String getToken();
+    void setOAuthAppId(String appId, String appSecret);
 
-    String getAppId();
+    void setAuthAppAccessToken(String accessToken, Long expiresIn);
 
-    String getAppSecret();
-
-    AccessToken getAccessToken();
-
-    String setAccessToken(AccessToken accessToken);
+    AccessToken getAuthAppAccessToken() throws IOException;
 }

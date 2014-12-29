@@ -3,7 +3,7 @@ package com.wisedu.wechat4jv2.client;
 import com.wisedu.wechat4jv2.auth.AuthSupport;
 import com.wisedu.wechat4jv2.conf.Configuration;
 import com.wisedu.wechat4jv2.conf.ConfigurationBuilder;
-import com.wisedu.wechat4jv2.enity.ObjectFactory;
+import com.wisedu.wechat4jv2.entity.ObjectFactory;
 import com.wisedu.wechat4jv2.http.HttpClient;
 import com.wisedu.wechat4jv2.http.HttpClientFactory;
 import com.wisedu.wechat4jv2.http.HttpParameter;
