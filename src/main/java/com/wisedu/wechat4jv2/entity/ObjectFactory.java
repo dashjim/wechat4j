@@ -23,11 +23,11 @@ public class ObjectFactory {
         return new ResponseGroupCollectionJSONImpl(response);
     }
 
-    /*public UserCollection createUserCollection(HttpResponse response) {
-        return new UserCollectionJSONImpl(response);
+    public ResponseUser createResponseUser(HttpResponse response) {
+        return new ResponseUserJSONImpl(response);
     }
 
-    public MenuCollection createMenuCollection(HttpResponse response) {
-        return new MenuCollectionJSONImpl(response);
-    }*/
+    public ResponseUserCollection createResponseUserCollection(HttpResponse response) {
+        return new ResponseUserCollectionJSONImpl(response);
+    }
 }
