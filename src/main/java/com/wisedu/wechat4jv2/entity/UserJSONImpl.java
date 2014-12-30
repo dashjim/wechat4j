@@ -4,8 +4,11 @@ import com.wisedu.wechat4jv2.internal.json.JSONArray;
 import com.wisedu.wechat4jv2.internal.json.JSONObject;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 final class UserJSONImpl implements User, Serializable {
+    private static final long serialVersionUID = -51605717981805752L;
+
     private Integer subscribe;
     private String openId;
     private String nickname;
@@ -124,6 +127,45 @@ final class UserJSONImpl implements User, Serializable {
 
     @Override public String getUnionId() {
         return unionId;
+    }
+
+    @Override public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o==null || getClass()!=o.getClass()) return false;
+
+        UserJSONImpl userJSON = (UserJSONImpl)o;
+
+        if (city!=null? !city.equals(userJSON.city): userJSON.city!=null) return false;
+        if (country!=null? !country.equals(userJSON.country): userJSON.country!=null) return false;
+        if (headImgURL!=null? !headImgURL.equals(userJSON.headImgURL): userJSON.headImgURL!=null) return false;
+        if (language!=null? !language.equals(userJSON.language): userJSON.language!=null) return false;
+        if (nickname!=null? !nickname.equals(userJSON.nickname): userJSON.nickname!=null) return false;
+        if (openId!=null? !openId.equals(userJSON.openId): userJSON.openId!=null) return false;
+        if (!Arrays.equals(privilege, userJSON.privilege)) return false;
+        if (province!=null? !province.equals(userJSON.province): userJSON.province!=null) return false;
+        if (sex!=null? !sex.equals(userJSON.sex): userJSON.sex!=null) return false;
+        if (subscribe!=null? !subscribe.equals(userJSON.subscribe): userJSON.subscribe!=null) return false;
+        if (subscribeTime!=null? !subscribeTime.equals(userJSON.subscribeTime): userJSON.subscribeTime!=null) return false;
+        if (unionId!=null? !unionId.equals(userJSON.unionId): userJSON.unionId!=null) return false;
+
+        return true;
+    }
+
+    @Override public int hashCode() {
+        int result = 0;
+        result = 31*result + (subscribe!=null? subscribe.hashCode(): 0);
+        result = 31*result + (openId!=null? openId.hashCode(): 0);
+        result = 31*result + (nickname!=null? nickname.hashCode(): 0);
+        result = 31*result + (sex!=null? sex.hashCode(): 0);
+        result = 31*result + (language!=null? language.hashCode(): 0);
+        result = 31*result + (city!=null? city.hashCode(): 0);
+        result = 31*result + (province!=null? province.hashCode(): 0);
+        result = 31*result + (country!=null? country.hashCode(): 0);
+        result = 31*result + (headImgURL!=null? headImgURL.hashCode(): 0);
+        result = 31*result + (subscribeTime!=null? subscribeTime.hashCode(): 0);
+        result = 31*result + (unionId!=null? unionId.hashCode(): 0);
+        result = 31*result + (privilege!=null? Arrays.hashCode(privilege): 0);
+        return result;
     }
 
     @Override public String toString() {
