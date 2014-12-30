@@ -55,10 +55,6 @@ final class GroupJSONImpl implements Group, Serializable {
         return count;
     }
 
-    @Override public JSONObject getObject() {
-        return object;
-    }
-
     @Override public boolean equals(Object o) {
         if (this == o) return true;
         if (o==null || getClass()!=o.getClass()) return false;

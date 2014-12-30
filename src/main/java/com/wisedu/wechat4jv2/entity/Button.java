@@ -1,7 +1,5 @@
 package com.wisedu.wechat4jv2.entity;
 
-import com.wisedu.wechat4jv2.internal.json.JSONObject;
-
 public interface Button {
     String getType();
 
@@ -12,6 +10,4 @@ public interface Button {
     String getKey();
 
     Button[] getSubButon();
-
-    JSONObject getObject();
 }

@@ -30,4 +30,8 @@ public class ObjectFactory {
     public ResponseUserCollection createResponseUserCollection(HttpResponse response) {
         return new ResponseUserCollectionJSONImpl(response);
     }
+
+    public ResponseMenu createResponseMenu(HttpResponse response) {
+        return new ResponseMenuJSONImpl(response);
+    }
 }
