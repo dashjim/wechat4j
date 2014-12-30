@@ -1,11 +1,9 @@
 package com.wisedu.wechat4jv2.entity;
 
-import com.wisedu.wechat4jv2.internal.json.JSONObject;
-
 public interface User {
     Integer getSubscribe();
 
-    String getOpenid() ;
+    String getOpenId() ;
 
     String getNickname();
 
@@ -19,13 +17,11 @@ public interface User {
 
     String getCountry();
 
-    String getHeadimgurl();
+    String getHeadImgURL();
 
-    Long getSubscribe_time();
+    Long getSubscribeTime();
 
     String[] getPrivilege();
 
-    String getUnionid();
-
-    JSONObject getObject();
+    String getUnionId();
 }

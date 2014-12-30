@@ -39,10 +39,6 @@ final class ResponseJSONImpl implements Response, Serializable {
         return errMsg;
     }
 
-    @Override public JSONObject getObject() {
-        return object;
-    }
-
     @Override public boolean equals(Object o) {
         if (this == o) return true;
         if (o==null || getClass()!=o.getClass()) return false;

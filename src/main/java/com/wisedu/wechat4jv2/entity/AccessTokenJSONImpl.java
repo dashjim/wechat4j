@@ -43,10 +43,6 @@ final class AccessTokenJSONImpl implements AccessToken, Serializable {
         return expiresIn;
     }
 
-    @Override public JSONObject getObject() {
-        return object;
-    }
-
     @Override public boolean equals(Object o) {
         if (this == o) return true;
         if (o==null || getClass()!=o.getClass()) return false;

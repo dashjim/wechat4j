@@ -7,22 +7,25 @@ import java.io.Serializable;
 
 final class UserJSONImpl implements User, Serializable {
     private Integer subscribe;
-    private String openid;
+    private String openId;
     private String nickname;
     private Integer sex;
     private String language;
     private String city;
     private String province;
     private String country;
-    private String headimgurl;
-    private Long subscribe_time;
-    private String unionid;
+    private String headImgURL;
+    private Long subscribeTime;
+    private String unionId;
     private String[] privilege;
 
     private JSONObject object;
 
-    UserJSONImpl(String openid) {
-        this.openid = openid;
+    UserJSONImpl(String openId) {
+        this.openId = openId;
+        this.object = new JSONObject(
+                "{\"openid\": \"" + openId + "\"}"
+        );
     }
 
     UserJSONImpl(JSONObject jsonObject) {
@@ -35,7 +38,7 @@ final class UserJSONImpl implements User, Serializable {
             this.subscribe = jsonObject.getInt("subscribe");
         }
         if (!jsonObject.isNull("openid")) {
-            this.openid = jsonObject.getString("openid");
+            this.openId = jsonObject.getString("openid");
         }
         if (!jsonObject.isNull("nickname")){
             this.nickname = jsonObject.getString("nickname");
@@ -56,10 +59,10 @@ final class UserJSONImpl implements User, Serializable {
             this.country = jsonObject.getString("country");
         }
         if (!jsonObject.isNull("headimgurl")){
-            this.headimgurl = jsonObject.getString("headimgurl");
+            this.headImgURL = jsonObject.getString("headimgurl");
         }
         if (!jsonObject.isNull("subscribe_time")) {
-            this.subscribe_time = jsonObject.getLong("subscribe_time");
+            this.subscribeTime = jsonObject.getLong("subscribe_time");
         }
         if (!jsonObject.isNull("privilege")) {
             JSONArray array = jsonObject.getJSONArray("privilege");
@@ -71,7 +74,7 @@ final class UserJSONImpl implements User, Serializable {
             }
         }
         if (!jsonObject.isNull("unionid")) {
-            this.unionid = jsonObject.getString("unionid");
+            this.unionId = jsonObject.getString("unionid");
         }
     }
 
@@ -79,8 +82,8 @@ final class UserJSONImpl implements User, Serializable {
         return subscribe;
     }
 
-    @Override public String getOpenid() {
-        return openid;
+    @Override public String getOpenId() {
+        return openId;
     }
 
     @Override public String getNickname() {
@@ -107,24 +110,20 @@ final class UserJSONImpl implements User, Serializable {
         return country;
     }
 
-    @Override public String getHeadimgurl() {
-        return headimgurl;
+    @Override public String getHeadImgURL() {
+        return headImgURL;
     }
 
-    @Override public Long getSubscribe_time() {
-        return subscribe_time;
+    @Override public Long getSubscribeTime() {
+        return subscribeTime;
     }
 
     @Override public String[] getPrivilege() {
         return privilege;
     }
 
-    @Override public String getUnionid() {
-        return unionid;
-    }
-
-    @Override public JSONObject getObject() {
-        return object;
+    @Override public String getUnionId() {
+        return unionId;
     }
 
     @Override public String toString() {
