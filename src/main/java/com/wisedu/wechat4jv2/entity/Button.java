@@ -9,5 +9,5 @@ public interface Button {
 
     String getKey();
 
-    Button[] getSubButon();
+    Button[] getButtons();
 }

@@ -13,7 +13,7 @@ final class ButtonJSONImpl implements Button, Serializable {
     private String name;
     private String url;
     private String key;
-    private Button[] subButon;
+    private Button[] buttons;
 
     private JSONObject object;
 
@@ -39,9 +39,9 @@ final class ButtonJSONImpl implements Button, Serializable {
             JSONArray array = jsonObject.getJSONArray("sub_button");
 
             int size = array.length();
-            this.subButon = new Button[size];
+            this.buttons = new Button[size];
             for (int i=0; i<size; i++) {
-                this.subButon[i] = new ButtonJSONImpl(array.getJSONObject(i));
+                this.buttons[i] = new ButtonJSONImpl(array.getJSONObject(i));
             }
         }
     }
@@ -62,8 +62,8 @@ final class ButtonJSONImpl implements Button, Serializable {
         return key;
     }
 
-    @Override public Button[] getSubButon() {
-        return subButon;
+    @Override public Button[] getButtons() {
+        return buttons;
     }
 
     @Override public boolean equals(Object o) {
@@ -74,7 +74,7 @@ final class ButtonJSONImpl implements Button, Serializable {
 
         if (key!=null? !key.equals(that.key): that.key!=null) return false;
         if (name!=null? !name.equals(that.name): that.name!=null) return false;
-        if (!Arrays.equals(subButon, that.subButon)) return false;
+        if (!Arrays.equals(buttons, that.buttons)) return false;
         if (type!=null? !type.equals(that.type): that.type!=null) return false;
         if (url!=null? !url.equals(that.url): that.url!=null) return false;
 
@@ -87,7 +87,7 @@ final class ButtonJSONImpl implements Button, Serializable {
         result = 31*result + (name!= null? name.hashCode(): 0);
         result = 31*result + (url!=null? url.hashCode(): 0);
         result = 31*result + (key!=null? key.hashCode(): 0);
-        result = 31*result + (subButon!=null? Arrays.hashCode(subButon): 0);
+        result = 31*result + (buttons !=null? Arrays.hashCode(buttons): 0);
         return result;
     }
 
