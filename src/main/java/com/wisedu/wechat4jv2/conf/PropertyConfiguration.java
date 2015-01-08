@@ -24,6 +24,7 @@ public final class PropertyConfiguration extends ConfigurationBase implements Se
     private static final String HTTP_MAX_TOTAL_CONNECTIONS = "http.maxTotalConnections";
 
     // Base URLs
+    private static final String TOKEN_URL = "tokenURL";
     private static final String REST_BASE_URL = "restBaseURL";
 
     public PropertyConfiguration(InputStream is){
@@ -169,6 +170,10 @@ public final class PropertyConfiguration extends ConfigurationBase implements Se
 
         if (notNull(props, REST_BASE_URL)){
             setRestBaseURL(getStringProperty(props, REST_BASE_URL));
+        }
+
+        if (notNull(props, TOKEN_URL)) {
+            setTokenURL(getStringProperty(props, TOKEN_URL));
         }
     }
 

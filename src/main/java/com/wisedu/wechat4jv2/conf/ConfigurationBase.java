@@ -21,7 +21,8 @@ class ConfigurationBase implements Configuration, Serializable {
     private int httpMaxTotalConnections;
 
     private Map<String, String> requestHeaders;
-    private String restBaseURL = "https://api.weixin.qq.com/cgi-bin/";
+    private String restBaseURL = "https://api.weixin.qq.com/cgi-bin";
+    private String tokenURL = "https://api.weixin.qq.com/cgi-bin/token";
 
     protected ConfigurationBase(){
         setGZIPEnabled(true);
@@ -144,5 +145,13 @@ class ConfigurationBase implements Configuration, Serializable {
 
     protected final void setRestBaseURL(String restBaseURL) {
         this.restBaseURL = restBaseURL;
+    }
+
+    @Override public String getTokenURL() {
+        return tokenURL;
+    }
+
+    protected final void setTokenURL(String tokenURL) {
+        this.tokenURL = tokenURL;
     }
 }
