@@ -7,7 +7,9 @@ import com.wisedu.wechat4jv2.http.HttpClient;
 import java.io.Serializable;
 
 final class OAuthServiceImpl implements Serializable {
-    private HttpClient http;
+    private String appId;
+    private String appSecret;
     private AuthorizationConfiguration config;
+    private HttpClient http;
     private ObjectFactory factory;
 }
