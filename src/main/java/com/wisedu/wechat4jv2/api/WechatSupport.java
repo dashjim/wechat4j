@@ -4,8 +4,9 @@ import com.wisedu.wechat4jv2.entity.AccessToken;
 
 import java.io.IOException;
 
-public interface WechatSupport
-        extends GroupSupport, MenuSupport{
+public interface WechatSupport extends
+        GroupSupport,
+        MenuSupport {
     void setOAuthAppId(String appId, String appSecret);
 
     void setAuthAppAccessToken(String accessToken, Long expiresIn);
