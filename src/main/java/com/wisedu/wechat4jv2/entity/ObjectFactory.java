@@ -15,6 +15,10 @@ public class ObjectFactory {
         return new ResponseAccessTokenJSONImpl(response);
     }
 
+    public ResponseMedia createResponseMedia(HttpResponse response) {
+        return new ResponseMediaJSONImpl(response);
+    }
+
     public ResponseGroup createResponseGroup(HttpResponse response) {
         return new ResponseGroupJSONImpl(response);
     }

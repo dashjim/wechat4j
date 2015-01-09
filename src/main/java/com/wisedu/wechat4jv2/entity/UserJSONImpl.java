@@ -133,20 +133,20 @@ final class UserJSONImpl implements User, Serializable {
         if (this == o) return true;
         if (o==null || getClass()!=o.getClass()) return false;
 
-        UserJSONImpl userJSON = (UserJSONImpl)o;
+        UserJSONImpl that = (UserJSONImpl)o;
 
-        if (city!=null? !city.equals(userJSON.city): userJSON.city!=null) return false;
-        if (country!=null? !country.equals(userJSON.country): userJSON.country!=null) return false;
-        if (headImgURL!=null? !headImgURL.equals(userJSON.headImgURL): userJSON.headImgURL!=null) return false;
-        if (language!=null? !language.equals(userJSON.language): userJSON.language!=null) return false;
-        if (nickname!=null? !nickname.equals(userJSON.nickname): userJSON.nickname!=null) return false;
-        if (openId!=null? !openId.equals(userJSON.openId): userJSON.openId!=null) return false;
-        if (!Arrays.equals(privilege, userJSON.privilege)) return false;
-        if (province!=null? !province.equals(userJSON.province): userJSON.province!=null) return false;
-        if (sex!=null? !sex.equals(userJSON.sex): userJSON.sex!=null) return false;
-        if (subscribe!=null? !subscribe.equals(userJSON.subscribe): userJSON.subscribe!=null) return false;
-        if (subscribeTime!=null? !subscribeTime.equals(userJSON.subscribeTime): userJSON.subscribeTime!=null) return false;
-        if (unionId!=null? !unionId.equals(userJSON.unionId): userJSON.unionId!=null) return false;
+        if (city!=null? !city.equals(that.city): that.city!=null) return false;
+        if (country!=null? !country.equals(that.country): that.country!=null) return false;
+        if (headImgURL!=null? !headImgURL.equals(that.headImgURL): that.headImgURL!=null) return false;
+        if (language!=null? !language.equals(that.language): that.language!=null) return false;
+        if (nickname!=null? !nickname.equals(that.nickname): that.nickname!=null) return false;
+        if (openId!=null? !openId.equals(that.openId): that.openId!=null) return false;
+        if (!Arrays.equals(privilege, that.privilege)) return false;
+        if (province!=null? !province.equals(that.province): that.province!=null) return false;
+        if (sex!=null? !sex.equals(that.sex): that.sex!=null) return false;
+        if (subscribe!=null? !subscribe.equals(that.subscribe): that.subscribe!=null) return false;
+        if (subscribeTime!=null? !subscribeTime.equals(that.subscribeTime): that.subscribeTime!=null) return false;
+        if (unionId!=null? !unionId.equals(that.unionId): that.unionId!=null) return false;
 
         return true;
     }
