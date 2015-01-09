@@ -3,9 +3,7 @@ package com.wisedu.wechat4jv2.http;
 import com.wisedu.wechat4jv2.conf.ConfigurationContext;
 import com.wisedu.wechat4jv2.conf.HttpClientConfiguration;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.Serializable;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -42,6 +40,36 @@ public class HttpClientImpl extends HttpClientBase implements HttpResponseCode, 
                     if (request.getMethod() == RequestMethod.POST){
                         if (HttpParameter.containsFile(request.getParameters())){
                             // file upload
+                            String boundary = "----Wechat4J-upload" + System.currentTimeMillis();
+                            con.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundary);
+                            boundary = "--" + boundary;
+                            con.setDoOutput(true);
+                            DataOutputStream out = new DataOutputStream(con.getOutputStream());
+                            for (HttpParameter param: request.getParameters()) {
+                                if (param.isFile()) {
+                                    out.writeBytes(boundary + "\r\n");
+                                    out.writeBytes("Content-Disposition: form-data; name=\"" + param.getName() + "\"; filename=\"" + param.getFile().getName() + "\"\r\n");
+                                    out.writeBytes("Content-Type: " + param.getContentType() + "\r\n\r\n");
+                                    BufferedInputStream in = new BufferedInputStream(
+                                            param.hasFileBody()? param.getFileBody(): new FileInputStream(param.getFile())
+                                    );
+                                    int length;
+                                    byte[] buf = new byte[1024];
+                                    while ((length=in.read(buf)) != -1) {
+                                        out.write(buf, 0, length);
+                                    };
+                                    out.writeBytes("\r\n");
+                                    in.close();
+                                } else {
+                                    out.writeBytes(boundary + "\r\n");
+                                    out.writeBytes("Content-Disposition: form-data; name=\"" + param.getName() + "\"\r\n");
+                                    out.writeBytes("Content-Type: text/plain; charset=UTF-8\r\n\r\n");
+                                    out.write(param.getValue().getBytes("UTF-8"));
+                                    out.writeBytes("\r\n");
+                                }
+                                out.writeBytes(boundary + "--\r\n");
+                                out.writeBytes("\r\n");
+                            }
                         } else if (HttpParameter.containsJSON(request.getParameters())){
                             // JSON
                             if (request.getParameters().length > 1){
