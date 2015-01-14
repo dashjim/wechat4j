@@ -1,13 +1,11 @@
 package com.wisedu.wechat4jv2.api;
 
-import com.wisedu.wechat4jv2.auth.Lang;
-import com.wisedu.wechat4jv2.auth.Scope;
 import com.wisedu.wechat4jv2.entity.Response;
 import com.wisedu.wechat4jv2.entity.ResponseAccessToken;
 import com.wisedu.wechat4jv2.entity.ResponseUser;
 
 public interface AuthorizationCodeSupport {
-    String getAuthorizationEndpoint(String redirectURI, Scope scope, String state);
+    /*String getAuthorizationEndpoint(String redirectURI, Scope scope, String state);
 
     ResponseAccessToken getAccessToken(String code);
 
@@ -15,5 +13,5 @@ public interface AuthorizationCodeSupport {
 
     ResponseUser getUser(String openId, Lang lang);
 
-    Response validateAccessToken(String accessToken, String openId);
+    Response validateAccessToken(String accessToken, String openId);*/
 }
