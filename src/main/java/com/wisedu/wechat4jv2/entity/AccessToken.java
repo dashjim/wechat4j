@@ -1,13 +1,7 @@
 package com.wisedu.wechat4jv2.entity;
 
 public interface AccessToken {
-    String getToken();
+    String getCredential();
 
     Long getExpiresIn();
-
-    String getRefreshToken();
-
-    String getOpenId();
-
-    String getScope();
 }

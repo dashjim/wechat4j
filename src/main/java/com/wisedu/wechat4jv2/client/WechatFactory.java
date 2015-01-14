@@ -19,8 +19,8 @@ public class WechatFactory {
     public Wechat getInstance(String appId, String appSecret) {
         return this.getInstance(
                 new ConfigurationBuilder()
-                        .setAuthAppId(appId)
-                        .setAuthAppSecret(appSecret).build()
+                        .setOAuthAppId(appId)
+                        .setOAuthAppSecret(appSecret).build()
         );
     }
 

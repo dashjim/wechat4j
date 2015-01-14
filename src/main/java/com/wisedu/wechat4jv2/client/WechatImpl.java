@@ -49,10 +49,11 @@ final class WechatImpl implements Wechat, Serializable {
     }
 
     @Override public ResponseAccessToken getAccessToken() throws IOException{
-        String url = conf.getRestBaseURL();
+        String url = conf.getRestBaseURL() + "/token";
         HttpParameter[] params = new HttpParameter[] {
-                new HttpParameter("appid", conf.getAuthAppId()),
-                new HttpParameter("secret", conf.getAuthAppSecret())
+                new HttpParameter("grant_type", "client_credential"),
+                new HttpParameter("appid", conf.getOAuthAppId()),
+                new HttpParameter("secret", conf.getOAuthAppSecret())
         };
         ResponseAccessToken responseAccessToken
                 = factory.createResponseAccessToken(get(url, params));
@@ -72,8 +73,12 @@ final class WechatImpl implements Wechat, Serializable {
         return factory.createResponseGroup(post(url, params));
     }
 
-    @Override public ResponseGroupCollection listGroup() {
-        return null;
+    @Override public ResponseGroupCollection listGroup() throws IOException{
+        String url = conf.getRestBaseURL() + "/groups/get";
+        HttpParameter[] params = new HttpParameter[] {
+                new HttpParameter("access_token", accessToken.getCredential())
+        };
+        return factory.createResponseGroupCollection(get(url, params));
     }
 
     @Override public ResponseGroupCollection listGroup(Map<String, Object> users) {

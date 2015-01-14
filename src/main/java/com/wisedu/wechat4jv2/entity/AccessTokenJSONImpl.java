@@ -5,21 +5,18 @@ import com.wisedu.wechat4jv2.internal.json.JSONObject;
 import java.io.Serializable;
 
 final class AccessTokenJSONImpl implements AccessToken, Serializable {
-    private static final long serialVersionUID = 4599812481189485000L;
+    private static final long serialVersionUID = -8978039690286499687L;
 
-    private String token;
+    private String credential;
     private Long expiresIn;
-    private String refreshToken;
-    private String openId;
-    private String scope;
 
     private JSONObject object;
 
     AccessTokenJSONImpl(String token, Long expiresIn) {
-        this.token = token;
+        this.credential = token;
         this.expiresIn = expiresIn;
         this.object = new JSONObject(
-                "{\"access_token\": \"" + this.token + "\",  \"expires_in\": " + this.expiresIn + "}"
+                "{\"access_token\": \"" + this.credential + "\",  \"expires_in\": " + this.expiresIn + "}"
         );
     }
 
@@ -30,40 +27,19 @@ final class AccessTokenJSONImpl implements AccessToken, Serializable {
     void init(JSONObject jsonObject) {
         this.object = jsonObject;
         if (!jsonObject.isNull("access_token")){
-            this.token = jsonObject.getString("access_token");
+            this.credential = jsonObject.getString("access_token");
         }
         if (!jsonObject.isNull("expires_in")) {
             this.expiresIn = jsonObject.getLong("expires_in");
         }
-        if (!jsonObject.isNull("refresh_token")) {
-            this.refreshToken = jsonObject.getString("refresh_token");
-        }
-        if (!jsonObject.isNull("openid")) {
-            this.openId = jsonObject.getString("openid");
-        }
-        if (!jsonObject.isNull("scope")) {
-            this.scope = jsonObject.getString("scope");
-        }
     }
 
-    @Override public String getToken() {
-        return token;
+    @Override public String getCredential() {
+        return credential;
     }
 
     @Override public Long getExpiresIn() {
         return expiresIn;
-    }
-
-    @Override public String getRefreshToken() {
-        return refreshToken;
-    }
-
-    @Override public String getOpenId() {
-        return openId;
-    }
-
-    @Override public String getScope() {
-        return scope;
     }
 
     @Override public boolean equals(Object o) {
@@ -72,22 +48,16 @@ final class AccessTokenJSONImpl implements AccessToken, Serializable {
 
         AccessTokenJSONImpl that = (AccessTokenJSONImpl)o;
 
-        if (token !=null? !token.equals(that.token): that.token !=null) return false;
+        if (credential !=null? !credential.equals(that.credential): that.credential !=null) return false;
         if (expiresIn!=null? !expiresIn.equals(that.expiresIn): that.expiresIn!=null) return false;
-        if (refreshToken!=null? !refreshToken.equals(that.refreshToken): that.refreshToken!=null) return false;
-        if (openId!=null? !openId.equals(that.openId): that.openId!=null) return false;
-        if (scope!=null? !scope.equals(that.scope): that.scope!=null) return false;
 
         return true;
     }
 
     @Override public int hashCode() {
         int result = 0;
-        result = 31*result + (token !=null? token.hashCode(): 0);
+        result = 31*result + (credential !=null? credential.hashCode(): 0);
         result = 31*result + (expiresIn!=null? expiresIn.hashCode(): 0);
-        result = 31*result + (refreshToken!=null? refreshToken.hashCode(): 0);
-        result = 31*result + (openId!=null? openId.hashCode(): 0);
-        result = 31*result + (scope!=null? scope.hashCode(): 0);
         return result;
     }
 

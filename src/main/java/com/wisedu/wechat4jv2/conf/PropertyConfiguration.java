@@ -11,10 +11,8 @@ public final class PropertyConfiguration extends ConfigurationBase implements Se
     private static final String LOGGER_FACTORY = "loggerFactory";
 
     // OAuth
-    private static final String AUTH_TOKEN = "auth.token";
-    private static final String AUTH_APPID = "auth.appId";
-    private static final String AUTH_APPSECRET = "auth.appSecret";
-    private static final String AUTH_ACCESSTOKEN = "auth.accessToken";
+    private static final String OAUTH_APPID = "oauth.appId";
+    private static final String OAUTH_APPSECRET = "oauth.appSecret";
 
     // HTTP connection
     private static final String HTTP_RETRY_COUNT = "http.retryCount";
@@ -24,23 +22,20 @@ public final class PropertyConfiguration extends ConfigurationBase implements Se
     private static final String HTTP_MAX_TOTAL_CONNECTIONS = "http.maxTotalConnections";
 
     // Base URLs
-    private static final String TOKEN_URL = "tokenURL";
     private static final String REST_BASE_URL = "restBaseURL";
+    private static final String MEDIA_BASE_URL = "mediaBaseURL";
 
     public PropertyConfiguration(InputStream is){
-        super();
         Properties props = new Properties();
         loadProperties(props, is);
         setFields(props);
     }
 
     public PropertyConfiguration(Properties props){
-        super();
         setFields(props);
     }
 
     public PropertyConfiguration(){
-        super();
         Properties props = new Properties();
         try {
             // Specify properties via system properties
@@ -132,20 +127,12 @@ public final class PropertyConfiguration extends ConfigurationBase implements Se
             setLoggerFactory(getStringProperty(props, LOGGER_FACTORY));
         }
 
-        if (notNull(props, AUTH_TOKEN)){
-            setAuthToken(getStringProperty(props, AUTH_TOKEN));
+        if (notNull(props, OAUTH_APPID)){
+            setOAuthAppId(getStringProperty(props, OAUTH_APPID));
         }
 
-        if (notNull(props, AUTH_APPID)){
-            setAuthAppID(getStringProperty(props, AUTH_APPID));
-        }
-
-        if (notNull(props, AUTH_APPSECRET)){
-            setAuthAppSecret(getStringProperty(props, AUTH_APPSECRET));
-        }
-
-        if (notNull(props, AUTH_ACCESSTOKEN)) {
-            setAuthAccessToken(getStringProperty(props, AUTH_ACCESSTOKEN));
+        if (notNull(props, OAUTH_APPSECRET)){
+            setOAuthAppSecret(getStringProperty(props, OAUTH_APPSECRET));
         }
 
         if (notNull(props, HTTP_RETRY_COUNT)){
@@ -172,8 +159,8 @@ public final class PropertyConfiguration extends ConfigurationBase implements Se
             setRestBaseURL(getStringProperty(props, REST_BASE_URL));
         }
 
-        if (notNull(props, TOKEN_URL)) {
-            setTokenURL(getStringProperty(props, TOKEN_URL));
+        if (notNull(props, MEDIA_BASE_URL)){
+            setMediaBaseURL(getStringProperty(props, MEDIA_BASE_URL));
         }
     }
 

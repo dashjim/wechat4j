@@ -1,13 +1,7 @@
 package com.wisedu.wechat4jv2.conf;
 
 public interface AuthorizationConfiguration {
-    String getTokenURL();
+    String getOAuthAppId();
 
-    String getAuthToken();
-
-    String getAuthAppId();
-
-    String getAuthAppSecret();
-
-    String getAuthAccessToken();
+    String getOAuthAppSecret();
 }

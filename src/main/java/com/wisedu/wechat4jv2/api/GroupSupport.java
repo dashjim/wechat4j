@@ -12,7 +12,7 @@ public interface GroupSupport {
     ResponseGroup createGroup(Map<String, Object> group) throws IOException;
 
     // 查询所有分组
-    ResponseGroupCollection listGroup();
+    ResponseGroupCollection listGroup() throws IOException;
 
     // 查询用户所在分组
     ResponseGroupCollection listGroup(Map<String, Object> users);

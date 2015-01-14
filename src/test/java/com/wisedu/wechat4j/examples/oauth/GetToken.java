@@ -1,4 +1,4 @@
-package com.wisedu.wechat4j.examples.auth;
+package com.wisedu.wechat4j.examples.oauth;
 
 import com.wisedu.wechat4j.WechatException;
 import com.wisedu.wechat4j.client.Wechat;

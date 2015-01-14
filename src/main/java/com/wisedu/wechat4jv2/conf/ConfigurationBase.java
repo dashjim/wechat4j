@@ -9,10 +9,8 @@ class ConfigurationBase implements Configuration, Serializable {
     private boolean gzipEnabled;
     private String loggerFactory;
 
-    private String authToken;
-    private String authAppId;
-    private String authAppSecret;
-    private String authAccessToken;
+    private String oauthAppId;
+    private String oauthAppSecret;
 
     private int httpRetryCount;
     private int httpReadTimeout;
@@ -22,15 +20,14 @@ class ConfigurationBase implements Configuration, Serializable {
 
     private Map<String, String> requestHeaders;
     private String restBaseURL = "https://api.weixin.qq.com/cgi-bin";
-    private String tokenURL = "https://api.weixin.qq.com/cgi-bin/token";
+    private String mediaBaseURL = "http://file.api.weixin.qq.com/cgi-bin/media";
 
     protected ConfigurationBase(){
         setGZIPEnabled(true);
         setLoggerFactory(null);
 
-        setAuthToken(null);
-        setAuthAppID(null);
-        setAuthAppSecret(null);
+        setOAuthAppId(null);
+        setOAuthAppSecret(null);
 
         setHttpRetryCount(0);
         setHttpReadTimeout(10000);
@@ -67,36 +64,20 @@ class ConfigurationBase implements Configuration, Serializable {
         this.loggerFactory = loggerFactory;
     }
 
-    @Override public final String getAuthToken(){
-        return authToken;
+    @Override public final String getOAuthAppId(){
+        return oauthAppId;
     }
 
-    protected final void setAuthToken(String oAuthToken){
-        this.authToken = oAuthToken;
+    protected final void setOAuthAppId(String oauthAppId){
+        this.oauthAppId = oauthAppId;
     }
 
-    @Override public final String getAuthAppId(){
-        return authAppId;
+    @Override public final String getOAuthAppSecret(){
+        return oauthAppSecret;
     }
 
-    protected final void setAuthAppID(String oAuthToken){
-        this.authAppId = oAuthToken;
-    }
-
-    @Override public final String getAuthAppSecret(){
-        return authAppSecret;
-    }
-
-    protected final void setAuthAppSecret(String oAuthAppSecret){
-        this.authAppSecret = oAuthAppSecret;
-    }
-
-    @Override public final String getAuthAccessToken() {
-        return authAccessToken;
-    }
-
-    protected final void setAuthAccessToken(String oAuthAccessToken) {
-        this.authAccessToken = oAuthAccessToken;
+    protected final void setOAuthAppSecret(String oauthAppSecret){
+        this.oauthAppSecret = oauthAppSecret;
     }
 
     @Override public final int getHttpRetryCount(){
@@ -147,11 +128,11 @@ class ConfigurationBase implements Configuration, Serializable {
         this.restBaseURL = restBaseURL;
     }
 
-    @Override public String getTokenURL() {
-        return tokenURL;
+    @Override public String getMediaBaseURL() {
+        return mediaBaseURL;
     }
 
-    protected final void setTokenURL(String tokenURL) {
-        this.tokenURL = tokenURL;
+    protected final void setMediaBaseURL(String mediaBaseURL) {
+        this.mediaBaseURL = mediaBaseURL;
     }
 }

@@ -32,7 +32,7 @@ abstract class WechatBaseImpl implements WechatBase, OAuthSupport {
         }
 
         if (auth instanceof NullAuthorization){
-            // Authorization auth = AuthorizationFactory.getInstance(conf, http);
+            // Authorization oauth = AuthorizationFactory.getInstance(conf, http);
             OAuthAuthorization oauth = new OAuthAuthorization(conf, http);
             oauth.setOAuthApp(token,  appId, appSecret);
             this.auth = oauth;

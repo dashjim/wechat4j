@@ -21,27 +21,21 @@ public final class ConfigurationBuilder {
         return this;
     }
 
-    public ConfigurationBuilder setAuthToken(String authToken){
+    public ConfigurationBuilder setMediaBaseURL(String mediaBaseURL){
         checkNotBuilt();
-        conf.setAuthToken(authToken);
+        conf.setMediaBaseURL(mediaBaseURL);
         return this;
     }
 
-    public ConfigurationBuilder setAuthAppId(String authAppId){
+    public ConfigurationBuilder setOAuthAppId(String oauthAppId){
         checkNotBuilt();
-        conf.setAuthAppID(authAppId);
+        conf.setOAuthAppId(oauthAppId);
         return this;
     }
 
-    public ConfigurationBuilder setAuthAppSecret(String authAppSecret){
+    public ConfigurationBuilder setOAuthAppSecret(String oauthAppSecret){
         checkNotBuilt();
-        conf.setAuthAppSecret(authAppSecret);
-        return this;
-    }
-
-    public ConfigurationBuilder setAuthAccessToken(String authAccessToken) {
-        checkNotBuilt();
-        conf.setAuthAccessToken(authAccessToken);
+        conf.setOAuthAppSecret(oauthAppSecret);
         return this;
     }
 
