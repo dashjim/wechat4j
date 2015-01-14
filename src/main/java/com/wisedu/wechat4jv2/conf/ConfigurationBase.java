@@ -75,7 +75,7 @@ class ConfigurationBase implements Configuration, Serializable {
         this.authToken = oAuthToken;
     }
 
-    @Override public final String getAuthAppID(){
+    @Override public final String getAuthAppId(){
         return authAppId;
     }
 

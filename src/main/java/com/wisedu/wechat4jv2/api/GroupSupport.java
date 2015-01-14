@@ -4,11 +4,12 @@ import com.wisedu.wechat4jv2.entity.Response;
 import com.wisedu.wechat4jv2.entity.ResponseGroup;
 import com.wisedu.wechat4jv2.entity.ResponseGroupCollection;
 
+import java.io.IOException;
 import java.util.Map;
 
 public interface GroupSupport {
     // 创建分组
-    ResponseGroup createGroup(Map<String, Object> group);
+    ResponseGroup createGroup(Map<String, Object> group) throws IOException;
 
     // 查询所有分组
     ResponseGroupCollection listGroup();
