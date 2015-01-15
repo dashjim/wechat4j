@@ -9,6 +9,7 @@ import com.wisedu.wechat4jv2.http.HttpClientFactory;
 import com.wisedu.wechat4jv2.http.HttpParameter;
 import com.wisedu.wechat4jv2.http.HttpResponse;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Map;
@@ -54,6 +55,20 @@ final class WechatImpl implements Wechat, Serializable {
 
     private HttpResponse post(String url, HttpParameter[] params) throws IOException{
         return http.post(url, params);
+    }
+
+    @Override public ResponseMedia mediaUpload(String type, File file) throws IOException{
+        String url = conf.getMediaBaseURL() + "/upload"
+                + "?access_token=" + accessToken.getCredential();
+        HttpParameter[] params = new HttpParameter[] {
+                new HttpParameter("type", type),
+                new HttpParameter("media", file)
+        };
+        return factory.createResponseMedia(post(url, params));
+    }
+
+    @Override public Response mediaDownload(String mediaId) {
+        return null;
     }
 
     @Override public ResponseAccessToken getAccessToken() throws IOException{
