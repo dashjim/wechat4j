@@ -4,4 +4,6 @@ public interface AuthorizationConfiguration {
     String getOAuthAppId();
 
     String getOAuthAppSecret();
+
+    String getOAuthAppCredential();
 }

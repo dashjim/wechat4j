@@ -11,6 +11,7 @@ class ConfigurationBase implements Configuration, Serializable {
 
     private String oauthAppId;
     private String oauthAppSecret;
+    private String oauthAppCredential;
 
     private int httpRetryCount;
     private int httpReadTimeout;
@@ -78,6 +79,14 @@ class ConfigurationBase implements Configuration, Serializable {
 
     protected final void setOAuthAppSecret(String oauthAppSecret){
         this.oauthAppSecret = oauthAppSecret;
+    }
+
+    @Override public final String getOAuthAppCredential(){
+        return oauthAppCredential;
+    }
+
+    protected final void setOAuthAppCredential(String oauthAppCredential){
+        this.oauthAppCredential = oauthAppCredential;
     }
 
     @Override public final int getHttpRetryCount(){

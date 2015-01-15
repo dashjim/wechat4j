@@ -30,6 +30,7 @@ final class WechatImpl implements Wechat, Serializable {
     private void init(Configuration conf) {
         setHttp();
         setFactory();
+        setToken();
     }
 
     private void setHttp() {
@@ -38,6 +39,13 @@ final class WechatImpl implements Wechat, Serializable {
 
     private void setFactory() {
         this.factory = new ObjectFactory();
+    }
+
+    private void setToken() {
+        String credential = conf.getOAuthAppCredential();
+        if (credential != null) {
+            this.accessToken = factory.createAccessToken(credential, null);
+        }
     }
 
     private HttpResponse get(String url, HttpParameter[] params) throws IOException {
@@ -66,7 +74,8 @@ final class WechatImpl implements Wechat, Serializable {
     }
 
     @Override public ResponseGroup createGroup(Map<String, Object> group) throws IOException{
-        String url = conf.getRestBaseURL();
+        String url = conf.getRestBaseURL() + "/groups/create"
+                + "?access_token=" + accessToken.getCredential();
         HttpParameter[] params = new HttpParameter[] {
                 new HttpParameter(new JSONObject(group))
         };

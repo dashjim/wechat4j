@@ -39,6 +39,12 @@ public final class ConfigurationBuilder {
         return this;
     }
 
+    public ConfigurationBuilder setOAuthAppCredential(String oauthAppCredential){
+        checkNotBuilt();
+        conf.setOAuthAppCredential(oauthAppCredential);
+        return this;
+    }
+
     public ConfigurationBuilder setHttpRetryCount(int httpRetryCount){
         checkNotBuilt();
         conf.setHttpRetryCount(httpRetryCount);
