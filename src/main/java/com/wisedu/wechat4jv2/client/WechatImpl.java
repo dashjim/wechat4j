@@ -67,7 +67,16 @@ final class WechatImpl implements Wechat, Serializable {
         return factory.createResponseMedia(post(url, params));
     }
 
-    @Override public Response mediaDownload(String mediaId) {
+    @Override public ResponseFileStream mediaDownload(String mediaId) throws IOException {
+        String url = conf.getMediaBaseURL() + "/get"
+                + "?access_token=" + accessToken.getCredential();
+        HttpParameter[] params = new HttpParameter[] {
+                new HttpParameter("media_id", mediaId)
+        };
+        return factory.createResponseFileStream(post(url, params));
+    }
+
+    @Override public ResponseFileStream mediaDownload(String mediaId, File file) throws IOException {
         return null;
     }
 

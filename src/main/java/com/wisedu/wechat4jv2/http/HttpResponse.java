@@ -1,6 +1,5 @@
 package com.wisedu.wechat4jv2.http;
 
-
 import com.wisedu.wechat4jv2.conf.ConfigurationContext;
 import com.wisedu.wechat4jv2.conf.HttpClientConfiguration;
 import com.wisedu.wechat4jv2.internal.json.JSONArray;
@@ -52,6 +51,13 @@ public abstract class HttpResponse {
             throw new IllegalStateException("Stream has already been consumed.");
         }
         return is;
+    }
+
+    public void asFile(File file) {
+        if (streamConsumed){
+            throw new IllegalStateException("File has already been consumed.");
+        }
+        disconnect();
     }
 
     /**

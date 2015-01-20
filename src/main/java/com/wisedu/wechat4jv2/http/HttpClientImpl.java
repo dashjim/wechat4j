@@ -70,6 +70,7 @@ public class HttpClientImpl extends HttpClientBase implements HttpResponseCode, 
                                 out.writeBytes(boundary + "--\r\n");
                                 out.writeBytes("\r\n");
                             }
+                            os = con.getOutputStream();
                         } else if (HttpParameter.containsJSON(request.getParameters())){
                             // JSON
                             if (request.getParameters().length > 1){

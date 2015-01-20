@@ -7,7 +7,7 @@ import com.wisedu.wechat4jv2.entity.ResponseGroupCollection;
 import java.io.IOException;
 import java.util.Map;
 
-public interface GroupSupport {
+public interface GroupService {
     // 创建分组
     ResponseGroup createGroup(Map<String, Object> group) throws IOException;
 

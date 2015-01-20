@@ -19,6 +19,10 @@ public class ObjectFactory {
         return new ResponseMediaJSONImpl(response);
     }
 
+    public ResponseFileStream createResponseFileStream(HttpResponse response) {
+        return new ResponseFileStreamJSONImpl(response);
+    }
+
     public ResponseGroup createResponseGroup(HttpResponse response) {
         return new ResponseGroupJSONImpl(response);
     }
