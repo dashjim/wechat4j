@@ -1,0 +1,56 @@
+package com.wisedu.wechat4jv2.entity;
+
+import com.wisedu.wechat4jv2.http.HttpResponse;
+
+import java.io.File;
+import java.io.Serializable;
+
+final class ResponseFileJSONImpl implements ResponseFile, Serializable {
+    private File file = null;
+    private Response response = null;
+
+    ResponseFileJSONImpl(HttpResponse response, File file) {
+        init(response, file);
+    }
+
+    private void init(HttpResponse response, File file) {
+        String contentType = response.getResponseHeader("content-type");
+        if (!contentType.equals("text/plain")) {
+            this.file = response.asFile(file);
+            this.response = new ResponseJSONImpl();
+        } else {
+            this.response = new ResponseJSONImpl(response.asJSONObject());
+        }
+    }
+
+    @Override public File getFile() {
+        return this.file;
+    }
+
+    @Override public Response getResponse() {
+        return this.response;
+    }
+
+    @Override public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o==null || getClass()!=o.getClass()) return false;
+
+        ResponseFileJSONImpl that = (ResponseFileJSONImpl)o;
+
+        if (file!=null? !file.equals(that.file): that.file!=null) return false;
+        if (response!=null? !response.equals(that.response): that.response!=null) return false;
+
+        return true;
+    }
+
+    @Override public int hashCode() {
+        int result = 0;
+        result = 31*result + (file!=null?file.hashCode(): 0);
+        result = 31*result + (response!=null? response.hashCode(): 0);
+        return result;
+    }
+
+    @Override public String toString() {
+        return this.response.toString();
+    }
+}

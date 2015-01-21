@@ -3,6 +3,7 @@ package com.wisedu.wechat4jv2.entity;
 import com.wisedu.wechat4jv2.http.HttpResponse;
 import com.wisedu.wechat4jv2.internal.json.JSONObject;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 final class ResponseJSONImpl implements Response, Serializable {
@@ -13,12 +14,28 @@ final class ResponseJSONImpl implements Response, Serializable {
 
     protected JSONObject object;
 
-    ResponseJSONImpl(HttpResponse response) {
+    ResponseJSONImpl() {
+        this.object = new JSONObject();
+    }
+
+    ResponseJSONImpl(Integer errCode, String errMsg) {
+        init(errCode, errMsg);
+    }
+
+    ResponseJSONImpl(HttpResponse response) throws IOException {
         this(response.asJSONObject());
     }
 
     ResponseJSONImpl(JSONObject jsonObject) {
         init(jsonObject);
+    }
+
+    void init(Integer errCode, String errMsg) {
+        this.errCode = errCode;
+        this.errMsg = errMsg;
+        this.object = new JSONObject(
+                "{\"errcode\": " + errCode + ", \"errmsg\": \"" + errMsg + "\" }"
+        );
     }
 
     void init(JSONObject jsonObject) {

@@ -2,8 +2,11 @@ package com.wisedu.wechat4jv2.entity;
 
 import com.wisedu.wechat4jv2.http.HttpResponse;
 
+import java.io.File;
+import java.io.IOException;
+
 public class ObjectFactory {
-    public Response createResponse(HttpResponse response) {
+    public Response createResponse(HttpResponse response) throws IOException {
         return new ResponseJSONImpl(response);
     }
 
@@ -19,8 +22,8 @@ public class ObjectFactory {
         return new ResponseMediaJSONImpl(response);
     }
 
-    public ResponseFileStream createResponseFileStream(HttpResponse response) {
-        return new ResponseFileStreamJSONImpl(response);
+    public ResponseFile createResponseFile(HttpResponse response, File file) {
+        return new ResponseFileJSONImpl(response, file);
     }
 
     public ResponseGroup createResponseGroup(HttpResponse response) {

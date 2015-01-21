@@ -17,8 +17,9 @@ public abstract class HttpResponse {
     protected InputStream is;
     private boolean streamConsumed = false;
 
-    private JSONObject jsonObject;
-    private JSONArray jsonArray;
+    protected File file = null;
+    private JSONObject jsonObject = null;
+    private JSONArray jsonArray = null;
 
     public HttpResponse(){
         this.conf = ConfigurationContext.getInstance();
@@ -53,19 +54,63 @@ public abstract class HttpResponse {
         return is;
     }
 
-    public void asFile(File file) {
+    /**
+     * Returns the response body as file.<br>
+     * Disconnects the internal HttpURLConnection silently.
+     *
+     * @return void
+     * @throws java.io.IOException
+     */
+    public File asFile(File file) throws IOException {
         if (streamConsumed){
             throw new IllegalStateException("File has already been consumed.");
         }
-        disconnect();
+        if (file.exists()) {
+            if (file.isDirectory()) {
+                throw new IOException("File '" + file + "' exists but is a directory");
+            }
+            if (file.canWrite() == false) {
+                throw new IOException("File '" + file + "' cannot be written to");
+            }
+        } else {
+            File parent = file.getParentFile();
+            if (parent != null) {
+                if (!parent.mkdirs() && !parent.isDirectory()) {
+                    throw new IOException("Directory '" + parent + "' could not be created");
+                }
+            }
+        }
+        this.file = file;
+
+        OutputStream output = null;
+        try {
+            output = new FileOutputStream(this.file);
+
+            int n = 0;
+            byte[] buffer = new byte[1024<<2];
+            while ((n=is.read(buffer)) != -1) {
+                output.write(buffer, 0, n);
+            }
+            streamConsumed = true;
+        } finally {
+            try {
+                if (output != null) {
+                    output.close();
+                }
+            } catch (IOException ioe) {
+                // ignore
+            }
+            disconnect();
+            return this.file;
+        }
     }
 
     /**
      * Returns the response body as string.<br>
      * Disconnects the internal HttpURLConnection silently.
      *
-     * @return response body
-     * @throws com.wisedu.wechat4j.WechatException
+     * @return void
+     * @throws java.io.IOException
      */
     public String asString() throws IOException{
         if (responseAsString == null){
@@ -106,15 +151,25 @@ public abstract class HttpResponse {
         return responseAsString;
     }
 
-    public Reader asReader(){
-        try {
-            return new BufferedReader(new InputStreamReader(is, "utf-8"));
-        } catch (IOException ioe){
-        }
-        return null;
+    /**
+     * Returns the response body as reader.<br>
+     * Disconnects the internal HttpURLConnection silently.
+     *
+     * @return java.io.Reader
+     * @throws java.io.IOException
+     */
+    public Reader asReader() throws IOException{
+        return new BufferedReader(new InputStreamReader(is, "utf-8"));
     }
 
-    public JSONObject asJSONObject() {
+    /**
+     * Returns the response body as JSONObject.<br>
+     * Disconnects the internal HttpURLConnection silently.
+     *
+     * @return com.wisedu.wechat4jv2.internal.json.JSONObject
+     * @throws java.io.IOException
+     */
+    public JSONObject asJSONObject() throws IOException {
         if (jsonObject == null){
             Reader reader = null;
             try {
@@ -137,7 +192,14 @@ public abstract class HttpResponse {
         return jsonObject;
     }
 
-    public JSONArray asJSONArray() {
+    /**
+     * Returns the response body as JSONArray.<br>
+     * Disconnects the internal HttpURLConnection silently.
+     *
+     * @return com.wisedu.wechat4jv2.internal.json.JSONArray
+     * @throws java.io.IOException
+     */
+    public JSONArray asJSONArray() throws IOException{
         if (jsonArray == null){
             Reader reader = null;
             try {
