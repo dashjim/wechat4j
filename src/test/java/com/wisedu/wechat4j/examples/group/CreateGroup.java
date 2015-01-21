@@ -1,28 +1,20 @@
 package com.wisedu.wechat4j.examples.group;
 
-import com.wisedu.wechat4j.WechatException;
-import com.wisedu.wechat4j.client.Wechat;
-import com.wisedu.wechat4j.client.WechatFactory;
-import com.wisedu.wechat4j.entity.Contact;
-import com.wisedu.wechat4j.internal.json.JSONObject;
+import com.wisedu.wechat4jv2.api.Wechat;
+import com.wisedu.wechat4jv2.client.WechatFactory;
+import com.wisedu.wechat4jv2.entity.ResponseGroup;
+
+import java.io.IOException;
+import java.util.HashMap;
 
 public class CreateGroup {
-    private static final String oauthToken = "tShow";
-    private static final String oauthAppID = "wxeb08f90467938ff7";
-    private static final String oauthAppSecret = "504581525da6402ed53d2b82766d95c1";
-
-    public static void main(String[] args) {
-        try {
-            Wechat wechat = WechatFactory.createWechatInstance();
-            wechat.setOAuthApp(oauthToken, oauthAppID, oauthAppSecret);
-            Contact contact = wechat.createContact(new JSONObject("{\"group\":{\"name\":\"test\"}}"));
-            if (contact.getResponse().getErrCode() == null) {
-                System.out.println("Create Group Succeed: " + contact);
-            } else {
-                System.err.println("Create Group Failed: " + contact);
-            }
-        } catch (WechatException we) {
-            we.printStackTrace();
+    public static void main(String[] args) throws IOException {
+        Wechat wechat = new WechatFactory().getInstance();
+        ResponseGroup group = wechat.createGroup(new HashMap<String, Object>());
+        if (group.getResponse().getErrCode() == 0){
+            System.out.println("List Group Succeed." + group);
+        } else {
+            System.err.println("List Group Failed." + group);
         }
     }
 }

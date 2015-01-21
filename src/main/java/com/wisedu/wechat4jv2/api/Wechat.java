@@ -7,8 +7,9 @@ import java.io.IOException;
 public interface Wechat extends
         MediaService,
         GroupService,
-        MenuSerice {
-    ResponseAccessToken getAccessToken() throws IOException;
-
+        MenuSerice,
+        OAuth2Service {
     void setAccessToken(String credential, Long expiresIn);
+
+    ResponseAccessToken getAccessToken() throws IOException;
 }

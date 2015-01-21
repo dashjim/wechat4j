@@ -1,12 +1,5 @@
 package com.wisedu.wechat4jv2.http;
 
-/**
- * Created with IntelliJ IDEA.
- * User: YUMMY
- * Date: 14-10-13
- * Time: 下午3:44
- * To change this template use File | Settings | File Templates.
- */
 public interface HttpResponseCode {
     int OK = 200;// OK: Success!
     int MULTIPLE_CHOICES = 300;//
