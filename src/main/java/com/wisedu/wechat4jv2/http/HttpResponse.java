@@ -55,6 +55,63 @@ public abstract class HttpResponse {
     }
 
     /**
+     * Returns the response body as reader.<br>
+     * Disconnects the internal HttpURLConnection silently.
+     *
+     * @return java.io.Reader
+     * @throws java.io.IOException
+     */
+    public Reader asReader() {
+        try {
+            return new BufferedReader(new InputStreamReader(asStream(), "utf-8"));
+        } catch (UnsupportedEncodingException uee) {
+            return new BufferedReader(new InputStreamReader(is));
+        }
+    }
+
+    /**
+     * Returns the response body as string.<br>
+     * Disconnects the internal HttpURLConnection silently.
+     *
+     * @return void
+     * @throws java.io.IOException
+     */
+    public String asString() throws IOException {
+        if (streamConsumed){
+            throw new IllegalStateException("Stream has already been consumed.");
+        }
+
+        if (responseAsString == null){
+            BufferedReader reader = null;
+            try {
+                try {
+                    reader = new BufferedReader(new InputStreamReader(asStream(), "utf-8"));
+                } catch (UnsupportedEncodingException uee) {
+                    reader = new BufferedReader(new InputStreamReader(asStream()));
+                }
+
+                String line = null;
+                StringBuffer sb = new StringBuffer();
+                while ((line=reader.readLine()) != null){
+                    sb.append(line + "\n");
+                }
+                responseAsString = sb.toString();
+            } finally {
+                if (reader != null){
+                    try {
+                        reader.close();
+                    } catch (IOException ioe){
+                        // ignore
+                    }
+                }
+                disconnect();
+                streamConsumed = true;
+            }
+        }
+        return responseAsString;
+    }
+
+    /**
      * Returns the response body as file.<br>
      * Disconnects the internal HttpURLConnection silently.
      *
@@ -91,75 +148,19 @@ public abstract class HttpResponse {
             while ((n=is.read(buffer)) != -1) {
                 output.write(buffer, 0, n);
             }
-            streamConsumed = true;
+
         } finally {
-            try {
-                if (output != null) {
+            if (output != null) {
+                try {
                     output.close();
+                } catch (IOException ioe) {
+                    // ignore
                 }
-            } catch (IOException ioe) {
-                // ignore
             }
             disconnect();
-            return this.file;
+            streamConsumed = true;
         }
-    }
-
-    /**
-     * Returns the response body as string.<br>
-     * Disconnects the internal HttpURLConnection silently.
-     *
-     * @return void
-     * @throws java.io.IOException
-     */
-    public String asString() throws IOException{
-        if (responseAsString == null){
-            BufferedReader reader = null;
-            InputStream stream = null;
-            try {
-                stream = asStream();
-                if (stream == null){
-                    return null;
-                }
-
-                String line = null;
-                StringBuffer sb = new StringBuffer();
-                reader = new BufferedReader(new InputStreamReader(stream, "utf-8"));
-                while ((line=reader.readLine()) != null){
-                    sb.append(line + "\n");
-                }
-                responseAsString = sb.toString();
-                streamConsumed = true;
-            } catch (IOException ioe){
-                throw new IOException("asString failed", ioe);
-            } finally {
-                if (stream != null){
-                    try {
-                        stream.close();
-                    } catch (IOException ioe){
-                    }
-                }
-                if (reader != null){
-                    try {
-                        reader.close();
-                    } catch (IOException ioe){
-                    }
-                }
-                disconnect();
-            }
-        }
-        return responseAsString;
-    }
-
-    /**
-     * Returns the response body as reader.<br>
-     * Disconnects the internal HttpURLConnection silently.
-     *
-     * @return java.io.Reader
-     * @throws java.io.IOException
-     */
-    public Reader asReader() throws IOException{
-        return new BufferedReader(new InputStreamReader(is, "utf-8"));
+        return this.file;
     }
 
     /**
@@ -169,21 +170,23 @@ public abstract class HttpResponse {
      * @return com.wisedu.wechat4jv2.internal.json.JSONObject
      * @throws java.io.IOException
      */
-    public JSONObject asJSONObject() throws IOException {
+    public JSONObject asJSONObject() {
         if (jsonObject == null){
             Reader reader = null;
             try {
-                if (responseAsString == null){
-                    reader = asReader();
-                    jsonObject = new JSONObject(new JSONTokener(reader));
-                } else {
+                if (responseAsString != null){
                     jsonObject = new JSONObject(responseAsString);
+                } else {
+                    reader = asReader();
+                    streamConsumed = true;
+                    jsonObject = new JSONObject(new JSONTokener(reader));
                 }
             }  finally {
-                if (reader != null){
+                if (reader != null) {
                     try {
                         reader.close();
-                    } catch (IOException ioe){
+                    } catch (IOException ioe) {
+                        // ignore
                     }
                 }
                 disconnect();
@@ -203,17 +206,19 @@ public abstract class HttpResponse {
         if (jsonArray == null){
             Reader reader = null;
             try {
-                if (responseAsString == null) {
-                    reader = asReader();
-                    jsonArray = new JSONArray(new JSONTokener(reader));
-                } else {
+                if (responseAsString != null) {
                     jsonArray = new JSONArray(responseAsString);
+                } else {
+                    reader = asReader();
+                    streamConsumed = true;
+                    jsonArray = new JSONArray(new JSONTokener(reader));
                 }
             } finally {
                 if (reader != null){
                     try {
                         reader.close();
                     } catch (IOException ioe){
+                        // ignore
                     }
                 }
                 disconnect();

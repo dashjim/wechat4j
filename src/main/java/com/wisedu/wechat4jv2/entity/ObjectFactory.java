@@ -22,7 +22,7 @@ public class ObjectFactory {
         return new ResponseMediaJSONImpl(response);
     }
 
-    public ResponseFile createResponseFile(HttpResponse response, File file) {
+    public ResponseFile createResponseFile(HttpResponse response, File file) throws IOException{
         return new ResponseFileJSONImpl(response, file);
     }
 

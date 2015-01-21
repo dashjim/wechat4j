@@ -14,20 +14,8 @@ final class ResponseJSONImpl implements Response, Serializable {
 
     protected JSONObject object;
 
-    ResponseJSONImpl() {
-        this.object = new JSONObject();
-    }
-
     ResponseJSONImpl(Integer errCode, String errMsg) {
         init(errCode, errMsg);
-    }
-
-    ResponseJSONImpl(HttpResponse response) throws IOException {
-        this(response.asJSONObject());
-    }
-
-    ResponseJSONImpl(JSONObject jsonObject) {
-        init(jsonObject);
     }
 
     void init(Integer errCode, String errMsg) {
@@ -38,13 +26,36 @@ final class ResponseJSONImpl implements Response, Serializable {
         );
     }
 
-    void init(JSONObject jsonObject) {
+    ResponseJSONImpl(HttpResponse response) {
+        this(response, 0, "ok");
+    }
+
+
+    ResponseJSONImpl(HttpResponse response, Integer defaultCode, String defaultMsg) {
+        init(response.asJSONObject(), defaultCode, defaultMsg);
+    }
+
+    ResponseJSONImpl (JSONObject jsonObject) {
+        this(jsonObject, 0, "ok");
+    }
+
+    ResponseJSONImpl (JSONObject jsonObject, Integer defaultCode, String defaultMsg) {
+        init(jsonObject, defaultCode, defaultMsg);
+    }
+
+    void init(JSONObject jsonObject, Integer defaultCode, String defaultMsg) {
         this.object = jsonObject;
         if (!jsonObject.isNull("errcode")) {
             this.errCode = jsonObject.getInt("errcode");
+        } else {
+            this.errCode = defaultCode;
+            this.object.put("errcode", defaultCode);
         }
         if (!jsonObject.isNull("errmsg")) {
             this.errMsg = jsonObject.getString("errmsg");
+        } else {
+            this.errMsg = defaultMsg;
+            this.object.put("errmsg", defaultMsg);
         }
     }
 

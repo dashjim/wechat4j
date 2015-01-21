@@ -10,7 +10,7 @@ public class listGroup {
     public static void main(String[] args) throws IOException {
         Wechat wechat = new WechatFactory().getInstance();
         ResponseGroupCollection collection = wechat.listGroup();
-        if (collection.getResponse().getErrCode() == null){
+        if (collection.getResponse().getErrCode() == 0){
             System.out.println("List Group Succeed." + collection);
         } else {
             System.err.println("List Group Failed." + collection);

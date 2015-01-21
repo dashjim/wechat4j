@@ -3,23 +3,26 @@ package com.wisedu.wechat4jv2.entity;
 import com.wisedu.wechat4jv2.http.HttpResponse;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 
 final class ResponseFileJSONImpl implements ResponseFile, Serializable {
+    private static final long serialVersionUID = 1624703790249232252L;
+
     private File file = null;
     private Response response = null;
 
-    ResponseFileJSONImpl(HttpResponse response, File file) {
+    ResponseFileJSONImpl(HttpResponse response, File file) throws IOException {
         init(response, file);
     }
 
-    private void init(HttpResponse response, File file) {
+    private void init(HttpResponse response, File file) throws IOException {
         String contentType = response.getResponseHeader("content-type");
         if (!contentType.equals("text/plain")) {
             this.file = response.asFile(file);
-            this.response = new ResponseJSONImpl();
+            this.response = new ResponseJSONImpl(0, "ok");
         } else {
-            this.response = new ResponseJSONImpl(response.asJSONObject());
+            this.response = new ResponseJSONImpl(response);
         }
     }
 
