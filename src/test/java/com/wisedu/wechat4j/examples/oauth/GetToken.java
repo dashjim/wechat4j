@@ -7,7 +7,7 @@ import com.wisedu.wechat4jv2.entity.ResponseAccessToken;
 import java.io.IOException;
 
 public class GetToken {
-    public static void main(String args[]) throws IOException {
+    public static void main(String args[]) throws Exception {
         Wechat wechat = new WechatFactory().getInstance();
         ResponseAccessToken token = wechat.getAccessToken();
         if (token.getResponse().getErrCode() == 0){

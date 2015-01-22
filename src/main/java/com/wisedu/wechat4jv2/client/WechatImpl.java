@@ -57,25 +57,11 @@ final class WechatImpl implements Wechat, Serializable {
         return http.post(url, params);
     }
 
-    @Override public ResponseMedia mediaUpload(String type, File file) throws IOException{
-        String url = conf.getMediaBaseURL() + "/upload"
-                + "?access_token=" + accessToken.getCredential();
-        HttpParameter[] params = new HttpParameter[] {
-                new HttpParameter("type", type),
-                new HttpParameter("media", file)
-        };
-        return factory.createResponseMedia(post(url, params));
+    @Override public void setAccessToken(String credential, Long expiresIn) {
+        this.accessToken = factory.createAccessToken(credential, expiresIn);
     }
 
-    @Override public ResponseFile mediaDownload(String mediaId, File file) throws IOException {
-        String url = conf.getMediaBaseURL() + "/get"
-                + "?access_token=" + accessToken.getCredential();
-        HttpParameter[] params = new HttpParameter[] {
-                new HttpParameter("media_id", mediaId)
-        };
-        return factory.createResponseFile(post(url, params), file);
-    }
-
+    // 获取Access Token
     @Override public ResponseAccessToken getAccessToken() throws IOException{
         String url = conf.getRestBaseURL() + "/token";
         HttpParameter[] params = new HttpParameter[] {
@@ -89,8 +75,45 @@ final class WechatImpl implements Wechat, Serializable {
         return responseAccessToken;
     }
 
-    @Override public void setAccessToken(String credential, Long expiresIn) {
-        this.accessToken = factory.createAccessToken(credential, expiresIn);
+    // 上传多媒体文件
+    @Override public ResponseMedia mediaUpload(String type, File file) throws IOException{
+        String url = conf.getMediaBaseURL() + "/upload"
+                + "?access_token=" + accessToken.getCredential();
+        HttpParameter[] params = new HttpParameter[] {
+                new HttpParameter("type", type),
+                new HttpParameter("media", file)
+        };
+        return factory.createResponseMedia(post(url, params));
+    }
+
+    // 下载多媒体文件
+    @Override public ResponseFile mediaDownload(String mediaId, File file) throws IOException {
+        String url = conf.getMediaBaseURL() + "/get"
+                + "?access_token=" + accessToken.getCredential();
+        HttpParameter[] params = new HttpParameter[] {
+                new HttpParameter("media_id", mediaId)
+        };
+        return factory.createResponseFile(post(url, params), file);
+    }
+
+    // 添加客服帐号
+    @Override public Response createKfAccount(Map<String, Object> kfAccount) throws IOException {
+        String url = conf.getRestBaseURL() + "/customservice/kfaccount/add"
+                + "?access_token=" + accessToken.getCredential();
+        HttpParameter[] params = new HttpParameter[] {
+                new HttpParameter(new JSONObject(kfAccount))
+        };
+        return factory.createResponse(post(url, params));
+    }
+
+    // 客服接口-发消息
+    @Override public Response sendMessage(Map<String, Object> message) throws IOException{
+        String url = conf.getRestBaseURL() + "/message/custom/send"
+                + "?access_token=" + accessToken.getCredential();
+        HttpParameter[] params = new HttpParameter[] {
+                new HttpParameter(new JSONObject(message))
+        };
+        return factory.createResponse(post(url, params));
     }
 
     @Override public ResponseGroup createGroup(Map<String, Object> group) throws IOException{
