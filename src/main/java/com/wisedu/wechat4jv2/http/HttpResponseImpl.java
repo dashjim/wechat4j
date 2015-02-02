@@ -18,7 +18,7 @@ public class HttpResponseImpl extends HttpResponse {
         this.statusCode = con.getResponseCode();
 
         if (null == con.getErrorStream()){
-            is = con.getInputStream();
+            is = con.getInputStream();  // @TODO
         }
 
         if (is!=null && "gzip".equals(con.getContentType())){

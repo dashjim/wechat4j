@@ -20,8 +20,8 @@ class ConfigurationBase implements Configuration, Serializable {
     private int httpMaxTotalConnections;
 
     private Map<String, String> requestHeaders;
-    private String restBaseURL = "https://api.weixin.qq.com/cgi-bin";
-    private String mediaBaseURL = "http://file.api.weixin.qq.com/cgi-bin/media";
+    private String restBaseURL = "https://api.weixin.qq.com";
+    private String mediaBaseURL = "http://file.api.weixin.qq.com";
 
     protected ConfigurationBase(){
         setGZIPEnabled(true);

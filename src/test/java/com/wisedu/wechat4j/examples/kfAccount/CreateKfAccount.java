@@ -9,9 +9,9 @@ import java.util.Map;
 
 public class CreateKfAccount {
     private static Map<String, Object> kfAccount = new HashMap<String, Object>() {{
-        put("kf_account", "test1@test");
+        put("kf_account", "test1@gh_57372a9ae6a9");
         put("nickname", "客服1");
-        put("password", "pswmd5");
+        put("password", "3E4AD9134F1A22443FDBAFD89CF3C093");
     }};
 
     public static void main(String[] args) throws Exception{

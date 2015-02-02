@@ -63,7 +63,7 @@ final class WechatImpl implements Wechat, Serializable {
 
     // 获取Access Token
     @Override public ResponseAccessToken getAccessToken() throws IOException{
-        String url = conf.getRestBaseURL() + "/token";
+        String url = conf.getRestBaseURL() + "/cgi-bin/token";
         HttpParameter[] params = new HttpParameter[] {
                 new HttpParameter("grant_type", "client_credential"),
                 new HttpParameter("appid", conf.getOAuthAppId()),
@@ -77,7 +77,7 @@ final class WechatImpl implements Wechat, Serializable {
 
     // 上传多媒体文件
     @Override public ResponseMedia mediaUpload(String type, File file) throws IOException{
-        String url = conf.getMediaBaseURL() + "/upload"
+        String url = conf.getMediaBaseURL() + "/cgi-bin/media/upload"
                 + "?access_token=" + accessToken.getCredential();
         HttpParameter[] params = new HttpParameter[] {
                 new HttpParameter("type", type),
@@ -88,7 +88,7 @@ final class WechatImpl implements Wechat, Serializable {
 
     // 下载多媒体文件
     @Override public ResponseFile mediaDownload(String mediaId, File file) throws IOException {
-        String url = conf.getMediaBaseURL() + "/get"
+        String url = conf.getMediaBaseURL() + "/cgi-bin/media/get"
                 + "?access_token=" + accessToken.getCredential();
         HttpParameter[] params = new HttpParameter[] {
                 new HttpParameter("media_id", mediaId)
@@ -108,7 +108,7 @@ final class WechatImpl implements Wechat, Serializable {
 
     // 客服接口-发消息
     @Override public Response sendMessage(Map<String, Object> message) throws IOException{
-        String url = conf.getRestBaseURL() + "/message/custom/send"
+        String url = conf.getRestBaseURL() + "/cgi-bin/message/custom/send"
                 + "?access_token=" + accessToken.getCredential();
         HttpParameter[] params = new HttpParameter[] {
                 new HttpParameter(new JSONObject(message))
@@ -117,7 +117,7 @@ final class WechatImpl implements Wechat, Serializable {
     }
 
     @Override public ResponseGroup createGroup(Map<String, Object> group) throws IOException{
-        String url = conf.getRestBaseURL() + "/groups/create"
+        String url = conf.getRestBaseURL() + "/cgi-bin/groups/create"
                 + "?access_token=" + accessToken.getCredential();
         HttpParameter[] params = new HttpParameter[] {
                 new HttpParameter(new JSONObject(group))
@@ -126,7 +126,7 @@ final class WechatImpl implements Wechat, Serializable {
     }
 
     @Override public ResponseGroupCollection listGroup() throws IOException{
-        String url = conf.getRestBaseURL() + "/groups/get";
+        String url = conf.getRestBaseURL() + "/cgi-bin/groups/get";
         HttpParameter[] params = new HttpParameter[] {
                 new HttpParameter("access_token", accessToken.getCredential())
         };
