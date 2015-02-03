@@ -106,6 +106,15 @@ final class WechatImpl implements Wechat, Serializable {
         return factory.createResponse(post(url, params));
     }
 
+    // 获取所有客服账号
+    @Override public Response listKfAccount() throws IOException {
+        String url = conf.getRestBaseURL() + "/cgi-bin/customservice/getkflist"
+                + "?access_token=" + accessToken.getCredential();
+        HttpParameter[] params = new HttpParameter[] {
+        };
+        return factory.createResponse(post(url, params));
+    }
+
     // 客服接口-发消息
     @Override public Response sendMessage(Map<String, Object> message) throws IOException{
         String url = conf.getRestBaseURL() + "/cgi-bin/message/custom/send"
