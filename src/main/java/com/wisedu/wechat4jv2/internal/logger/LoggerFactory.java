@@ -1,4 +1,4 @@
-package com.wisedu.wechat4j.internal.logger;
+package com.wisedu.wechat4jv2.internal.logger;
 
 public abstract class LoggerFactory {
     /**

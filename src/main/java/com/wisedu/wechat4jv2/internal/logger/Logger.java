@@ -1,4 +1,4 @@
-package com.wisedu.wechat4j.internal.logger;
+package com.wisedu.wechat4jv2.internal.logger;
 
 import com.wisedu.wechat4j.conf.Configuration;
 import com.wisedu.wechat4j.conf.ConfigurationContext;
