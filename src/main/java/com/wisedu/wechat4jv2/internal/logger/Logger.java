@@ -1,10 +1,7 @@
 package com.wisedu.wechat4jv2.internal.logger;
 
-import com.wisedu.wechat4j.conf.Configuration;
-import com.wisedu.wechat4j.conf.ConfigurationContext;
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import com.wisedu.wechat4jv2.conf.Configuration;
+import com.wisedu.wechat4jv2.conf.ConfigurationContext;
 
 public abstract class Logger {
     private static final LoggerFactory LOGGER_FACTORY;

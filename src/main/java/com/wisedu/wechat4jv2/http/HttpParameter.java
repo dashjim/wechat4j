@@ -1,7 +1,7 @@
 package com.wisedu.wechat4jv2.http;
 
-import com.wisedu.wechat4j.internal.json.JSONArray;
-import com.wisedu.wechat4j.internal.json.JSONObject;
+import com.wisedu.wechat4jv2.internal.json.JSONArray;
+import com.wisedu.wechat4jv2.internal.json.JSONObject;
 
 import java.io.File;
 import java.io.InputStream;

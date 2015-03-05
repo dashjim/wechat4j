@@ -1,6 +1,6 @@
 package com.wisedu.wechat4jv2.internal.logger;
 
-import com.wisedu.wechat4j.conf.ConfigurationContext;
+import com.wisedu.wechat4jv2.conf.ConfigurationContext;
 
 import java.util.Date;
 

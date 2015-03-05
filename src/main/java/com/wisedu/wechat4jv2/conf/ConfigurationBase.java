@@ -6,6 +6,7 @@ import java.util.Map;
 
 class ConfigurationBase implements Configuration, Serializable {
     private static final long serialVersionUID = -6692513626308299468L;
+    private boolean debugEnabled;
     private boolean gzipEnabled;
     private String loggerFactory;
 
@@ -24,6 +25,7 @@ class ConfigurationBase implements Configuration, Serializable {
     private String mediaBaseURL = "http://file.api.weixin.qq.com";
 
     protected ConfigurationBase(){
+        setDebugEnabled(false);
         setGZIPEnabled(true);
         setLoggerFactory(null);
 
@@ -35,6 +37,14 @@ class ConfigurationBase implements Configuration, Serializable {
         setHttpConnectionTimeout(10000);
         setHttpRetryIntervalSeconds(5);
         setHttpMaxTotalConnections(20);
+    }
+
+    @Override public final boolean isDebugEnabled() {
+        return debugEnabled;
+    }
+
+    protected final void setDebugEnabled(boolean debugEnabled) {
+        this.debugEnabled = debugEnabled;
     }
 
     @Override public final boolean isGZIPEnabled(){

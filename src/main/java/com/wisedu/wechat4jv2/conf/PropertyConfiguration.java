@@ -7,6 +7,7 @@ public final class PropertyConfiguration extends ConfigurationBase implements Se
     private static final long serialVersionUID = -7945487770822598977L;
 
     // Misc.
+    private static final String DEBUENABLED = "debug";
     private static final String GZIPENABLED = "http.gzip";
     private static final String LOGGER_FACTORY = "loggerFactory";
 
@@ -120,6 +121,10 @@ public final class PropertyConfiguration extends ConfigurationBase implements Se
     }
 
     private void setFields(Properties props){
+        if (notNull(props, DEBUENABLED)) {
+            setDebugEnabled(getBooleanProperty(props, DEBUENABLED));
+        }
+
         if (notNull(props, GZIPENABLED)){
             setGZIPEnabled(getBooleanProperty(props, GZIPENABLED));
         }

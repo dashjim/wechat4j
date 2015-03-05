@@ -1,6 +1,5 @@
 package com.wisedu.wechat4jv2.client;
 
-import com.wisedu.wechat4j.internal.json.JSONObject;
 import com.wisedu.wechat4jv2.api.Wechat;
 import com.wisedu.wechat4jv2.conf.Configuration;
 import com.wisedu.wechat4jv2.entity.*;
@@ -8,6 +7,7 @@ import com.wisedu.wechat4jv2.http.HttpClient;
 import com.wisedu.wechat4jv2.http.HttpClientFactory;
 import com.wisedu.wechat4jv2.http.HttpParameter;
 import com.wisedu.wechat4jv2.http.HttpResponse;
+import com.wisedu.wechat4jv2.internal.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
