@@ -1,7 +1,5 @@
 package com.wisedu.wechat4jv2.http;
 
-import com.wisedu.wechat4j.auth.Authorization;
-
 import java.io.IOException;
 import java.io.Serializable;
 
