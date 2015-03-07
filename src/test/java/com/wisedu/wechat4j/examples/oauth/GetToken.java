@@ -1,10 +1,8 @@
 package com.wisedu.wechat4j.examples.oauth;
 
-import com.wisedu.wechat4jv2.api.Wechat;
-import com.wisedu.wechat4jv2.client.WechatFactory;
-import com.wisedu.wechat4jv2.entity.ResponseAccessToken;
-
-import java.io.IOException;
+import com.wisedu.wechat4j.api.Wechat;
+import com.wisedu.wechat4j.client.WechatFactory;
+import com.wisedu.wechat4j.entity.ResponseAccessToken;
 
 public class GetToken {
     public static void main(String args[]) throws Exception {

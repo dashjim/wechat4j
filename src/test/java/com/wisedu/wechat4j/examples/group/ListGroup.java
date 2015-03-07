@@ -1,8 +1,8 @@
 package com.wisedu.wechat4j.examples.group;
 
-import com.wisedu.wechat4jv2.api.Wechat;
-import com.wisedu.wechat4jv2.client.WechatFactory;
-import com.wisedu.wechat4jv2.entity.ResponseGroupCollection;
+import com.wisedu.wechat4j.api.Wechat;
+import com.wisedu.wechat4j.client.WechatFactory;
+import com.wisedu.wechat4j.entity.ResponseGroupCollection;
 
 public class ListGroup {
     public static void main(String[] args) throws Exception {

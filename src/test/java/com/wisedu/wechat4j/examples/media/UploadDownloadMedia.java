@@ -1,9 +1,9 @@
 package com.wisedu.wechat4j.examples.media;
 
-import com.wisedu.wechat4jv2.api.Wechat;
-import com.wisedu.wechat4jv2.client.WechatFactory;
-import com.wisedu.wechat4jv2.entity.ResponseFile;
-import com.wisedu.wechat4jv2.entity.ResponseMedia;
+import com.wisedu.wechat4j.api.Wechat;
+import com.wisedu.wechat4j.client.WechatFactory;
+import com.wisedu.wechat4j.entity.ResponseFile;
+import com.wisedu.wechat4j.entity.ResponseMedia;
 
 import java.io.File;
 

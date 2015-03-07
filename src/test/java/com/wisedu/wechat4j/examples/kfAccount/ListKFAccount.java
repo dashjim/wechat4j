@@ -1,8 +1,8 @@
 package com.wisedu.wechat4j.examples.kfAccount;
 
-import com.wisedu.wechat4jv2.api.Wechat;
-import com.wisedu.wechat4jv2.client.WechatFactory;
-import com.wisedu.wechat4jv2.entity.Response;
+import com.wisedu.wechat4j.api.Wechat;
+import com.wisedu.wechat4j.client.WechatFactory;
+import com.wisedu.wechat4j.entity.Response;
 
 public class ListKfAccount {
     public static void main(String[] args) throws Exception{
