@@ -7,7 +7,7 @@ import com.wisedu.wechat4j.entity.Response;
 public class ListKFAccount {
     public static void main(String[] args) throws Exception{
         Wechat wechat = new WechatFactory().getInstance();
-        Response response = wechat.listKfAccount();
+        Response response = wechat.listKFAccount();
         if (response.getErrCode() == 0){
             System.out.println("List KfAccount Succeed." + response);
         } else {

@@ -97,7 +97,7 @@ final class WechatImpl implements Wechat, Serializable {
     }
 
     // 添加客服帐号
-    @Override public Response createKfAccount(Map<String, Object> kfAccount) throws IOException {
+    @Override public Response createKFAccount(Map<String, Object> kfAccount) throws IOException {
         String url = conf.getRestBaseURL() + "/customservice/kfaccount/add"
                 + "?access_token=" + accessToken.getCredential();
         HttpParameter[] params = new HttpParameter[] {
@@ -106,8 +106,18 @@ final class WechatImpl implements Wechat, Serializable {
         return factory.createResponse(post(url, params));
     }
 
+    // 修改客服账号
+    @Override public Response updateKFAccount(Map<String, Object> kfAccount) throws IOException{
+        String url = conf.getRestBaseURL() + "/customservice/kfaccount/update"
+                + "?access_token=" + accessToken.getCredential();
+        HttpParameter[] params = new HttpParameter[] {
+                new HttpParameter(new JSONObject(kfAccount))
+        };
+        return factory.createResponse(post(url, params));
+    }
+
     // 获取所有客服账号
-    @Override public Response listKfAccount() throws IOException {
+    @Override public Response listKFAccount() throws IOException {
         String url = conf.getRestBaseURL() + "/cgi-bin/customservice/getkflist"
                 + "?access_token=" + accessToken.getCredential();
         HttpParameter[] params = new HttpParameter[] {
