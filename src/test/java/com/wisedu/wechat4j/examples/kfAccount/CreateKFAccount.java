@@ -7,7 +7,7 @@ import com.wisedu.wechat4j.entity.Response;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CreateKfAccount {
+public class CreateKFAccount {
     private static Map<String, Object> kfAccount = new HashMap<String, Object>() {{
         put("kf_account", "test123@gh_57372a9ae6a9");
         put("nickname", "客服1");
