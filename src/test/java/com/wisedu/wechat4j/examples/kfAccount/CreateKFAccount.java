@@ -16,7 +16,7 @@ public class CreateKFAccount {
 
     public static void main(String[] args) throws Exception{
         Wechat wechat = new WechatFactory().getInstance();
-        Response response = wechat.createKfAccount(kfAccount);
+        Response response = wechat.createKFAccount(kfAccount);
         if (response.getErrCode() == 0){
             System.out.println("Create KfAccount Succeed." + response);
         } else {
