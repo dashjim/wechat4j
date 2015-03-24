@@ -34,6 +34,10 @@ public class ObjectFactory {
         return new ResponseGroupCollectionJSONImpl(response);
     }
 
+    public ResponseKFAccountCollection createResponseKFAccountCollection(HttpResponse response) {
+        return new ResponseKFAccountCollectionJSONImpl(response);
+    }
+
     public ResponseUser createResponseUser(HttpResponse response) {
         return new ResponseUserJSONImpl(response);
     }

@@ -24,11 +24,11 @@ final class WechatImpl implements Wechat, Serializable {
     private AccessToken accessToken;
 
     WechatImpl(Configuration conf) {
-        this.conf = conf;
         init(conf);
     }
 
     private void init(Configuration conf) {
+        this.conf = conf;
         setHttp();
         setFactory();
         setToken();
@@ -116,13 +116,34 @@ final class WechatImpl implements Wechat, Serializable {
         return factory.createResponse(post(url, params));
     }
 
+    // 删除客服账号
+    @Override public Response deleteKFAccount(Map<String, Object> kfAccount) throws IOException {
+        String url = conf.getRestBaseURL() + "/customservice/kfaccount/del"
+                + "?access_token=" + accessToken.getCredential();
+        HttpParameter[] params = new HttpParameter[] {
+                new HttpParameter(new JSONObject(kfAccount))
+        };
+        return factory.createResponse(post(url, params));
+    }
+
+    // 设置客服帐号的头像
+    @Override public Response uploadHeadImage(String kfAccount, File file) throws IOException{
+        String url = conf.getRestBaseURL() + "/customservice/kfaccount/uploadheadimg"
+                + "?access_token=" + accessToken.getCredential()
+                + "&kf_account=" + kfAccount;
+        HttpParameter[] params = new HttpParameter[] {
+                new HttpParameter(file.getName(), file)
+        };
+        return factory.createResponse(post(url, params));
+    }
+
     // 获取所有客服账号
-    @Override public Response listKFAccount() throws IOException {
+    @Override public ResponseKFAccountCollection listKFAccount() throws IOException {
         String url = conf.getRestBaseURL() + "/cgi-bin/customservice/getkflist"
                 + "?access_token=" + accessToken.getCredential();
         HttpParameter[] params = new HttpParameter[] {
         };
-        return factory.createResponse(post(url, params));
+        return factory.createResponseKFAccountCollection(post(url, params));
     }
 
     // 客服接口-发消息
