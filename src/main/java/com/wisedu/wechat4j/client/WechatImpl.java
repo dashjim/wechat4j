@@ -168,7 +168,7 @@ final class WechatImpl implements Wechat, Serializable {
 
     // 根据分组进行群发
     @Override public Response sendAll(Map<String, Object> news) throws IOException {
-        String url = conf.getRestBaseURL() + "/message/mass/sendall"
+        String url = conf.getRestBaseURL() + "/cgi-bin/message/mass/sendall"
                 + "?access_token=" + accessToken.getCredential();
         HttpParameter[] params = new HttpParameter[] {
                 new HttpParameter(new JSONObject(news))
@@ -216,7 +216,22 @@ final class WechatImpl implements Wechat, Serializable {
     }
 
     // 移动用户分组
-    @Override public Response moveGroup(Map<String, Object> msg) {
-        return null;
+    @Override public Response moveGroup(Map<String, Object> group) throws IOException {
+        String url = conf.getRestBaseURL() + "/cgi-bin/groups/members/update"
+                + "?access_token=" + accessToken.getCredential();
+        HttpParameter[] params = new HttpParameter[] {
+                new HttpParameter(new JSONObject(group))
+        };
+        return factory.createResponse(post(url, params));
+    }
+
+    // 批量移动用户分组
+    @Override public Response batchMoveGroup(Map<String, Object> group) throws IOException {
+        String url = conf.getRestBaseURL() + "/cgi-bin/groups/members/batchupdate"
+                + "?access_token=" + accessToken.getCredential();
+        HttpParameter[] params = new HttpParameter[] {
+                new HttpParameter(new JSONObject(group))
+        };
+        return factory.createResponse(post(url, params));
     }
 }

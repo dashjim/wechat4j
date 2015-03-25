@@ -21,5 +21,8 @@ public interface GroupService {
     Response updateGroup(Map<String, Object> group) throws IOException;
 
     // 移动用户分组
-    Response moveGroup(Map<String, Object> msg);
+    Response moveGroup(Map<String, Object> group) throws IOException;
+
+    // 批量移动用户分组
+    Response batchMoveGroup(Map<String, Object> group) throws IOException;
 }
