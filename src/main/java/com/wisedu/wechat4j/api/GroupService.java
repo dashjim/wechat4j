@@ -15,10 +15,10 @@ public interface GroupService {
     ResponseGroupCollection listGroup() throws IOException;
 
     // 查询用户所在分组
-    ResponseGroupCollection listGroup(Map<String, Object> users);
+    ResponseGroup listGroup(Map<String, Object> user) throws IOException;
 
     // 修改分组名
-    Response updateGroup(Map<String, Object> group);
+    Response updateGroup(Map<String, Object> group) throws IOException;
 
     // 移动用户分组
     Response moveGroup(Map<String, Object> msg);

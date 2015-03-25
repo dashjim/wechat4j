@@ -166,6 +166,17 @@ final class WechatImpl implements Wechat, Serializable {
         return factory.createResponseUploadNews(post(url, params));
     }
 
+    // 根据分组进行群发
+    @Override public Response sendAll(Map<String, Object> news) throws IOException {
+        String url = conf.getRestBaseURL() + "/message/mass/sendall"
+                + "?access_token=" + accessToken.getCredential();
+        HttpParameter[] params = new HttpParameter[] {
+                new HttpParameter(new JSONObject(news))
+        };
+        return factory.createResponse(post(url, params));
+    }
+
+    // 创建分组
     @Override public ResponseGroup createGroup(Map<String, Object> group) throws IOException{
         String url = conf.getRestBaseURL() + "/cgi-bin/groups/create"
                 + "?access_token=" + accessToken.getCredential();
@@ -175,6 +186,7 @@ final class WechatImpl implements Wechat, Serializable {
         return factory.createResponseGroup(post(url, params));
     }
 
+    // 查询所有分组
     @Override public ResponseGroupCollection listGroup() throws IOException{
         String url = conf.getRestBaseURL() + "/cgi-bin/groups/get";
         HttpParameter[] params = new HttpParameter[] {
@@ -183,14 +195,27 @@ final class WechatImpl implements Wechat, Serializable {
         return factory.createResponseGroupCollection(get(url, params));
     }
 
-    @Override public ResponseGroupCollection listGroup(Map<String, Object> users) {
-        return null;
+    // 查询用户所在分组
+    @Override public ResponseGroup listGroup(Map<String, Object> user) throws IOException {
+        String url = conf.getRestBaseURL() + "/cgi-bin/groups/getid"
+                + "?access_token=" + accessToken.getCredential();
+        HttpParameter[] params = new HttpParameter[] {
+                new HttpParameter(new JSONObject(user))
+        };
+        return factory.createResponseGroup(post(url, params));
     }
 
-    @Override public Response updateGroup(Map<String, Object> group) {
-        return null;
+    // 修改分组名
+    @Override public Response updateGroup(Map<String, Object> group) throws IOException{
+        String url = conf.getRestBaseURL() + "/cgi-bin/groups/update"
+                + "?access_token=" + accessToken.getCredential();
+        HttpParameter[] params = new HttpParameter[] {
+                new HttpParameter(new JSONObject(group))
+        };
+        return factory.createResponse(post(url, params));
     }
 
+    // 移动用户分组
     @Override public Response moveGroup(Map<String, Object> msg) {
         return null;
     }

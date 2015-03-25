@@ -22,7 +22,7 @@ final class GroupJSONImpl implements Group, Serializable {
         if (!jsonObject.isNull("group")) {
             JSONObject group = jsonObject.getJSONObject("group");
             if (!group.isNull("id")) {
-                this.id = jsonObject.getInt("id");
+                this.id = group.getInt("id");
             }
             if (!group.isNull("name")) {
                 this.name = group.getString("name");
