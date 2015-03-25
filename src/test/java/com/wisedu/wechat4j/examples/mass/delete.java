@@ -1,11 +1,24 @@
 package com.wisedu.wechat4j.examples.mass;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Administrator
- * Date: 15-3-25
- * Time: 下午11:13
- * To change this template use File | Settings | File Templates.
- */
-public class delete {
+import com.wisedu.wechat4j.api.Wechat;
+import com.wisedu.wechat4j.client.WechatFactory;
+import com.wisedu.wechat4j.entity.Response;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Delete {
+    private static Map<String, Object> msg = new HashMap<String, Object>(){{
+        put("msg_id", 2356577100L);
+    }};
+
+    public static void main(String[] args) throws Exception{
+        Wechat wechat = new WechatFactory().getInstance();
+        Response response = wechat.massDelete(msg);
+        if (response.getErrCode() == 0) {
+            System.out.println("Delete Succeed." + response);
+        } else {
+            System.err.println("Delete Failed." + response);
+        }
+    }
 }
