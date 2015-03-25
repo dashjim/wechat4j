@@ -10,7 +10,7 @@ import java.util.Map;
 public class MoveGroup {
     private static Map<String, Object> group = new HashMap<String, Object>(){{
         put("openid", "oYiqRuKcmIVaKh6BlF7WNFlZA-cs");
-        put("to_groupid", 109);
+        put("to_groupid", 100);
     }};
 
     public static void main(String[] args) throws Exception {

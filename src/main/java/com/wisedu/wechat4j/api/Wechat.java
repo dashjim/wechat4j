@@ -8,6 +8,7 @@ public interface Wechat extends
         MediaService,
         KFAccountService,
         MassService,
+        TemplateService,
         GroupService,
         MenuSerice,
         OAuth2Service {
