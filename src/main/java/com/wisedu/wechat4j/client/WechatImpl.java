@@ -156,6 +156,16 @@ final class WechatImpl implements Wechat, Serializable {
         return factory.createResponse(post(url, params));
     }
 
+    // 上传图文消息素材
+    @Override public ResponseUploadNews uploadNews(Map<String, Object> news) throws IOException {
+        String url = conf.getMediaBaseURL() + "/cgi-bin/media/uploadnews"
+                + "?access_token=" + accessToken.getCredential();
+        HttpParameter[] params = new HttpParameter[] {
+                new HttpParameter(new JSONObject(news))
+        };
+        return factory.createResponseUploadNews(post(url, params));
+    }
+
     @Override public ResponseGroup createGroup(Map<String, Object> group) throws IOException{
         String url = conf.getRestBaseURL() + "/cgi-bin/groups/create"
                 + "?access_token=" + accessToken.getCredential();

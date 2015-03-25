@@ -38,6 +38,10 @@ public class ObjectFactory {
         return new ResponseKFAccountCollectionJSONImpl(response);
     }
 
+    public ResponseUploadNews createResponseUploadNews(HttpResponse response) {
+        return new ResponseUploadNewsJSONImpl(response);
+    }
+
     public ResponseUser createResponseUser(HttpResponse response) {
         return new ResponseUserJSONImpl(response);
     }

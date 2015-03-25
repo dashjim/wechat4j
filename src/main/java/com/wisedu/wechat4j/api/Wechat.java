@@ -7,6 +7,7 @@ import java.io.IOException;
 public interface Wechat extends
         MediaService,
         KFAccountService,
+        MassService,
         GroupService,
         MenuSerice,
         OAuth2Service {
