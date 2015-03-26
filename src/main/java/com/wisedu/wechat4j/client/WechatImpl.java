@@ -226,6 +226,16 @@ final class WechatImpl implements Wechat, Serializable {
         return factory.createResponse(post(url, params));
     }
 
+    // 获得模板ID
+    @Override public ResponseTemplate addTemplate(Map<String, Object> template) throws IOException {
+        String url = conf.getRestBaseURL() + "/cgi-bin/template/api_add_template"
+                + "?access_token=" + accessToken.getCredential();
+        HttpParameter[] params = new HttpParameter[] {
+                new HttpParameter(new JSONObject(template))
+        };
+        return factory.createResponseTemplate(post(url, params));
+    }
+
     // 创建分组
     @Override public ResponseGroup createGroup(Map<String, Object> group) throws IOException{
         String url = conf.getRestBaseURL() + "/cgi-bin/groups/create"
