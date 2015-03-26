@@ -297,10 +297,20 @@ final class WechatImpl implements Wechat, Serializable {
 
     // 批量移动用户分组
     @Override public Response batchMoveGroup(Map<String, Object> group) throws IOException {
-        String url = conf.getRestBaseURL() + "/cgi-bin/groups/members/batchupdate"
+        String url = conf.getRestBaseURL() + "/cgi-bin/user/info/updateremark"
                 + "?access_token=" + accessToken.getCredential();
         HttpParameter[] params = new HttpParameter[] {
                 new HttpParameter(new JSONObject(group))
+        };
+        return factory.createResponse(post(url, params));
+    }
+
+    // 设置备注名
+    @Override public Response updateRemark(Map<String, Object> remark) throws IOException {
+        String url = conf.getRestBaseURL() + "/cgi-bin/groups/members/batchupdate"
+                + "?access_token=" + accessToken.getCredential();
+        HttpParameter[] params = new HttpParameter[] {
+                new HttpParameter(new JSONObject(remark))
         };
         return factory.createResponse(post(url, params));
     }

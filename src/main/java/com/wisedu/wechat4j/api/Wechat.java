@@ -10,6 +10,7 @@ public interface Wechat extends
         MassService,
         TemplateService,
         GroupService,
+        UserService,
         MenuSerice,
         OAuth2Service {
     void setAccessToken(String credential, Long expiresIn);
