@@ -42,8 +42,8 @@ public class ObjectFactory {
         return new ResponseUploadNewsJSONImpl(response);
     }
 
-    public ResponseMassMessage createResponseMassMessage(HttpResponse response) {
-        return new ResponseMassMessageJSONImpl(response);
+    public ResponseMessage createResponseMessage(HttpResponse response) {
+        return new ResponseMessageJSONImpl(response);
     }
 
     public ResponseTemplate createResponseTemplate(HttpResponse response) {

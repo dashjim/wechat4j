@@ -2,7 +2,7 @@ package com.wisedu.wechat4j.examples.mass;
 
 import com.wisedu.wechat4j.api.Wechat;
 import com.wisedu.wechat4j.client.WechatFactory;
-import com.wisedu.wechat4j.entity.ResponseMassMessage;
+import com.wisedu.wechat4j.entity.ResponseMessage;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +21,7 @@ public class SendAll {
 
     public static void main(String[] args) throws Exception{
         Wechat wechat = new WechatFactory().getInstance();
-        ResponseMassMessage response = wechat.massSendAll(msg);
+        ResponseMessage response = wechat.massSendAll(msg);
         if (response.getResponse().getErrCode() == 0) {
             System.out.println("Send All Succeed." + response);
         } else {

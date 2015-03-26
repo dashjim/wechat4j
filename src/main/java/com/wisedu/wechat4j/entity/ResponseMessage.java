@@ -1,6 +1,6 @@
 package com.wisedu.wechat4j.entity;
 
-public interface ResponseMassMessage {
+public interface ResponseMessage {
     Long getMessageId();
 
     String getStatus();

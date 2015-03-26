@@ -2,6 +2,7 @@ package com.wisedu.wechat4j.api;
 
 import com.wisedu.wechat4j.entity.Response;
 import com.wisedu.wechat4j.entity.ResponseKFAccountCollection;
+import com.wisedu.wechat4j.entity.ResponseMessage;
 
 import java.io.File;
 import java.io.IOException;

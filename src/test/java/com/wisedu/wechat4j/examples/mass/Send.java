@@ -2,7 +2,7 @@ package com.wisedu.wechat4j.examples.mass;
 
 import com.wisedu.wechat4j.api.Wechat;
 import com.wisedu.wechat4j.client.WechatFactory;
-import com.wisedu.wechat4j.entity.ResponseMassMessage;
+import com.wisedu.wechat4j.entity.ResponseMessage;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,7 +21,7 @@ public class Send {
 
     public static void main(String[] args) throws Exception{
         Wechat wechat = new WechatFactory().getInstance();
-        ResponseMassMessage response = wechat.massSend(msg);
+        ResponseMessage response = wechat.massSend(msg);
         if (response.getResponse().getErrCode() == 0) {
             System.out.println("Send Succeed." + response);
         } else {

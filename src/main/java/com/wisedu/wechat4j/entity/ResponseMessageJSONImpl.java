@@ -5,18 +5,18 @@ import com.wisedu.wechat4j.internal.json.JSONObject;
 
 import java.io.Serializable;
 
-final class ResponseMassMessageJSONImpl implements ResponseMassMessage, Serializable {
+final class ResponseMessageJSONImpl implements ResponseMessage, Serializable {
     private static final long serialVersionUID = 6695701615457520924L;
 
     private Long msgId;
     private String status;
     private Response response;
 
-    ResponseMassMessageJSONImpl(HttpResponse response) {
+    ResponseMessageJSONImpl(HttpResponse response) {
         this(response.asJSONObject());
     }
 
-    ResponseMassMessageJSONImpl(JSONObject jsonObject) {
+    ResponseMessageJSONImpl(JSONObject jsonObject) {
         init(jsonObject);
     }
 
@@ -24,6 +24,9 @@ final class ResponseMassMessageJSONImpl implements ResponseMassMessage, Serializ
         this.response = new ResponseJSONImpl(jsonObject);
         if (!jsonObject.isNull("msg_id")) {
             this.msgId = jsonObject.getLong("msg_id");
+        }
+        if (!jsonObject.isNull("msgid")) {
+            this.msgId = jsonObject.getLong("msgid");
         }
         if (!jsonObject.isNull("msg_status")) {
             this.status = jsonObject.getString("msg_status");
@@ -46,7 +49,7 @@ final class ResponseMassMessageJSONImpl implements ResponseMassMessage, Serializ
         if (this==o) return true;
         if (o==null || getClass()!=o.getClass()) return false;
 
-        ResponseMassMessageJSONImpl that = (ResponseMassMessageJSONImpl)o;
+        ResponseMessageJSONImpl that = (ResponseMessageJSONImpl)o;
 
         if (msgId!=null? !msgId.equals(that.msgId): that.msgId!=null) return false;
         if (status!=null? !status.equals(that.status): that.status!=null) return false;
