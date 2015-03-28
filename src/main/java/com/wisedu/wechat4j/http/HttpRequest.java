@@ -23,7 +23,11 @@ public final class HttpRequest implements Serializable {
     public HttpRequest(RequestMethod method, String url, HttpParameter[] parameters, Map<String, String> requestHeaders) {
         this.method = method;
         if (method!=RequestMethod.POST && parameters!=null && parameters.length != 0) {
-            this.url = url + "?" + HttpParameter.encodeParameters(parameters);
+            if (url.contains("?")) {
+                this.url = url + "&" + HttpParameter.encodeParameters(parameters);
+            } else {
+                this.url = url + "?" + HttpParameter.encodeParameters(parameters);
+            }
             this.parameters = NULL_PARAMETERS;
         } else {
             this.url = url;

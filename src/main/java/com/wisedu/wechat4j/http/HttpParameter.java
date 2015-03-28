@@ -184,7 +184,7 @@ public class HttpParameter implements Comparable<HttpParameter>, Serializable {
     }
 
     public static String encodeParameters(HttpParameter[] params){
-        if (params == null){
+        if (params==null || params.length==0){
             return "";
         }
 
@@ -205,6 +205,10 @@ public class HttpParameter implements Comparable<HttpParameter>, Serializable {
      * @see <a href="http://tools.ietf.org/html/rfc3986#section-2.1">RFC 3986 - Uniform Resource Identifier (URI): Generic Syntax - 2.1. Percent-Encoding</a>
      */
     public static String encode(String value){
+        if (value==null || value.equals("")) {
+            return "";
+        }
+
         String encode = null;
         try {
             encode = URLEncoder.encode(value, "utf-8");

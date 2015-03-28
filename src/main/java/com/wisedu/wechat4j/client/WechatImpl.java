@@ -314,4 +314,25 @@ final class WechatImpl implements Wechat, Serializable {
         };
         return factory.createResponse(post(url, params));
     }
+
+    // 获取用户基本信息（包括UnionID机制）
+    @Override public ResponseUser getUserInfo(String openId, String lang) throws IOException {
+        String url = conf.getRestBaseURL() + "/cgi-bin/user/info"
+                + "?access_token=" + accessToken.getCredential();
+        HttpParameter[] params = new HttpParameter[] {
+                new HttpParameter("openid", openId),
+                new HttpParameter("lang", lang)
+        };
+        return factory.createResponseUser(get(url, params));
+    }
+
+    // 获取用户列表
+    @Override public ResponseUserCollection getUserList(String nextOpenId) throws IOException {
+        String url = conf.getRestBaseURL() + "/cgi-bin/user/get"
+                + "?access_token=" + accessToken.getCredential();
+        HttpParameter[] params = new HttpParameter[] {
+                new HttpParameter("next_openid", nextOpenId),
+        };
+        return factory.createResponseUserCollection(get(url, params));
+    }
 }
