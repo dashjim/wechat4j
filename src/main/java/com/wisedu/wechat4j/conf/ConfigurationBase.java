@@ -22,6 +22,7 @@ class ConfigurationBase implements Configuration, Serializable {
 
     private Map<String, String> requestHeaders;
     private String restBaseURL = "https://api.weixin.qq.com";
+    private String oauth2CodeURL = "https://open.weixin.qq.com";
     private String mediaBaseURL = "http://file.api.weixin.qq.com";
 
     protected ConfigurationBase(){
@@ -145,6 +146,14 @@ class ConfigurationBase implements Configuration, Serializable {
 
     protected final void setRestBaseURL(String restBaseURL) {
         this.restBaseURL = restBaseURL;
+    }
+
+    @Override public String getOAuth2CodeURL() {
+        return oauth2CodeURL;
+    }
+
+    protected final void setOAuth2CodeURL(String oauth2CodeURL) {
+        this.oauth2CodeURL = oauth2CodeURL;
     }
 
     @Override public String getMediaBaseURL() {

@@ -25,6 +25,7 @@ public final class PropertyConfiguration extends ConfigurationBase implements Se
 
     // Base URLs
     private static final String REST_BASE_URL = "restBaseURL";
+    private static final String OAUTH2_CODE_URL = "oauth2CodeURL";
     private static final String MEDIA_BASE_URL = "mediaBaseURL";
 
     public PropertyConfiguration(InputStream is){
@@ -167,6 +168,10 @@ public final class PropertyConfiguration extends ConfigurationBase implements Se
 
         if (notNull(props, REST_BASE_URL)){
             setRestBaseURL(getStringProperty(props, REST_BASE_URL));
+        }
+
+        if (notNull(props, OAUTH2_CODE_URL)) {
+            setOAuth2CodeURL(getStringProperty(props, OAUTH2_CODE_URL));
         }
 
         if (notNull(props, MEDIA_BASE_URL)){

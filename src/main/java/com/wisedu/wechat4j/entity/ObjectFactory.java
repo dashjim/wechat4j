@@ -58,6 +58,10 @@ public class ObjectFactory {
         return new ResponseUserCollectionJSONImpl(response);
     }
 
+    public ResponseOAuth2AccessToken createResponseOAuth2AccessToken(HttpResponse response) {
+        return new ResponseOAuth2AccessTokenJSONImpl(response);
+    }
+
     public ResponseMenu createResponseMenu(HttpResponse response) {
         return new ResponseMenuJSONImpl(response);
     }

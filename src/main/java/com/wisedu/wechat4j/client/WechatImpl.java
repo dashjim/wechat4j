@@ -12,6 +12,8 @@ import com.wisedu.wechat4j.internal.json.JSONObject;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Map;
 
 final class WechatImpl implements Wechat, Serializable {
@@ -334,5 +336,32 @@ final class WechatImpl implements Wechat, Serializable {
                 new HttpParameter("next_openid", nextOpenId),
         };
         return factory.createResponseUserCollection(get(url, params));
+    }
+
+    // 生成授权链接
+    @Override public String generateOAuth2URL(String redirectURI, String scope, String state) throws IOException {
+        try {
+            return conf.getOAuth2CodeURL() +"/connect/oauth2/authorize"
+                    + "?appid=" + conf.getOAuthAppId()
+                    + "&redirect_uri" + URLEncoder.encode(redirectURI, "utf-8")
+                    + "&response_type=" + "code"
+                    + "&scope=" + scope
+                    + "&state=" + state
+                    + "#wechat_redirect";
+        } catch (UnsupportedEncodingException uee) {
+            throw new IOException("can not generate oauth2 url", uee);
+        }
+    }
+
+    // 通过code换取网页授权access_token
+    @Override public ResponseOAuth2AccessToken getOAuth2AccessToken(String code) throws IOException {
+        String url = conf.getRestBaseURL() + "/sns/oauth2/access_token";
+        HttpParameter[] params = new HttpParameter[] {
+                new HttpParameter("appid", conf.getOAuthAppId()),
+                new HttpParameter("secret", conf.getOAuthAppSecret()),
+                new HttpParameter("code", code),
+                new HttpParameter("grant_type", "authorization_code")
+        };
+        return factory.createResponseOAuth2AccessToken(get(url, params));
     }
 }
