@@ -11,8 +11,9 @@ public interface Wechat extends
         TemplateService,
         GroupService,
         UserService,
+        OAuth2Service,
         MenuService,
-        OAuth2Service {
+        QRCodeService {
     void setAccessToken(String credential, Long expiresIn);
 
     // 获取Access Token

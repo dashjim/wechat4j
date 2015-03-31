@@ -424,4 +424,14 @@ final class WechatImpl implements Wechat, Serializable {
         };
         return factory.createResponse(get(url, params));
     }
+
+    // 创建二维码ticket
+    @Override public ResponseTicket createTicket(Map<String, Object> ticket) throws IOException {
+        String url = conf.getRestBaseURL() + "/cgi-bin/qrcode/create"
+                + "?access_token=" + accessToken.getCredential();
+        HttpParameter[] params = new HttpParameter[]{
+                new HttpParameter(new JSONObject(ticket))
+        };
+        return factory.createResponseTicket(post(url, params));
+    }
 }

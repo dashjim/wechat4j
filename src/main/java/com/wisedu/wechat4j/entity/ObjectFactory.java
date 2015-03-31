@@ -65,4 +65,8 @@ public class ObjectFactory {
     public ResponseMenu createResponseMenu(HttpResponse response) {
         return new ResponseMenuJSONImpl(response);
     }
+
+    public ResponseTicket createResponseTicket(HttpResponse response) {
+        return new ResponseTicketJSONImpl(response);
+    }
 }
