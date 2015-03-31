@@ -1,11 +1,18 @@
 package com.wisedu.wechat4j.api;
 
-/**
- * Created with IntelliJ IDEA.
- * User: YUMMY
- * Date: 15-3-31
- * Time: 下午2:45
- * To change this template use File | Settings | File Templates.
- */
-public class MenuService {
+import com.wisedu.wechat4j.entity.Response;
+import com.wisedu.wechat4j.entity.ResponseMenu;
+
+import java.io.IOException;
+import java.util.Map;
+
+public interface MenuService {
+    // 自定义菜单创建接口
+    Response createMenu(Map<String, Object> menu) throws IOException;
+
+    // 自定义菜单查询接口
+    ResponseMenu getMenu() throws IOException;
+
+    // 自定义菜单删除接口
+    Response deleteMenu() throws IOException;
 }

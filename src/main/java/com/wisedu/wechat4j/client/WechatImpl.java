@@ -364,4 +364,64 @@ final class WechatImpl implements Wechat, Serializable {
         };
         return factory.createResponseOAuth2AccessToken(get(url, params));
     }
+
+    // 刷新access_token
+    @Override public ResponseOAuth2AccessToken refreshOAuth2AccessToken(String refreshToken) throws IOException {
+        String url = conf.getRestBaseURL() + "/sns/oauth2/access_token";
+        HttpParameter[] params = new HttpParameter[] {
+                new HttpParameter("appid", conf.getOAuthAppId()),
+                new HttpParameter("grant_type", "refresh_token"),
+                new HttpParameter("refresh_token", refreshToken)
+        };
+        return factory.createResponseOAuth2AccessToken(get(url, params));
+    }
+
+    // 拉取用户信息(需scope为 snsapi_userinfo)
+    @Override public ResponseUser getOAuth2UserInfo(String openId, String lang) throws IOException {
+        String url = conf.getRestBaseURL() + "/sns/userinfo"
+                + "?access_token=" + accessToken.getCredential();
+        HttpParameter[] params = new HttpParameter[] {
+                new HttpParameter("openid", openId),
+                new HttpParameter("lang", lang)
+        };
+        return factory.createResponseUser(get(url, params));
+    }
+
+    // 检验授权凭证（access_token）是否有效
+    @Override public Response validateOAuth2AccessToken(String accessToken, String openId) throws IOException {
+        String url = conf.getRestBaseURL() + "/sns/auth";
+        HttpParameter[] params = new HttpParameter[] {
+                new HttpParameter("access_token", accessToken),
+                new HttpParameter("openid", openId)
+        };
+        return factory.createResponse(get(url, params));
+    }
+
+    // 自定义菜单创建接口
+    @Override public Response createMenu(Map<String, Object> menu) throws IOException {
+        String url = conf.getRestBaseURL() + "/cgi-bin/menu/create"
+                + "?access_token=" + accessToken.getCredential();
+        HttpParameter[] params = new HttpParameter[]{
+                new HttpParameter(new JSONObject(menu))
+        };
+        return factory.createResponse(post(url, params));
+    }
+
+    // 自定义菜单查询接口
+    @Override public ResponseMenu getMenu() throws IOException {
+        String url = conf.getRestBaseURL() + "/cgi-bin/menu/get"
+                + "?access_token=" + accessToken.getCredential();
+        HttpParameter[] params = new HttpParameter[]{
+        };
+        return factory.createResponseMenu(get(url, params));
+    }
+
+    // 自定义菜单删除接口
+    @Override public Response deleteMenu() throws IOException {
+        String url = conf.getRestBaseURL() + "/cgi-bin/menu/delete"
+                + "?access_token=" + accessToken.getCredential();
+        HttpParameter[] params = new HttpParameter[]{
+        };
+        return factory.createResponse(get(url, params));
+    }
 }

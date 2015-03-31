@@ -23,4 +23,13 @@ public interface UserService {
 
     // 通过code换取网页授权access_token
     ResponseOAuth2AccessToken getOAuth2AccessToken(String code) throws IOException;
+
+    // 刷新access_token
+    ResponseOAuth2AccessToken refreshOAuth2AccessToken(String refreshToken) throws IOException;
+
+    // 拉取用户信息(需scope为 snsapi_userinfo)
+    ResponseUser getOAuth2UserInfo(String openId, String lang) throws IOException;
+
+    // 检验授权凭证（access_token）是否有效
+    Response validateOAuth2AccessToken(String accessToken, String openId) throws IOException;
 }
