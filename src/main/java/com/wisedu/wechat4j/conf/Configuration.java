@@ -11,7 +11,9 @@ public interface Configuration extends Serializable,
 
     String getRestBaseURL();
 
-    String getOAuth2CodeURL();
+    String getMPBaseURL();
 
     String getMediaBaseURL();
+
+    String getOAuth2CodeURL();
 }

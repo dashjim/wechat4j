@@ -69,4 +69,9 @@ public class ObjectFactory {
     public ResponseTicket createResponseTicket(HttpResponse response) {
         return new ResponseTicketJSONImpl(response);
     }
+
+    public Response createQRCode(HttpResponse response, File file) throws IOException{
+        response.asFile(file);
+        return new ResponseJSONImpl(0, "ok");
+    }
 }

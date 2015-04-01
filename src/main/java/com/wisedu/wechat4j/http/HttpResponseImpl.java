@@ -2,6 +2,7 @@ package com.wisedu.wechat4j.http;
 
 import com.wisedu.wechat4j.conf.HttpClientConfiguration;
 
+import javax.xml.transform.OutputKeys;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.util.List;
@@ -17,7 +18,8 @@ public class HttpResponseImpl extends HttpResponse {
 
         this.statusCode = con.getResponseCode();
 
-        if (null == con.getErrorStream()){
+        if (con.getErrorStream()==null
+                && this.statusCode==HttpResponseCode.OK){
             is = con.getInputStream();  // @TODO
         }
 

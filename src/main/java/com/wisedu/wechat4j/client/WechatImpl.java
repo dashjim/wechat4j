@@ -434,4 +434,14 @@ final class WechatImpl implements Wechat, Serializable {
         };
         return factory.createResponseTicket(post(url, params));
     }
+
+    // 通过ticket换取二维码
+    @Override public Response showQRCode(String ticket, File file) throws IOException {
+        String url = conf.getMPBaseURL() + "/cgi-bin/showqrcode";
+        HttpParameter[] params = new HttpParameter[]{
+                // new HttpParameter("ticket", ticket)
+                new HttpParameter("ticket", URLEncoder.encode(ticket, "utf-8"))
+        };
+        return factory.createQRCode(get(url, params), file);
+    }
 }
