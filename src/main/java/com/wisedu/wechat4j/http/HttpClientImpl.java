@@ -129,9 +129,7 @@ public class HttpClientImpl extends HttpClientBase implements HttpResponseCode, 
                     }
                 }
             } catch (IOException ioe){
-                if (retriedConnt == retryCount){
-                    throw ioe;
-                }
+                throw ioe;
             }
 
             try {
