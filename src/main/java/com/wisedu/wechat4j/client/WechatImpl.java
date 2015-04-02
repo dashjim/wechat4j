@@ -439,9 +439,18 @@ final class WechatImpl implements Wechat, Serializable {
     @Override public Response showQRCode(String ticket, File file) throws IOException {
         String url = conf.getMPBaseURL() + "/cgi-bin/showqrcode";
         HttpParameter[] params = new HttpParameter[]{
-                // new HttpParameter("ticket", ticket)
-                new HttpParameter("ticket", URLEncoder.encode(ticket, "utf-8"))
+                new HttpParameter("ticket", ticket)
         };
         return factory.createQRCode(get(url, params), file);
+    }
+
+    // 将一条长链接转成短链接
+    @Override public ResponseShortURL createShortURL(Map<String, Object> longURL) throws IOException {
+        String url = conf.getRestBaseURL() + "/cgi-bin/shorturl"
+                + "?access_token=" + accessToken.getCredential();
+        HttpParameter[] params = new HttpParameter[]{
+                new HttpParameter(new JSONObject(longURL))
+        };
+        return factory.createResponseShortURL(post(url, params));
     }
 }

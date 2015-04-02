@@ -74,4 +74,8 @@ public class ObjectFactory {
         response.asFile(file);
         return new ResponseJSONImpl(0, "ok");
     }
+
+    public ResponseShortURL createResponseShortURL(HttpResponse response) {
+        return new ResponseShortURLJSONImpl(response);
+    }
 }
