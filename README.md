@@ -3,6 +3,7 @@
 Wechat4J是一款基于微信公共平台API接口的Java SDK，开发者可用通过这个SDK来开发自己的应用。
 
 ## Installation
+
 可以直接使用Maven导入依赖
 
 ```
@@ -12,8 +13,11 @@ Wechat4J是一款基于微信公共平台API接口的Java SDK，开发者可用�
 ```
 
 ## Usage
+
 ### Configuration
+
 在使用Wechat4J之前，可以在classpath下创建wechat4j.properties文件作为配置文件，开发者可以根据实际情况，做出一些配置。
+
 ```
 # OAuth
 oauth.appId=wxeb08f00467038ff9
@@ -21,6 +25,7 @@ oauth.appSecret=f0k581525da6412ef53d2b82766d95c1
 ```
 
 ### Get Instance
+
 首先，开发者需要获取客户端的实例(Wechat4J Client)，才可以调用微信的API。
 
 ```
@@ -34,7 +39,24 @@ Wechat wechat = new WechatFactory().getInstance(appId, appSecret);
 ```
 
 ### OAuth Support
-    enter code here
+
+开发者可以通过下面的方法获取微信的Access Token
+
+```
+ResponseAccessToken token = wechat.getAccessToken();
+if (token.getResponse().getErrCode() == 0){
+	System.out.println("Get Token Succeed." + token);
+} else {
+	System.err.println("Get Token Failed." + token);
+}
+```
+
+对于那些已获取的Access Token，开发者可以将它们保存在缓存中，使用时取出赋给客户端实例。
+
+```
+wechat.setAccessToken(credential, expiresIn);
+```
+
 ### Code Sample
 
 ## Changelog
