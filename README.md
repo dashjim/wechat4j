@@ -1,10 +1,14 @@
 # Wechat4J
 
-Wechat4J是一款基于微信公共平台API接口的Java SDK，开发者可用通过这个SDK来开发自己的应用。
+Wechat4J是一款基于微信公众平台API接口的Java SDK，开发者可用通过这个SDK来开发自己的应用。
 
 ## Installation
 
-可以直接使用Maven导入依赖
+开发者可以直接克隆项目，获取最新的源码
+
+    git clone git://github.com/abj351r7/wechat4j
+
+也可以使用Maven，在Pom.xml文件中添加依赖
 
 ```
 <groupId>com.wisedu.rfocus</groupId>
@@ -16,7 +20,7 @@ Wechat4J是一款基于微信公共平台API接口的Java SDK，开发者可用�
 
 ### Configuration
 
-在使用Wechat4J之前，可以在classpath下创建wechat4j.properties文件作为配置文件，开发者可以根据实际情况，做出一些配置。
+开发者可以根据实际情况，进行简单配置，只需要将[配置文件(wechat4j.properties)](https://github.com/ABJ351R7/wechat4j/blob/master/src/main/resources/wechat4j.properties)放在classpath根目录下。
 
 ```
 # OAuth
@@ -24,15 +28,18 @@ oauth.appId=wxeb08f00467038ff9
 oauth.appSecret=f0k581525da6412ef53d2b82766d95c1
 ```
 
+否则，使用默认配置。
+
 ### Get Instance
 
-首先，开发者需要获取客户端的实例(Wechat4J Client)，才可以调用微信的API。
+开发者需要获得微信客户端的实例(Wechat4J Client Instance)，才可以调用微信公众平台的API。
 
 ```
 Wechat wechat = new WechatFactory().getInstance();
 ```
-如果已经在wechat.properties文件中对AppId和AppSecret进行了配置，通过上述的方法就可以获取客户端实例了。
-如果没有对AppId和AppSecret进行配置，则可以通过下面的方法获取客户端实例。
+如果已经在[配置文件(wechat4j.properties)](https://github.com/ABJ351R7/wechat4j/blob/master/src/main/resources/wechat4j.properties)中设置了AppId/AppSecret，通过上述的方法就可以获取实例了。
+
+如果没有对AppId/AppSecret进行配置，开发者可以通过下面的方法获取客户端实例。
 
 ```
 Wechat wechat = new WechatFactory().getInstance(appId, appSecret);
@@ -40,7 +47,7 @@ Wechat wechat = new WechatFactory().getInstance(appId, appSecret);
 
 ### OAuth Support
 
-开发者可以通过下面的方法获取微信的Access Token
+可以通过下面的方法获取微信的Access Token。
 
 ```
 ResponseAccessToken token = wechat.getAccessToken();
@@ -59,6 +66,26 @@ wechat.setAccessToken(credential, expiresIn);
 
 ### Code Sample
 
-## Changelog
+[获取微信服务器IP地址](https://github.com/ABJ351R7/wechat4j/tree/master/src/test/java/com/wisedu/wechat4j/examples/server)
+
+[客服接口](https://github.com/ABJ351R7/wechat4j/tree/master/src/test/java/com/wisedu/wechat4j/examples/kfAccount)
+
+[高级群发接口](https://github.com/ABJ351R7/wechat4j/tree/master/src/test/java/com/wisedu/wechat4j/examples/mass)
+
+[模板消息接口](https://github.com/ABJ351R7/wechat4j/tree/master/src/test/java/com/wisedu/wechat4j/examples/template)
+
+[分组管理接口](https://github.com/ABJ351R7/wechat4j/tree/master/src/test/java/com/wisedu/wechat4j/examples/group)
+
+[用户管理接口](https://github.com/ABJ351R7/wechat4j/tree/master/src/test/java/com/wisedu/wechat4j/examples/user)
+
+[菜单管理接口](https://github.com/ABJ351R7/wechat4j/tree/master/src/test/java/com/wisedu/wechat4j/examples/menu)
+
+[生成带参数的二维码](https://github.com/ABJ351R7/wechat4j/tree/master/src/test/java/com/wisedu/wechat4j/examples/qrCode)
+
+[长链接转短链接接口](https://github.com/ABJ351R7/wechat4j/tree/master/src/test/java/com/wisedu/wechat4j/examples/shortURL)
 
 ## Contributing
+
+## License
+
+Wechat4J 是基于[WTFPL](http://www.wtfpl.net/about/)协议发布的，也就是说，开发者可以“做任何想做的事”。
