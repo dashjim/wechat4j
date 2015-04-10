@@ -72,25 +72,27 @@ wechat.setAccessToken(credential, expiresIn);
 
 ### Code Sample
 
-[获取微信服务器IP地址](https://github.com/ABJ351R7/wechat4j/tree/master/src/test/java/com/wisedu/wechat4j/examples/server)
+- [获取微信服务器IP地址](https://github.com/ABJ351R7/wechat4j/tree/master/src/test/java/com/wisedu/wechat4j/examples/server)
 
-[客服接口](https://github.com/ABJ351R7/wechat4j/tree/master/src/test/java/com/wisedu/wechat4j/examples/kfAccount)
+- [客服接口](https://github.com/ABJ351R7/wechat4j/tree/master/src/test/java/com/wisedu/wechat4j/examples/kfAccount)
 
-[高级群发接口](https://github.com/ABJ351R7/wechat4j/tree/master/src/test/java/com/wisedu/wechat4j/examples/mass)
+- [高级群发接口](https://github.com/ABJ351R7/wechat4j/tree/master/src/test/java/com/wisedu/wechat4j/examples/mass)
 
-[模板消息接口](https://github.com/ABJ351R7/wechat4j/tree/master/src/test/java/com/wisedu/wechat4j/examples/template)
+- [模板消息接口](https://github.com/ABJ351R7/wechat4j/tree/master/src/test/java/com/wisedu/wechat4j/examples/template)
 
-[分组管理接口](https://github.com/ABJ351R7/wechat4j/tree/master/src/test/java/com/wisedu/wechat4j/examples/group)
+- [分组管理接口](https://github.com/ABJ351R7/wechat4j/tree/master/src/test/java/com/wisedu/wechat4j/examples/group)
 
-[用户管理接口](https://github.com/ABJ351R7/wechat4j/tree/master/src/test/java/com/wisedu/wechat4j/examples/user)
+- [用户管理接口](https://github.com/ABJ351R7/wechat4j/tree/master/src/test/java/com/wisedu/wechat4j/examples/user)
 
-[菜单管理接口](https://github.com/ABJ351R7/wechat4j/tree/master/src/test/java/com/wisedu/wechat4j/examples/menu)
+- [菜单管理接口](https://github.com/ABJ351R7/wechat4j/tree/master/src/test/java/com/wisedu/wechat4j/examples/menu)
 
-[生成带参数的二维码](https://github.com/ABJ351R7/wechat4j/tree/master/src/test/java/com/wisedu/wechat4j/examples/qrCode)
+- [生成带参数的二维码](https://github.com/ABJ351R7/wechat4j/tree/master/src/test/java/com/wisedu/wechat4j/examples/qrCode)
 
-[长链接转短链接接口](https://github.com/ABJ351R7/wechat4j/tree/master/src/test/java/com/wisedu/wechat4j/examples/shortURL)
+- [长链接转短链接接口](https://github.com/ABJ351R7/wechat4j/tree/master/src/test/java/com/wisedu/wechat4j/examples/shortURL)
 
-## Contributing
+## Further resources
+
+- [微信公众平台 wiki](http://mp.weixin.qq.com/wiki/home/index.html)
 
 ## License
 
