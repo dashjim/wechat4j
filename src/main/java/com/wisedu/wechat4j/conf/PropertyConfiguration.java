@@ -8,7 +8,6 @@ public final class PropertyConfiguration extends ConfigurationBase implements Se
 
     // Misc.
     private static final String DEBUENABLED = "debug";
-    private static final String GZIPENABLED = "http.gzip";
     private static final String LOGGER_FACTORY = "loggerFactory";
 
     // OAuth
@@ -16,7 +15,16 @@ public final class PropertyConfiguration extends ConfigurationBase implements Se
     private static final String OAUTH_APPSECRET = "oauth.appSecret";
     private static final String OAUTH_APPCREDENTIAL = "oauth.appCredential";
 
-    // HTTP connection
+
+    private static final String GZIPENABLED = "http.gzip";
+
+    // HTTP Proxy
+    private static final String HTTP_PROXY_HOST = "http.proxyHost";
+    private static final String HTTP_PROXY_PORT= "http.proxyPort";
+    private static final String HTTP_PROXY_USER = "http.proxyUser";
+    private static final String HTTP_PROXY_PASSWORD = "http.proxyPassword";
+
+    // HTTP Connection
     private static final String HTTP_RETRY_COUNT = "http.retryCount";
     private static final String HTTP_READ_TIMEOUT = "http.readTimeout";
     private static final String HTTP_CONNECTION_TIMEOUT = "http.connectionTimeout";
@@ -127,10 +135,6 @@ public final class PropertyConfiguration extends ConfigurationBase implements Se
             setDebugEnabled(getBooleanProperty(props, DEBUENABLED));
         }
 
-        if (notNull(props, GZIPENABLED)){
-            setGZIPEnabled(getBooleanProperty(props, GZIPENABLED));
-        }
-
         if (notNull(props, LOGGER_FACTORY)){
             setLoggerFactory(getStringProperty(props, LOGGER_FACTORY));
         }
@@ -145,6 +149,26 @@ public final class PropertyConfiguration extends ConfigurationBase implements Se
 
         if (notNull(props, OAUTH_APPCREDENTIAL)){
             setOAuthAppCredential(getStringProperty(props, OAUTH_APPCREDENTIAL));
+        }
+
+        if (notNull(props, GZIPENABLED)){
+            setGZIPEnabled(getBooleanProperty(props, GZIPENABLED));
+        }
+
+        if (notNull(props, HTTP_PROXY_HOST)) {
+            setHttpProxyHost(getStringProperty(props, HTTP_PROXY_HOST));
+        }
+
+        if (notNull(props, HTTP_PROXY_PORT)) {
+            setHttpProxyPort(getIntProperty(props, HTTP_PROXY_PORT));
+        }
+
+        if (notNull(props, HTTP_PROXY_USER)) {
+            setHttpProxyUser(getStringProperty(props, HTTP_PROXY_USER));
+        }
+
+        if (notNull(props, HTTP_PROXY_PASSWORD)) {
+            setHttpProxyPassword(getStringProperty(props, HTTP_PROXY_PASSWORD));
         }
 
         if (notNull(props, HTTP_RETRY_COUNT)){

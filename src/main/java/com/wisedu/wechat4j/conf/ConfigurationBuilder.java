@@ -3,27 +3,15 @@ package com.wisedu.wechat4j.conf;
 public final class ConfigurationBuilder {
     private ConfigurationBase conf = new PropertyConfiguration();
 
-    public ConfigurationBuilder setGZIPEnabled(boolean gzipEnabled){
+    public ConfigurationBuilder setDebugEnabled(boolean debugEnabled) {
         checkNotBuilt();
-        conf.setGZIPEnabled(gzipEnabled);
+        conf.setDebugEnabled(debugEnabled);
         return this;
     }
 
     public ConfigurationBuilder setLoggerFactory(String loggerFactory){
         checkNotBuilt();
         conf.setLoggerFactory(loggerFactory);
-        return this;
-    }
-
-    public ConfigurationBuilder setRestBaseURL(String restBaseURL){
-        checkNotBuilt();
-        conf.setRestBaseURL(restBaseURL);
-        return this;
-    }
-
-    public ConfigurationBuilder setMediaBaseURL(String mediaBaseURL){
-        checkNotBuilt();
-        conf.setMediaBaseURL(mediaBaseURL);
         return this;
     }
 
@@ -42,6 +30,36 @@ public final class ConfigurationBuilder {
     public ConfigurationBuilder setOAuthAppCredential(String oauthAppCredential){
         checkNotBuilt();
         conf.setOAuthAppCredential(oauthAppCredential);
+        return this;
+    }
+
+    public ConfigurationBuilder setGZIPEnabled(boolean gzipEnabled){
+        checkNotBuilt();
+        conf.setGZIPEnabled(gzipEnabled);
+        return this;
+    }
+
+    public ConfigurationBuilder setHttpProxyHost(String httpProxyHost) {
+        checkNotBuilt();
+        conf.setHttpProxyHost(httpProxyHost);
+        return this;
+    }
+
+    public ConfigurationBuilder setHttpProxyPort(int httpProxyPort) {
+        checkNotBuilt();
+        conf.setHttpProxyPort(httpProxyPort);
+        return this;
+    }
+
+    public ConfigurationBuilder setHttpProxyUser(String httpProxyUser) {
+        checkNotBuilt();
+        conf.setHttpProxyUser(httpProxyUser);
+        return this;
+    }
+
+    public ConfigurationBuilder setHttpProxyPassword(String httpProxyPassword) {
+        checkNotBuilt();
+        conf.setHttpProxyPassword(httpProxyPassword);
         return this;
     }
 
@@ -69,9 +87,27 @@ public final class ConfigurationBuilder {
         return this;
     }
 
-    public ConfigurationBuilder setHttpMaxTotalConnections(int httpMaxTotalConnections){
+    public ConfigurationBuilder setRestBaseURL(String restBaseURL){
         checkNotBuilt();
-        conf.setHttpMaxTotalConnections(httpMaxTotalConnections);
+        conf.setRestBaseURL(restBaseURL);
+        return this;
+    }
+
+    public ConfigurationBuilder setMPBaseURL(String mpBaseURL) {
+        checkNotBuilt();
+        conf.setMPBaseURL(mpBaseURL);
+        return this;
+    }
+
+    public ConfigurationBuilder setMediaBaseURL(String mediaBaseURL){
+        checkNotBuilt();
+        conf.setMediaBaseURL(mediaBaseURL);
+        return this;
+    }
+
+    public ConfigurationBuilder setOAuth2CodeURL(String oauth2CodeURL) {
+        checkNotBuilt();
+        conf.setOAuth2CodeURL(oauth2CodeURL);
         return this;
     }
 

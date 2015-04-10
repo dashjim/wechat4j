@@ -2,13 +2,17 @@ package com.wisedu.wechat4j.http;
 
 import com.wisedu.wechat4j.conf.ConfigurationContext;
 import com.wisedu.wechat4j.conf.HttpClientConfiguration;
+import com.wisedu.wechat4j.logging.Logger;
 
 import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.net.*;
+import java.util.List;
+import java.util.Map;
 
 public class HttpClientImpl extends HttpClientBase implements HttpResponseCode, Serializable {
     private static final long serialVersionUID = 9146333614776061763L;
+
+    private final static Logger logger = Logger.getLogger(HttpClientImpl.class);
 
     public HttpClientImpl(){
         super(ConfigurationContext.getInstance());
@@ -64,6 +68,7 @@ public class HttpClientImpl extends HttpClientBase implements HttpResponseCode, 
                                     out.writeBytes(boundary + "\r\n");
                                     out.writeBytes("Content-Disposition: form-data; name=\"" + param.getName() + "\"\r\n");
                                     out.writeBytes("Content-Type: text/plain; charset=UTF-8\r\n\r\n");
+                                    logger.debug(param.getValue());
                                     out.write(param.getValue().getBytes("UTF-8"));
                                     out.writeBytes("\r\n");
                                 }
@@ -95,6 +100,7 @@ public class HttpClientImpl extends HttpClientBase implements HttpResponseCode, 
                         } else {
                             con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                             String postParams = HttpParameter.encodeParameters(request.getParameters());
+                            logger.debug("Post Params: ", postParams);
                             byte[] bytes = postParams.getBytes("utf-8");
                             con.setRequestProperty("Content-Length", Integer.toString(bytes.length));
                             con.setDoOutput(true);
@@ -107,6 +113,20 @@ public class HttpClientImpl extends HttpClientBase implements HttpResponseCode, 
 
                     response = new HttpResponseImpl(con, conf);
                     statusCode = response.getStatusCode();
+                    if (logger.isDebugEnabled()) {
+                        logger.debug("Response: ");
+                        Map<String, List<String>> responseHeaders = con.getHeaderFields();
+                        for (String key : responseHeaders.keySet()) {
+                            List<String> values = responseHeaders.get(key);
+                            for (String value : values) {
+                                if (key != null) {
+                                    logger.debug(key + ": " + value);
+                                } else {
+                                    logger.debug(value);
+                                }
+                            }
+                        }
+                    }
                     if (statusCode<OK || (statusCode!=FOUND && statusCode>=MULTIPLE_CHOICES)){
                         if (statusCode==ENHANCE_YOUR_CLAIM
                                 || statusCode==BAD_REQUEST
@@ -133,6 +153,10 @@ public class HttpClientImpl extends HttpClientBase implements HttpResponseCode, 
             }
 
             try {
+                if (logger.isDebugEnabled() && response != null) {
+                    response.asString();
+                }
+                logger.debug("Sleeping " + conf.getHttpRetryIntervalSeconds() + " seconds until the next retry.");
                 Thread.sleep(conf.getHttpRetryIntervalSeconds());
             } catch (InterruptedException ite){
                 // do noting
@@ -142,16 +166,56 @@ public class HttpClientImpl extends HttpClientBase implements HttpResponseCode, 
     }
 
     private void setHeaders(HttpRequest request, HttpURLConnection con){
+        if (logger.isDebugEnabled()) {
+            logger.debug("Request: ");
+            logger.debug(request.getMethod().name() + " ", request.getURL());
+        }
         if (request.getRequestHeaders() != null){
             for (String key : request.getRequestHeaders().keySet()){
                 con.addRequestProperty(key, request.getRequestHeaders().get(key));
+                logger.debug(key + ": " + request.getRequestHeaders().get(key));
             }
         }
     }
 
-    private HttpURLConnection getConnection(String url) throws IOException{
-        HttpURLConnection con = (HttpURLConnection)new URL(url).openConnection();
+    private boolean isProxyConfigured() {
+        return conf.getHttpProxyHost()!=null && !conf.getHttpProxyHost().equals("");
+    }
 
+    private HttpURLConnection getConnection(String url) throws IOException{
+        HttpURLConnection con;
+        if (isProxyConfigured()) {
+            if (conf.getHttpProxyUser()!=null && !conf.getHttpProxyUser().equals("")) {
+                if (logger.isDebugEnabled()) {
+                    logger.debug("Proxy AuthUser: " + conf.getHttpProxyUser());
+                    logger.debug("Proxy AuthPassword: " + conf.getHttpProxyPassword());
+                }
+                Authenticator.setDefault(
+                        new Authenticator() {
+                            @Override protected PasswordAuthentication getPasswordAuthentication() {
+                                if (getRequestorType().equals(RequestorType.PROXY)) {
+                                    return new PasswordAuthentication(
+                                            conf.getHttpProxyUser(),
+                                            conf.getHttpProxyPassword().toCharArray()
+                                    );
+                                } else {
+                                    return null;
+                                }
+                            }
+                        }
+                );
+            }
+            final Proxy proxy = new Proxy(
+                    Proxy.Type.HTTP,
+                    InetSocketAddress.createUnresolved(conf.getHttpProxyHost(), conf.getHttpProxyPort())
+            );
+            if (logger.isDebugEnabled()) {
+                logger.debug("Opening proxied connection(" + conf.getHttpProxyHost() + ":" + conf.getHttpProxyPort() + ")");
+            }
+            con = (HttpURLConnection)new URL(url).openConnection(proxy);
+        } else {
+            con = (HttpURLConnection)new URL(url).openConnection();
+        }
         if (conf.getHttpConnectionTimeout() > 0){
             con.setConnectTimeout(conf.getHttpConnectionTimeout());
         }

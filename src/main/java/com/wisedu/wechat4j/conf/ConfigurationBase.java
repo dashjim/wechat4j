@@ -7,18 +7,24 @@ import java.util.Map;
 class ConfigurationBase implements Configuration, Serializable {
     private static final long serialVersionUID = -6692513626308299468L;
     private boolean debugEnabled;
-    private boolean gzipEnabled;
+
     private String loggerFactory;
 
     private String oauthAppId;
     private String oauthAppSecret;
     private String oauthAppCredential;
 
+    private boolean gzipEnabled;
+
+    private String httpProxyHost;
+    private int httpProxyPort;
+    private String httpProxyUser;
+    private String httpProxyPassword;
+
     private int httpRetryCount;
     private int httpReadTimeout;
     private int httpConnectionTimeout;
     private int httpRetryIntervalSeconds;
-    private int httpMaxTotalConnections;
 
     private Map<String, String> requestHeaders;
     private String restBaseURL = "https://api.weixin.qq.com";
@@ -28,17 +34,22 @@ class ConfigurationBase implements Configuration, Serializable {
 
     protected ConfigurationBase(){
         setDebugEnabled(false);
-        setGZIPEnabled(true);
         setLoggerFactory(null);
 
         setOAuthAppId(null);
         setOAuthAppSecret(null);
 
+        setGZIPEnabled(true);
+
+        setHttpProxyHost(null);
+        setHttpProxyPort(-1);
+        setHttpProxyUser(null);
+        setHttpProxyPassword(null);
+
         setHttpRetryCount(0);
-        setHttpReadTimeout(10000);
-        setHttpConnectionTimeout(10000);
-        setHttpRetryIntervalSeconds(5);
-        setHttpMaxTotalConnections(20);
+        setHttpReadTimeout(120000);
+        setHttpConnectionTimeout(20000);
+        setHttpRetryIntervalSeconds(5000);
     }
 
     @Override public final boolean isDebugEnabled() {
@@ -47,22 +58,6 @@ class ConfigurationBase implements Configuration, Serializable {
 
     protected final void setDebugEnabled(boolean debugEnabled) {
         this.debugEnabled = debugEnabled;
-    }
-
-    @Override public final boolean isGZIPEnabled(){
-        return gzipEnabled;
-    }
-
-    protected final void setGZIPEnabled(boolean gzipEnabled){
-        this.gzipEnabled = gzipEnabled;
-        initRequestHeaders();
-    }
-
-    private void initRequestHeaders(){
-        requestHeaders = new HashMap<String, String>();
-        if (isGZIPEnabled()){
-            requestHeaders.put("Accept-Encoding", "gzip");
-        }
     }
 
     public final Map<String, String> getRequestHeaders(){
@@ -101,6 +96,54 @@ class ConfigurationBase implements Configuration, Serializable {
         this.oauthAppCredential = oauthAppCredential;
     }
 
+    @Override public final boolean isGZIPEnabled(){
+        return gzipEnabled;
+    }
+
+    protected final void setGZIPEnabled(boolean gzipEnabled){
+        this.gzipEnabled = gzipEnabled;
+        initRequestHeaders();
+    }
+
+    private void initRequestHeaders(){
+        requestHeaders = new HashMap<String, String>();
+        if (isGZIPEnabled()){
+            requestHeaders.put("Accept-Encoding", "gzip");
+        }
+    }
+
+    @Override public final String getHttpProxyHost() {
+        return httpProxyHost;
+    }
+
+    protected final void setHttpProxyHost(String httpProxyHost) {
+        this.httpProxyHost = httpProxyHost;
+    }
+
+    @Override public final int getHttpProxyPort() {
+        return httpProxyPort;
+    }
+
+    protected final void setHttpProxyPort(int httpProxyPort) {
+        this.httpProxyPort = httpProxyPort;
+    }
+
+    @Override public final String getHttpProxyUser() {
+        return httpProxyUser;
+    }
+
+    protected final void setHttpProxyUser(String httpProxyUser) {
+        this.httpProxyUser = httpProxyUser;
+    }
+
+    @Override public String getHttpProxyPassword() {
+        return httpProxyPassword;
+    }
+
+    protected final void setHttpProxyPassword(String httpProxyPassword) {
+        this.httpProxyPassword = httpProxyPassword;
+    }
+
     @Override public final int getHttpRetryCount(){
         return httpRetryCount;
     }
@@ -131,14 +174,6 @@ class ConfigurationBase implements Configuration, Serializable {
 
     protected final void setHttpRetryIntervalSeconds(int httpRetryIntervalSeconds){
         this.httpRetryIntervalSeconds = httpRetryIntervalSeconds;
-    }
-
-    @Override public final int getHttpMaxTotalConnections(){
-        return httpMaxTotalConnections;
-    }
-
-    protected final void setHttpMaxTotalConnections(int httpMaxTotalConnections){
-        this.httpMaxTotalConnections = httpMaxTotalConnections;
     }
 
     @Override public String getRestBaseURL() {
