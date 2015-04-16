@@ -77,6 +77,15 @@ final class WechatImpl implements Wechat, Serializable {
         return responseAccessToken;
     }
 
+    // 获取微信服务器IP地址
+    @Override public ResponseCallbackIP getCallbackIP() throws IOException {
+        String url = conf.getRestBaseURL() + "/cgi-bin/getcallbackip"
+                + "?access_token=" + accessToken.getCredential();
+        HttpParameter[] params = new HttpParameter[] {
+        };
+        return factory.createResponseCallbackIP(get(url, params));
+    }
+
     // 上传多媒体文件
     @Override public ResponseMedia mediaUpload(String type, File file) throws IOException{
         String url = conf.getMediaBaseURL() + "/cgi-bin/media/upload"

@@ -1,10 +1,7 @@
 package com.wisedu.wechat4j.api;
 
-import com.wisedu.wechat4j.entity.ResponseAccessToken;
-
-import java.io.IOException;
-
 public interface Wechat extends
+        BaseService,
         MediaService,
         KFAccountService,
         MassService,
@@ -15,8 +12,6 @@ public interface Wechat extends
         MenuService,
         QRCodeService,
         ShortURLService {
+    // 设置Access Token
     void setAccessToken(String credential, Long expiresIn);
-
-    // 获取Access Token
-    ResponseAccessToken getAccessToken() throws IOException;
 }

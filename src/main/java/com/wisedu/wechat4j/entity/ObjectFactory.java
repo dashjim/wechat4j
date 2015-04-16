@@ -18,6 +18,10 @@ public class ObjectFactory {
         return new ResponseAccessTokenJSONImpl(response);
     }
 
+    public ResponseCallbackIP createResponseCallbackIP(HttpResponse response) {
+        return new ResponseCallbackIPJSONImpl(response);
+    }
+
     public ResponseMedia createResponseMedia(HttpResponse response) {
         return new ResponseMediaJSONImpl(response);
     }

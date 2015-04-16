@@ -2,7 +2,7 @@ package com.wisedu.wechat4j.http;
 
 import com.wisedu.wechat4j.conf.ConfigurationContext;
 import com.wisedu.wechat4j.conf.HttpClientConfiguration;
-import com.wisedu.wechat4j.internal.logger.Logger;
+import com.wisedu.wechat4j.logging.Logger;
 
 import java.io.Serializable;
 import java.lang.reflect.Constructor;
