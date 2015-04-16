@@ -72,7 +72,7 @@ wechat.setAccessToken(credential, expiresIn);
 
 ### Code Sample
 
-- [获取微信服务器IP地址](https://github.com/ABJ351R7/wechat4j/tree/master/src/test/java/com/wisedu/wechat4j/examples/server)
+- [获取微信服务器IP地址](https://github.com/ABJ351R7/wechat4j/blob/master/src/test/java/com/wisedu/wechat4j/examples/base/GetCallbackIP.java)
 
 - [客服接口](https://github.com/ABJ351R7/wechat4j/tree/master/src/test/java/com/wisedu/wechat4j/examples/kfAccount)
 
@@ -97,3 +97,4 @@ wechat.setAccessToken(credential, expiresIn);
 ## License
 
 Wechat4J 是基于[WTFPL](http://www.wtfpl.net/about/)协议发布的，也就是说，开发者可以“做任何想做的事”。
+
