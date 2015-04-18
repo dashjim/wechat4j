@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Send {
+public class MassSend {
     private static Map<String, Object> msg = new HashMap<String, Object>(){{
         put("touser", new ArrayList<String>(){{
             add("oYiqRuKcmIVaKh6BlF7WNFlZA-cs");
@@ -23,9 +23,9 @@ public class Send {
         Wechat wechat = new WechatFactory().getInstance();
         ResponseMessage response = wechat.massSend(msg);
         if (response.getResponse().getErrCode() == 0) {
-            System.out.println("Send Succeed." + response);
+            System.out.println("Mass Send Succeed." + response);
         } else {
-            System.err.println("Send Failed." + response);
+            System.err.println("Mass Send Failed." + response);
         }
     }
 }

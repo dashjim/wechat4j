@@ -7,7 +7,7 @@ import com.wisedu.wechat4j.entity.ResponseMessage;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Preview {
+public class MassPreview {
     private static Map<String, Object> msg = new HashMap<String, Object>(){{
         put("touser", "oYiqRuKcmIVaKh6BlF7WNFlZA-cs");
         put("mpnews", new HashMap<String, Object>(){{
@@ -20,9 +20,9 @@ public class Preview {
         Wechat wechat = new WechatFactory().getInstance();
         ResponseMessage response = wechat.massPreview(msg);
         if (response.getResponse().getErrCode() == 0) {
-            System.out.println("Preview Succeed." + response);
+            System.out.println("Mass Preview Succeed." + response);
         } else {
-            System.err.println("Preview Failed." + response);
+            System.err.println("Mass Preview Failed." + response);
         }
     }
 }
