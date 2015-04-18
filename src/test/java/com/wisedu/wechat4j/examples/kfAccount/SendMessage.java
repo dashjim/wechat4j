@@ -7,12 +7,14 @@ import com.wisedu.wechat4j.entity.Response;
 import java.util.HashMap;
 import java.util.Map;
 
+// 客服接口-发消息
 public class SendMessage {
     private static Map<String, Object> message = new HashMap<String, Object>() {{
         put("touser", "oYiqRuKcmIVaKh6BlF7WNFlZA-cs");
         put("msgtype", "text");
         put("text", new HashMap<String, Object>(){{
-            put("content", "Hello World");
+            /*put("content", "Hello World");*/
+            put("content", "<a href='https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxeb08f90467938ff7&redirect_uri=http%3A%2F%2Fwechat.ngrok.com%2FtShow%2FWechat.do&response_type=code&scope=snsapi_userinfo&state=state#wechat_redirect'>haha</a>");
         }});
     }};
 

@@ -72,13 +72,15 @@ wechat.setAccessToken(credential, expiresIn);
 
 ### Code Sample
 
-- [获取微信服务器IP地址](https://github.com/ABJ351R7/wechat4j/blob/master/src/test/java/com/wisedu/wechat4j/examples/base/GetCallbackIP.java)
+- [基础接口](https://github.com/ABJ351R7/wechat4j/blob/master/src/test/java/com/wisedu/wechat4j/examples/base/)
 
 - [客服接口](https://github.com/ABJ351R7/wechat4j/tree/master/src/test/java/com/wisedu/wechat4j/examples/kfAccount)
 
 - [高级群发接口](https://github.com/ABJ351R7/wechat4j/tree/master/src/test/java/com/wisedu/wechat4j/examples/mass)
 
 - [模板消息接口](https://github.com/ABJ351R7/wechat4j/tree/master/src/test/java/com/wisedu/wechat4j/examples/template)
+
+- [素材管理接口](https://github.com/ABJ351R7/wechat4j/tree/master/src/test/java/com/wisedu/wechat4j/examples/media)
 
 - [分组管理接口](https://github.com/ABJ351R7/wechat4j/tree/master/src/test/java/com/wisedu/wechat4j/examples/group)
 
@@ -90,11 +92,10 @@ wechat.setAccessToken(credential, expiresIn);
 
 - [长链接转短链接接口](https://github.com/ABJ351R7/wechat4j/tree/master/src/test/java/com/wisedu/wechat4j/examples/shortURL)
 
-## Further resources
+## Reference
 
 - [微信公众平台 wiki](http://mp.weixin.qq.com/wiki/home/index.html)
 
 ## License
 
 Wechat4J 是基于[WTFPL](http://www.wtfpl.net/about/)协议发布的，也就是说，开发者可以“做任何想做的事”。
-

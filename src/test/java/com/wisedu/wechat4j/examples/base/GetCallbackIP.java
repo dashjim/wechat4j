@@ -4,6 +4,7 @@ import com.wisedu.wechat4j.api.Wechat;
 import com.wisedu.wechat4j.client.WechatFactory;
 import com.wisedu.wechat4j.entity.ResponseCallbackIP;
 
+// 获取微信服务器IP地址
 public class GetCallbackIP {
     public static void main(String args[]) throws Exception {
         Wechat wechat = new WechatFactory().getInstance();

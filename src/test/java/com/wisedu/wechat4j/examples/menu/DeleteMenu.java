@@ -4,6 +4,7 @@ import com.wisedu.wechat4j.api.Wechat;
 import com.wisedu.wechat4j.client.WechatFactory;
 import com.wisedu.wechat4j.entity.Response;
 
+// 自定义菜单删除接口
 public class DeleteMenu {
     public static void main(String[] args) throws Exception{
         Wechat wechat = new WechatFactory().getInstance();

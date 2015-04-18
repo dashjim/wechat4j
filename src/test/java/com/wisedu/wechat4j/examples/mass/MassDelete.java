@@ -7,6 +7,7 @@ import com.wisedu.wechat4j.entity.Response;
 import java.util.HashMap;
 import java.util.Map;
 
+// 删除群发
 public class MassDelete {
     private static Map<String, Object> msg = new HashMap<String, Object>(){{
         put("msg_id", 2356577100L);

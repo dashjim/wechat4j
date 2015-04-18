@@ -10,7 +10,7 @@ import java.util.Map;
 
 public interface TemplateService {
     // 设置所属行业
-    Response setIndustry(Map<String, Object> industry) throws IOException;
+    Response setIndustryTemplate(Map<String, Object> industry) throws IOException;
 
     // 获得模板ID
     ResponseTemplate addTemplate(Map<String, Object> template) throws IOException;

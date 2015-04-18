@@ -7,7 +7,8 @@ import com.wisedu.wechat4j.entity.ResponseMessage;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SendMessage {
+// 发送模板消息
+public class SendTemplateMessage {
     private static Map<String, Object> template = new HashMap<String, Object>(){{
         put("touser", "oYiqRuKcmIVaKh6BlF7WNFlZA-cs");
         put("template_id", "9kSmmNVQEYHgwdt04AdgAo1Ye4fqPpDH93mWqx0Sm-k");
@@ -41,9 +42,9 @@ public class SendMessage {
         Wechat wechat = new WechatFactory().getInstance();
         ResponseMessage response = wechat.sendTemplateMessage(template);
         if (response.getResponse().getErrCode() == 0) {
-            System.out.println("Send Message Succeed." + response);
+            System.out.println("Send Template Message Succeed." + response);
         } else {
-            System.err.println("Send Message Failed." + response);
+            System.err.println("Send Template Message Failed." + response);
         }
     }
 }

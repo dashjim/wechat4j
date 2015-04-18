@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+// 自定义菜单创建接口
 public class CreateMenu {
     private static Map<String, Object> menu = new HashMap<String, Object>(){{
         put("button", new ArrayList<Map<String, Object>>(){{

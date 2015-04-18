@@ -6,6 +6,7 @@ import com.wisedu.wechat4j.entity.Response;
 
 import java.io.File;
 
+// 设置客服帐号的头像
 public class UploadHeadImage {
     private static final String kfAccount = "test123@gh_57372a9ae6a9";
     private static final String headImage= UploadHeadImage.class.getResource("/").getPath() + "avatar.png";

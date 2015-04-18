@@ -37,7 +37,17 @@ public class HttpParameter implements Comparable<HttpParameter>, Serializable {
         this.jsonObject = jsonObject;
     }
 
+    public HttpParameter(String name, JSONObject jsonObject) {
+        this.name = name;
+        this.jsonObject = jsonObject;
+    }
+
     public HttpParameter(JSONArray jsonArray){
+        this.jsonArray = jsonArray;
+    }
+
+    public HttpParameter(String name, JSONArray jsonArray) {
+        this.name = name;
         this.jsonArray = jsonArray;
     }
 

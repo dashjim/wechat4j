@@ -28,7 +28,7 @@ public interface UserService {
     ResponseOAuth2AccessToken refreshOAuth2AccessToken(String refreshToken) throws IOException;
 
     // 拉取用户信息(需scope为 snsapi_userinfo)
-    ResponseUser getOAuth2UserInfo(String openId, String lang) throws IOException;
+    ResponseUser getOAuth2UserInfo(String accessToken, String openId, String lang) throws IOException;
 
     // 检验授权凭证（access_token）是否有效
     Response validateOAuth2AccessToken(String accessToken, String openId) throws IOException;

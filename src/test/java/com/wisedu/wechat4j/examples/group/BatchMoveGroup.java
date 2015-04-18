@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+// 批量移动用户分组
 public class BatchMoveGroup {
     private static Map<String, Object> group = new HashMap<String, Object>(){{
         put("openid_list", new ArrayList<String>(){{

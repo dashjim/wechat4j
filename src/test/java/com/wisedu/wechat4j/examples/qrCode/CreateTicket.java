@@ -7,6 +7,7 @@ import com.wisedu.wechat4j.entity.ResponseTicket;
 import java.util.HashMap;
 import java.util.Map;
 
+// 创建二维码ticket
 public class CreateTicket {
     private static Map<String, Object> qr_scene = new HashMap<String, Object>(){{
         put("expire_seconds", 1800);

@@ -4,6 +4,7 @@ import com.wisedu.wechat4j.api.Wechat;
 import com.wisedu.wechat4j.client.WechatFactory;
 import com.wisedu.wechat4j.entity.ResponseUser;
 
+// 获取用户基本信息(UnionID机制)
 public class GetUserInfo {
     public static void main(String[] args) throws Exception{
         Wechat wechat = new WechatFactory().getInstance();

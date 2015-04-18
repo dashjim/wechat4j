@@ -10,6 +10,16 @@ public class ObjectFactory {
         return new ResponseJSONImpl(response);
     }
 
+    public Response createResponse(HttpResponse response, File file) throws IOException {
+        String contentType = response.getResponseHeader("content-type");
+        if (!contentType.equals("text/plain")) {
+            file = response.asFile(file);
+            return new ResponseJSONImpl(0, "ok");
+        } else {
+            return new ResponseJSONImpl(response);
+        }
+    }
+
     public AccessToken createAccessToken(String credential, Long expiresIn) {
         return new AccessTokenJSONImpl(credential, expiresIn);
     }
@@ -24,10 +34,6 @@ public class ObjectFactory {
 
     public ResponseMedia createResponseMedia(HttpResponse response) {
         return new ResponseMediaJSONImpl(response);
-    }
-
-    public ResponseFile createResponseFile(HttpResponse response, File file) throws IOException{
-        return new ResponseFileJSONImpl(response, file);
     }
 
     public ResponseGroup createResponseGroup(HttpResponse response) {
@@ -74,9 +80,11 @@ public class ObjectFactory {
         return new ResponseTicketJSONImpl(response);
     }
 
-    public Response createQRCode(HttpResponse response, File file) throws IOException{
-        response.asFile(file);
-        return new ResponseJSONImpl(0, "ok");
+    public void createQRCode(HttpResponse response, File file) throws IOException{
+        int statusCode = response.getStatusCode();
+        if (statusCode == 200) {
+            response.asFile(file);
+        }
     }
 
     public ResponseShortURL createResponseShortURL(HttpResponse response) {

@@ -4,6 +4,7 @@ import com.wisedu.wechat4j.api.Wechat;
 import com.wisedu.wechat4j.client.WechatFactory;
 import com.wisedu.wechat4j.entity.ResponseUserCollection;
 
+// 获取用户列表
 public class GetUserList {
     public static void main(String[] args) throws Exception{
         Wechat wechat = new WechatFactory().getInstance();

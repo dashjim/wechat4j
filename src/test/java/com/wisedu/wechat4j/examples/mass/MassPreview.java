@@ -7,6 +7,7 @@ import com.wisedu.wechat4j.entity.ResponseMessage;
 import java.util.HashMap;
 import java.util.Map;
 
+// 预览接口
 public class MassPreview {
     private static Map<String, Object> msg = new HashMap<String, Object>(){{
         put("touser", "oYiqRuKcmIVaKh6BlF7WNFlZA-cs");

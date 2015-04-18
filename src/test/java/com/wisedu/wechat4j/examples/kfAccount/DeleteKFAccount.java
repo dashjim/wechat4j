@@ -7,6 +7,7 @@ import com.wisedu.wechat4j.entity.Response;
 import java.util.HashMap;
 import java.util.Map;
 
+// 删除客服帐号
 public class DeleteKFAccount {
     private static Map<String, Object> kfAccount = new HashMap<String, Object>() {{
         put("kf_account", "test123@gh_57372a9ae6a9");

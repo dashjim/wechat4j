@@ -7,6 +7,7 @@ import com.wisedu.wechat4j.entity.Response;
 import java.util.HashMap;
 import java.util.Map;
 
+// 移动用户分组
 public class MoveGroup {
     private static Map<String, Object> group = new HashMap<String, Object>(){{
         put("openid", "oYiqRuKcmIVaKh6BlF7WNFlZA-cs");

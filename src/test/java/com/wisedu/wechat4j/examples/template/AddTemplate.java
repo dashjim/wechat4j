@@ -7,6 +7,7 @@ import com.wisedu.wechat4j.entity.ResponseTemplate;
 import java.util.HashMap;
 import java.util.Map;
 
+// 获得模板ID
 public class AddTemplate {
     private static Map<String, Object> template = new HashMap<String, Object>(){{
         put("template_id_short", "TM00080");

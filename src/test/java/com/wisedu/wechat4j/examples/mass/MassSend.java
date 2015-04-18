@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+// 根据OpenID列表群发
 public class MassSend {
     private static Map<String, Object> msg = new HashMap<String, Object>(){{
         put("touser", new ArrayList<String>(){{

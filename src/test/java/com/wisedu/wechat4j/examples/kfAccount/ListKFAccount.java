@@ -4,6 +4,7 @@ import com.wisedu.wechat4j.api.Wechat;
 import com.wisedu.wechat4j.client.WechatFactory;
 import com.wisedu.wechat4j.entity.ResponseKFAccountCollection;
 
+// 获取所有客服账号
 public class ListKFAccount {
     public static void main(String[] args) throws Exception{
         Wechat wechat = new WechatFactory().getInstance();

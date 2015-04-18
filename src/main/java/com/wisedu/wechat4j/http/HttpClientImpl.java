@@ -64,17 +64,27 @@ public class HttpClientImpl extends HttpClientBase implements HttpResponseCode, 
                                     };
                                     out.writeBytes("\r\n");
                                     in.close();
+                                } else if (param.isJSON()) {
+                                    out.writeBytes(boundary + "\r\n");
+                                    out.writeBytes("Content-Disposition: form-data; name=\"" + param.getName() + "\"\r\n\r\n");
+                                    byte[] bytes = null;
+                                    if (param.isJSONObject()){
+                                        bytes = param.getJSONObject().toString().getBytes("utf-8");
+                                    } else if (param.isJSONArray()){
+                                        bytes = param.getJsonArray().toString().getBytes("utf-8");
+                                    }
+                                    out.write(bytes);
+                                    out.writeBytes("\r\n");
                                 } else {
                                     out.writeBytes(boundary + "\r\n");
-                                    out.writeBytes("Content-Disposition: form-data; name=\"" + param.getName() + "\"\r\n");
+                                    out.writeBytes("Content-Disposition: form-data; name=\"" + param.getName() + "\"\r\n\r\n");
                                     out.writeBytes("Content-Type: text/plain; charset=UTF-8\r\n\r\n");
                                     logger.debug(param.getValue());
                                     out.write(param.getValue().getBytes("UTF-8"));
                                     out.writeBytes("\r\n");
                                 }
-                                out.writeBytes(boundary + "--\r\n");
-                                out.writeBytes("\r\n");
                             }
+                            out.writeBytes(boundary + "--\r\n");
                             os = con.getOutputStream();
                         } else if (HttpParameter.containsJSON(request.getParameters())){
                             // JSON

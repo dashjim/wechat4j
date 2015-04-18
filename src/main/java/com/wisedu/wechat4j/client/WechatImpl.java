@@ -86,27 +86,6 @@ final class WechatImpl implements Wechat, Serializable {
         return factory.createResponseCallbackIP(get(url, params));
     }
 
-    // 上传多媒体文件
-    @Override public ResponseMedia mediaUpload(String type, File file) throws IOException{
-        String url = conf.getMediaBaseURL() + "/cgi-bin/media/upload"
-                + "?access_token=" + accessToken.getCredential();
-        HttpParameter[] params = new HttpParameter[] {
-                new HttpParameter("type", type),
-                new HttpParameter("media", file)
-        };
-        return factory.createResponseMedia(post(url, params));
-    }
-
-    // 下载多媒体文件
-    @Override public ResponseFile mediaDownload(String mediaId, File file) throws IOException {
-        String url = conf.getMediaBaseURL() + "/cgi-bin/media/get"
-                + "?access_token=" + accessToken.getCredential();
-        HttpParameter[] params = new HttpParameter[] {
-                new HttpParameter("media_id", mediaId)
-        };
-        return factory.createResponseFile(post(url, params), file);
-    }
-
     // 添加客服帐号
     @Override public Response createKFAccount(Map<String, Object> kfAccount) throws IOException {
         String url = conf.getRestBaseURL() + "/customservice/kfaccount/add"
@@ -228,7 +207,7 @@ final class WechatImpl implements Wechat, Serializable {
     }
 
     // 设置所属行业
-    @Override public Response setIndustry(Map<String, Object> industry) throws IOException {
+    @Override public Response setIndustryTemplate(Map<String, Object> industry) throws IOException {
         String url = conf.getRestBaseURL() + "/cgi-bin/template/api_set_industry"
                 + "?access_token=" + accessToken.getCredential();
         HttpParameter[] params = new HttpParameter[] {
@@ -255,6 +234,80 @@ final class WechatImpl implements Wechat, Serializable {
                 new HttpParameter(new JSONObject(template))
         };
         return factory.createResponseMessage(post(url, params));
+    }
+
+    // 新增临时素材
+    @Override public ResponseMedia uploadMedia(String type, File file) throws IOException{
+        String url = conf.getMediaBaseURL() + "/cgi-bin/media/upload"
+                + "?access_token=" + accessToken.getCredential();
+        HttpParameter[] params = new HttpParameter[] {
+                new HttpParameter("type", type),
+                new HttpParameter("media", file)
+        };
+        return factory.createResponseMedia(post(url, params));
+    }
+
+    // 获取临时素材
+    @Override public Response getMedia(String mediaId, File file) throws IOException {
+        String url = conf.getMediaBaseURL() + "/cgi-bin/media/get"
+                + "?access_token=" + accessToken.getCredential();
+        HttpParameter[] params = new HttpParameter[] {
+                new HttpParameter("media_id", mediaId)
+        };
+        return factory.createResponse(post(url, params), file);
+    }
+
+    // 新增永久素材
+    @Override public ResponseMedia addNewsMaterial(Map<String, Object> news) throws IOException {
+        String url = conf.getRestBaseURL() + "/cgi-bin/material/add_news"
+                + "?access_token=" + accessToken.getCredential();
+        HttpParameter[] params = new HttpParameter[] {
+                new HttpParameter(new JSONObject(news))
+        };
+        return factory.createResponseMedia(post(url, params));
+    }
+
+    // 新增其他类型永久素材
+    @Override public ResponseMedia addMaterial(String type, File file) throws IOException {
+        String url = conf.getRestBaseURL() + "/cgi-bin/material/add_material"
+                + "?access_token=" + accessToken.getCredential();
+        HttpParameter[] params = new HttpParameter[] {
+                new HttpParameter("type", type),
+                new HttpParameter("media", file)
+        };
+        return factory.createResponseMedia(post(url, params));
+    }
+
+    // 新增其他类型永久素材
+    @Override public ResponseMedia addMaterial(String type, Map<String, Object> description, File file) throws IOException {
+        String url = conf.getRestBaseURL() + "/cgi-bin/material/add_material"
+                + "?access_token=" + accessToken.getCredential();
+        HttpParameter[] params = new HttpParameter[] {
+                new HttpParameter("type", type),
+                new HttpParameter("description", new JSONObject(description)),
+                new HttpParameter("media", file)
+        };
+        return factory.createResponseMedia(post(url, params));
+    }
+
+    // 获取永久素材
+    @Override public ResponseMedia getMaterial(Map<String, Object> material) throws IOException {
+        String url = conf.getRestBaseURL() + "/cgi-bin/material/get_material"
+                + "?access_token=" + accessToken.getCredential();
+        HttpParameter[] params = new HttpParameter[] {
+                new HttpParameter(new JSONObject(material))
+        };
+        return factory.createResponseMedia(post(url, params));
+    }
+
+    // 删除永久素材
+    @Override public Response deleteMaterial(Map<String, Object> material) throws IOException {
+        String url = conf.getRestBaseURL() + "/cgi-bin/material/del_material"
+                + "?access_token=" + accessToken.getCredential();
+        HttpParameter[] params = new HttpParameter[] {
+                new HttpParameter(new JSONObject(material))
+        };
+        return factory.createResponse(post(url, params));
     }
 
     // 创建分组
@@ -316,6 +369,16 @@ final class WechatImpl implements Wechat, Serializable {
         return factory.createResponse(post(url, params));
     }
 
+    // 删除分组
+    @Override public Response deleteGroup(Map<String, Object> group) throws IOException {
+        String url = conf.getRestBaseURL() + "/cgi-bin/groups/delete"
+                + "?access_token=" + accessToken.getCredential();
+        HttpParameter[] params = new HttpParameter[] {
+                new HttpParameter(new JSONObject(group))
+        };
+        return factory.createResponse(post(url, params));
+    }
+
     // 设置备注名
     @Override public Response updateRemark(Map<String, Object> remark) throws IOException {
         String url = conf.getRestBaseURL() + "/cgi-bin/groups/members/batchupdate"
@@ -352,7 +415,7 @@ final class WechatImpl implements Wechat, Serializable {
         try {
             return conf.getOAuth2CodeURL() +"/connect/oauth2/authorize"
                     + "?appid=" + conf.getOAuthAppId()
-                    + "&redirect_uri" + URLEncoder.encode(redirectURI, "utf-8")
+                    + "&redirect_uri=" + URLEncoder.encode(redirectURI, "utf-8")
                     + "&response_type=" + "code"
                     + "&scope=" + scope
                     + "&state=" + state
@@ -386,10 +449,10 @@ final class WechatImpl implements Wechat, Serializable {
     }
 
     // 拉取用户信息(需scope为 snsapi_userinfo)
-    @Override public ResponseUser getOAuth2UserInfo(String openId, String lang) throws IOException {
-        String url = conf.getRestBaseURL() + "/sns/userinfo"
-                + "?access_token=" + accessToken.getCredential();
+    @Override public ResponseUser getOAuth2UserInfo(String accessToken, String openId, String lang) throws IOException {
+        String url = conf.getRestBaseURL() + "/sns/userinfo";
         HttpParameter[] params = new HttpParameter[] {
+                new HttpParameter("access_token", accessToken),
                 new HttpParameter("openid", openId),
                 new HttpParameter("lang", lang)
         };
@@ -445,12 +508,12 @@ final class WechatImpl implements Wechat, Serializable {
     }
 
     // 通过ticket换取二维码
-    @Override public Response showQRCode(String ticket, File file) throws IOException {
+    @Override public void showQRCode(String ticket, File file) throws IOException {
         String url = conf.getMPBaseURL() + "/cgi-bin/showqrcode";
         HttpParameter[] params = new HttpParameter[]{
                 new HttpParameter("ticket", ticket)
         };
-        return factory.createQRCode(get(url, params), file);
+        factory.createQRCode(get(url, params), file);
     }
 
     // 将一条长链接转成短链接

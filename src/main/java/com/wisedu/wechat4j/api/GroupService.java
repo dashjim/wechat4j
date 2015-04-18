@@ -25,4 +25,7 @@ public interface GroupService {
 
     // 批量移动用户分组
     Response batchMoveGroup(Map<String, Object> group) throws IOException;
+
+    // 删除分组
+    Response deleteGroup(Map<String, Object> group) throws IOException;
 }

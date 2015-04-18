@@ -7,6 +7,7 @@ import com.wisedu.wechat4j.entity.Response;
 import java.util.HashMap;
 import java.util.Map;
 
+// 设置用户备注名
 public class UpdateRemark {
     private static Map<String, Object> remark = new HashMap<String, Object>(){{
         put("openid", "oYiqRuKcmIVaKh6BlF7WNFlZA-cs");

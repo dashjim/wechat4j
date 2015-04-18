@@ -7,6 +7,7 @@ import com.wisedu.wechat4j.entity.ResponseMessage;
 import java.util.HashMap;
 import java.util.Map;
 
+// 查询群发消息发送状态
 public class MassGet {
     private static Map<String, Object> msg = new HashMap<String, Object>(){{
         put("msg_id", 2356577100L);

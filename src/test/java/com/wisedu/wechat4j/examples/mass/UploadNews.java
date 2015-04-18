@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+// 上传图文消息素材
 public class UploadNews {
     private static Map<String, Object> news = new HashMap<String, Object>() {{
         put("articles", new ArrayList<Map<String, Object>>() {{

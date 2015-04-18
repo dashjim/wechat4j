@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+// 创建分组
 public class CreateGroup {
     private static Map<String, Object> group = new HashMap<String, Object>(){{
         put("group", new HashMap<String, Object>(){{
@@ -17,11 +18,11 @@ public class CreateGroup {
 
     public static void main(String[] args) throws IOException {
         Wechat wechat = new WechatFactory().getInstance();
-        ResponseGroup responseGroup = wechat.createGroup(group);
-        if (responseGroup.getResponse().getErrCode() == 0){
-            System.out.println("List Group Succeed." + responseGroup);
+        ResponseGroup response = wechat.createGroup(group);
+        if (response.getResponse().getErrCode() == 0){
+            System.out.println("List Group Succeed." + response);
         } else {
-            System.err.println("List Group Failed." + responseGroup);
+            System.err.println("List Group Failed." + response);
         }
     }
 }

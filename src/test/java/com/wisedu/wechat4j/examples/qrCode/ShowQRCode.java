@@ -12,9 +12,11 @@ public class ShowQRCode {
 
     public static void main(String[] args) throws Exception{
         Wechat wechat = new WechatFactory().getInstance();
-        Response response = wechat.showQRCode(ticket, new File(dst));
-        if (response.getErrCode()==0 && new File(dst).exists()) {
-            System.out.println("Show QR Code Succeed." + response);
+        wechat.showQRCode(ticket, new File(dst));
+        if (new File(dst).exists()) {
+            System.out.println("Show QR Code Succeed.");
+        } else {
+            System.err.println("Show QR Code Failed.");
         }
     }
 }

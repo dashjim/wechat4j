@@ -4,25 +4,25 @@ import com.wisedu.wechat4j.api.Wechat;
 import com.wisedu.wechat4j.client.WechatFactory;
 import com.wisedu.wechat4j.entity.Response;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-// 修改分组名
-public class UpdateGroup {
+// 删除分组
+public class DeleteGroup {
     private static Map<String, Object> group = new HashMap<String, Object>(){{
         put("group", new HashMap<String, Object>(){{
-            put("id", 109);
-            put("name", "分组二");
+            put("id", "101");
         }});
     }};
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws IOException {
         Wechat wechat = new WechatFactory().getInstance();
-        Response response = wechat.updateGroup(group);
+        Response response = wechat.deleteGroup(group);
         if (response.getErrCode() == 0){
-            System.out.println("Update Group Succeed." + response);
+            System.out.println("Delete Group Succeed." + response);
         } else {
-            System.err.println("Update Group Failed." + response);
+            System.err.println("Delete Group Failed." + response);
         }
     }
 }

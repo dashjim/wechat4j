@@ -10,7 +10,7 @@ import java.util.Map;
 public class CreateShortURL {
     private static Map<String, Object> longURL = new HashMap<String, Object>(){{
         put("action", "long2short");
-        put("long_url", "http://www.baidu.com");
+        put("long_url", "http://wechat.ngrok.com/tSow/wechat/wechat.do");
     }};
 
     public static void main(String[] args) throws Exception{

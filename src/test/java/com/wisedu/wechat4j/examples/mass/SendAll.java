@@ -7,6 +7,7 @@ import com.wisedu.wechat4j.entity.ResponseMessage;
 import java.util.HashMap;
 import java.util.Map;
 
+// 根据分组进行群发
 public class SendAll {
     private static Map<String, Object> msg = new HashMap<String, Object>(){{
         put("filter", new HashMap<String, Object>(){{
