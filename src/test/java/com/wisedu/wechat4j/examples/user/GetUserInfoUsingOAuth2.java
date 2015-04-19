@@ -4,7 +4,6 @@ import com.wisedu.wechat4j.api.Wechat;
 import com.wisedu.wechat4j.client.WechatFactory;
 import com.wisedu.wechat4j.entity.ResponseOAuth2AccessToken;
 import com.wisedu.wechat4j.entity.ResponseUser;
-import twitter4j.TwitterException;
 
 import java.awt.*;
 import java.io.BufferedReader;
