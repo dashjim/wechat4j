@@ -4,7 +4,7 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.wisedu.rfocus</groupId>
+    <groupId>com.github.abj351r7</groupId>
     <artifactId>wechat-java-sdk</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
