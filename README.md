@@ -8,6 +8,19 @@ Wechat4J是一款基于微信公众平台API接口的Java SDK，开发者可用�
 
     git clone git://github.com/abj351r7/wechat4j
 
+也可以使用Maven，在Pom.xml文件中添加依赖
+
+```
+<dependencies>
+	<dependency>
+		<groupId>com.github.abj351r7</groupId>
+		<artifactId>wechat-java-sdk</artifactId>
+		<version>1.0.1</version>
+	</dependency>
+	...
+</dependencies>
+```
+
 ## Usage
 
 ### Configuration
